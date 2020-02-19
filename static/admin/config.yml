@@ -1,7 +1,12 @@
 backend:
-  name: test-repo
+  name: bitbucket
+  repo: hck2dev/hck2-2020
+  auth_type: implicit
+  app_id: EzJrmYZfDHXC3hMam8
 
 publish_mode: editorial_workflow
+
+site_url: localhost:8000
 
 media_folder: static/assets
 public_folder: /assets

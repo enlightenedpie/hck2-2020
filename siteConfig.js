@@ -1,9 +1,9 @@
 module.exports = {
   name: 'HCK2 Partners',
   shortName: 'HCK2',
-  description: 'A bold, minimal theme for Gatsby, focused on clean typography & beautiful imagery',
+  description: 'HCK2 Partners\' own marketing website, replete with blogs, case studies, and creative briefs on all of our work.',
   url: 'https://hck2.dev', // Domain of your site without prefix!
   prefix: '/',
-  author: 'Vaporwavy',
+  author: 'David Paul Crouch',
   twitter: ''
 }
