@@ -4,7 +4,10 @@
 
 ---
 
-**Based on [London](https://github.com/ImedAdel/gatsby-london) for Gatsby**
+**Site stack:**
+  - [Gatsby](https://gatsbyjs.org) - *Frontend*
+  - [Netlify CMS](https://netlifycms.org) - *Content*
+  - [Netlify](https://app.netlify.com) - *Backend*
 
 ---
 
