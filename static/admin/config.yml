@@ -22,10 +22,10 @@ collections:
       - { name: image, label: Hero Image, widget: image, required: false }
       - { name: body, label: Body, widget: markdown, hint: Main content goes here }
 
-  - name: blog
-    label: Blog Posts
-    label_singular: Blog Post
-    folder: blog
+  - name: team-member
+    label: Team Members
+    label_singular: Team Member
+    folder: team
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
