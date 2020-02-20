@@ -3,7 +3,7 @@ backend:
 
 publish_mode: editorial_workflow
 
-site_url: localhost:8000
+site_url: http://localhost:8000
 
 media_folder: static/assets
 public_folder: /assets
