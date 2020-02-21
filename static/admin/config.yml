@@ -1,36 +1,67 @@
+environments:
+  staging: &staging
+    logo_url: https://staging.hck2.dev/assets/svg/logo-square.svg
+  production: &production
+    logo_url: https://hck2.dev/assets/svg/logo-square.svg
+
 backend:
-  name: test-repo
+  name: git-gateway
 
 publish_mode: editorial_workflow
-
-site_url: localhost:8000
-
+site_url: https://hck2.dev
 media_folder: static/assets
-public_folder: /assets
+locale: en
+<<: *staging
 
 collections:
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "content/pages/about.yml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
+          - label: Team
+            name: team
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Position, name: position, widget: string }
+              - { label: Photo, name: photo, widget: image }
   - name: blog
     label: Blog Posts
     label_singular: Blog Post
     folder: blog
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} -- {{year}}/{{month}}/{{day}}"
     fields:
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: image, label: Hero Image, widget: image, required: false }
-      - { name: body, label: Body, widget: markdown, hint: Main content goes here }
+      - {
+          name: body,
+          label: Body,
+          widget: markdown,
+          hint: Main content goes here,
+        }
 
   - name: team-member
     label: Team Members
     label_singular: Team Member
     folder: team
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} -- {{year}}/{{month}}/{{day}}"
     fields:
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: image, label: Hero Image, widget: image, required: false }
-      - { name: body, label: Body, widget: markdown, hint: Main content goes here }
+      - {
+          name: body,
+          label: Body,
+          widget: markdown,
+          hint: Main content goes here,
+        }
