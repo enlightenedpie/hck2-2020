@@ -17,7 +17,7 @@ collections:
         file: "content/pages/about.yml"
         fields:
           - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
+          - {label: Body, name: body, widget: markdown}
           - label: Team
             name: team
             widget: list
