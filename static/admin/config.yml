@@ -1,16 +1,11 @@
 backend:
-  name: bitbucket
-  repo: hck2dev/hck2-2020
-  branch: staging
-  auth_type: implicit
-  site_domain: cms.netlify.com
-  app_id: EzJrmYZfDHXC3hMam8
+  name: git-gateway
 
 publish_mode: editorial_workflow
-
-site_url: http://localhost:8000
-
+site_url: https://hck2.dev
 media_folder: static/assets
+locale: en
+logo_url: https://hck2.dev/static/assets/svg/logo-square.svg
 
 collections:
   - label: "Pages"
