@@ -5,7 +5,7 @@ publish_mode: editorial_workflow
 site_url: https://hck2.dev
 media_folder: static/assets
 locale: en
-logo_url: https://hck2.dev/static/assets/svg/logo-square.svg
+logo_url: https://staging.hck2.dev/assets/svg/logo-square.svg
 
 collections:
   - label: "Pages"
