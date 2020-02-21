@@ -1,3 +1,9 @@
+environments:
+  staging: &staging
+    logo_url: https://staging.hck2.dev/assets/svg/logo-square.svg
+  production: &production
+    logo_url: https://hck2.dev/assets/svg/logo-square.svg
+
 backend:
   name: git-gateway
 
@@ -5,7 +11,7 @@ publish_mode: editorial_workflow
 site_url: https://hck2.dev
 media_folder: static/assets
 locale: en
-logo_url: https://hck2.dev/static/assets/svg/logo-square.svg
+<<: *staging
 
 collections:
   - label: "Pages"
