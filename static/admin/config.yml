@@ -6,6 +6,8 @@ environments:
 
 backend:
   name: git-gateway
+  repo: enlightenedpie/hck2-2020
+  branch: staging
 
 publish_mode: editorial_workflow
 site_url: https://hck2.dev
