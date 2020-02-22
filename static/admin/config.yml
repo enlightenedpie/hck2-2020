@@ -16,7 +16,7 @@ locale: en
 <<: *staging
 
 collections:
-  - label: ${BRANCH}
+  - label: ${KEY_FOB}
     name: "pages"
     files:
       - label: "About Page"
