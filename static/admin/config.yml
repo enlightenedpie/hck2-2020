@@ -16,9 +16,38 @@ locale: en
 <<: *staging
 
 collections:
+  - label: "Menus"
+    name: "nav"
+    files:
+      - label: "Header Menu"
+        name: "header_nav"
+        file: "content/nav/header.yml"
+        fields:
+          - label: "Navigation"
+            name: "nav_items"
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Path, name: path, widget: string }
+      - label: "Footer Menu"
+        name: "footer_nav"
+        file: "content/nav/footer.yml"
+        fields:
+          - label: "Navigation"
+            name: "nav_items"
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Path, name: path, widget: string }
   - label: "Pages"
     name: "pages"
     files:
+      - label: "Home Page"
+        name: "home"
+        file: "content/pages/home.yml"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: markdown }
       - label: "About Page"
         name: "about"
         file: "content/pages/about.yml"

@@ -1,0 +1,7 @@
+nav_items:
+  - label: Products
+    path: /products/
+  - label: Home
+    path: /
+  - label: News
+    path: /news/
