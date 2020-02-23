@@ -29,6 +29,7 @@ collections:
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Path, name: path, widget: string }
+              - { label: Extra Classes, name: classes, widget: string }
       - label: "Footer Menu"
         name: "footer_nav"
         file: "content/nav/footer.yml"
@@ -39,6 +40,7 @@ collections:
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Path, name: path, widget: string }
+              - { label: Extra Classes, name: classes, widget: string }
   - label: "Pages"
     name: "pages"
     files:
