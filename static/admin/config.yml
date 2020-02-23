@@ -16,15 +16,25 @@ locale: en
 <<: *staging
 
 collections:
-  - label: "Settings"
-    name: "settings"
+  - label: "Menus"
+    name: "nav"
     files:
-      - file: "content/settings/nav.yml"
-        label: Navigation
-        name: "nav"
+      - label: "Header Menu"
+        name: "header_nav"
+        file: "content/nav/header.yml"
         fields:
-          - label: Navigation
-            name: nav_items
+          - label: "Navigation"
+            name: "nav_items"
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Path, name: path, widget: string }
+      - label: "Footer Menu"
+        name: "footer_nav"
+        file: "content/nav/footer.yml"
+        fields:
+          - label: "Navigation"
+            name: "nav_items"
             widget: list
             fields:
               - { label: Label, name: label, widget: string }
