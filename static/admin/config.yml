@@ -16,7 +16,6 @@ locale: en
 <<: *staging
 
 collections:
-<<<<<<< HEAD
   - label: "Menus"
     name: "nav"
     files:
@@ -36,17 +35,6 @@ collections:
         fields:
           - label: "Navigation"
             name: "nav_items"
-=======
-  - label: "Settings"
-    name: "settings"
-    files:
-      - file: "content/settings/nav.yml"
-        label: Navigation
-        name: "nav"
-        fields:
-          - label: Navigation
-            name: nav_items
->>>>>>> 6edaeace793503918824e5c53dd4ee48584f58d9
             widget: list
             fields:
               - { label: Label, name: label, widget: string }
