@@ -77,7 +77,12 @@ function SEO({ description, lang, meta, keywords, title }) {
             : []
         )
         .concat(meta)}
-    />
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800|Open+Sans:400,600,700&display=swap"
+        rel="stylesheet"
+      ></link>
+    </Helmet>
   )
 }
 

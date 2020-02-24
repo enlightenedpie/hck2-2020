@@ -7,7 +7,7 @@ environments:
 backend:
   name: git-gateway
   repo: enlightenedpie/hck2-2020
-  branch: staging
+  branch: master
 
 publish_mode: editorial_workflow
 site_url: https://hck2.dev
@@ -18,18 +18,26 @@ locale: en
 collections:
   - label: "Menus"
     name: "nav"
+    editor:
+      preview: false
     files:
       - label: "Header Menu"
         name: "header_nav"
         file: "content/nav/header.yml"
         fields:
-          - label: "Navigation"
+          - label: "Nav Items"
+            label_singular: "Navigation"
             name: "nav_items"
             widget: list
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Path, name: path, widget: string }
-              - { label: Extra Classes, name: classes, widget: string }
+              - {
+                  label: Extra Classes,
+                  name: classes,
+                  widget: string,
+                  required: false,
+                }
       - label: "Footer Menu"
         name: "footer_nav"
         file: "content/nav/footer.yml"
@@ -40,7 +48,12 @@ collections:
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Path, name: path, widget: string }
-              - { label: Extra Classes, name: classes, widget: string }
+              - {
+                  label: Extra Classes,
+                  name: classes,
+                  widget: string,
+                  required: false,
+                }
   - label: "Pages"
     name: "pages"
     files:
