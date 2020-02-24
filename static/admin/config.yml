@@ -54,6 +54,22 @@ collections:
                   widget: string,
                   required: false,
                 }
+      - label: "Social Media Menu"
+        name: "social_nav"
+        file: "content/nav/social.yml"
+        fields:
+          - label: "Navigation"
+            name: "nav_items"
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: link, widget: string }
+              - {
+                  label: Extra Classes,
+                  name: classes,
+                  widget: string,
+                  required: false,
+                }
   - label: "Pages"
     name: "pages"
     files:
