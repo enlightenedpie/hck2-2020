@@ -1,10 +1,7 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-// import Bio from "../components/bio"
-import PostCard from "../components/postCard"
 
 // import "../utils/global.scss"
 import "../utils/normalize.css"
@@ -32,14 +29,7 @@ const BlogIndex = ({ data }, location) => {
       <div className="post-feed">
         {posts.map(({ node }) => {
           postCounter++
-          return (
-            <PostCard
-              key={node.fields.slug}
-              count={postCounter}
-              node={node}
-              postClass={`post`}
-            />
-          )
+          return null
         })}
       </div>
     </Layout>
@@ -80,11 +70,14 @@ const indexQuery = graphql`
   }
 `
 
-export default props => (
-  <StaticQuery
-    query={indexQuery}
-    render={data => (
-      <BlogIndex location={props.location} props data={data} {...props} />
-    )}
-  />
-)
+export default props => {
+  console.log(props)
+  return (
+    <StaticQuery
+      query={indexQuery}
+      render={data => (
+        <BlogIndex location={props.location} props data={data} {...props} />
+      )}
+    />
+  )
+}
