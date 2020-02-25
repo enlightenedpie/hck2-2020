@@ -7,7 +7,7 @@
 
 [[redirects]]
   from = "/admin"
-  to = "ADMIN_URL"
+  to = "ADMIN_URRL"
   force = true
   signed = "API_SIGNATURE_TOKEN"
   status = 200
