@@ -1,13 +1,13 @@
 [[redirects]]
   from = "/api"
-  to = "PROXY_URL"
+  to = "https://google.com"
   force = true
-  signed = "API_SIGNATURE_TOKEN"
+  signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
   status = 200
 
 [[redirects]]
   from = "/admin"
-  to = "ADMIN_URRL"
+  to = "https://hck2.com"
   force = true
-  signed = "API_SIGNATURE_TOKEN"
+  signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
   status = 200
