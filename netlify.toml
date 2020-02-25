@@ -1,0 +1,13 @@
+[[redirects]]
+  from = "/api"
+  to = "PROXY_URL"
+  force = true
+  signed = "API_SIGNATURE_TOKEN"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "ADMIN_URRL"
+  force = true
+  signed = "API_SIGNATURE_TOKEN"
+  status = 200

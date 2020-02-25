@@ -1,9 +1,0 @@
-nav_items:
-  - label: Agency
-    path: /agency/
-  - label: Expertise
-    path: /expertise/
-  - label: Work
-    path: /work/
-  - label: Media
-    path: /media/
