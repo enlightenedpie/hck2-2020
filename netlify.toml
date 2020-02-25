@@ -1,0 +1,13 @@
+[[redirects]]
+  from = "/api"
+  to = "https://google.com"
+  force = true
+  signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "https://hck2.com"
+  force = true
+  signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
+  status = 200
