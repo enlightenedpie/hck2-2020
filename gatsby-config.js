@@ -2,14 +2,33 @@ const urljoin = require("url-join")
 const siteConfig = require("./siteConfig")
 
 module.exports = {
+  menus: {
+    mainNav: [
+      {
+        label: "agency",
+        link: "/agency",
+      },
+      {
+        label: "expertise",
+        link: "/expertise",
+      },
+      {
+        label: "work",
+        link: "/our-work",
+      },
+      {
+        label: "media",
+        link: "/media",
+      },
+    ],
+  },
   siteMetadata: {
     title: siteConfig.name,
     author: siteConfig.author,
     description: siteConfig.description,
     siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
-    social: {
-      twitter: siteConfig.twitter,
-    },
+    address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
+    phone: "972.716.0500",
   },
   plugins: [
     {
@@ -101,6 +120,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
+        data: `@import "${__dirname}/src/styles/entry"`,
         useResolveUrlLoader: true,
       },
     },

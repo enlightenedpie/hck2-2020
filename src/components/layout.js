@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 
-const Layout = props => {
-  const { title, children } = props
+import Footer from "./global/Footer"
+
+const Layout = ({ title, children, ...props }) => {
   const [toggleNav, setToggleNav] = useState(false)
   return (
     <div className={`site-wrapper ${toggleNav ? `site-head-open` : ``}`}>
@@ -88,17 +89,7 @@ const Layout = props => {
           {children}
         </div>
       </main>
-      <footer className="site-foot">
-        &copy; {new Date().getFullYear()} <Link to={`/`}>{title}</Link> &mdash;
-        Built with{" "}
-        <a
-          href="https://gatsbyjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Gatsby
-        </a>
-      </footer>
+      <Footer {...props} />
     </div>
   )
 }

@@ -1,0 +1,76 @@
+.siteFooter
+  background-color: $navy
+  color: $white
+  padding: 3rem 1rem
+  display: grid
+  gap: 3rem
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+  +mq('laptop')
+    padding: 3rem 7%
+
+  h4
+    margin-bottom: 1em
+
+  & > div
+    display: flex
+
+    svg
+      display: block
+      width: 100%
+      height: auto
+
+      path
+        fill: $white
+  
+  .left
+    order: 1
+    justify-content: space-evenly
+
+    .hrContainer
+      display: flex
+      justify-content: center
+      align-items: center
+
+      hr
+        margin: 0
+        height: 100%
+
+    & > nav, & > div
+      padding: 0 5%
+
+    a, p, address
+      display: block
+      text-transform: capitalize
+      font-size: 80%
+      white-space: pre-line
+    
+    a, p
+      line-height: 2
+    
+    address
+      line-height: 1.25
+      padding-top: .75em
+
+  .right
+    order: 2
+    +mq('tportrait')
+      order: -1
+
+    & > div
+      padding: 0 5%
+
+    & > div:first-of-type
+      flex: 1
+
+    & > div:last-of-type
+      flex: 2
+      +mq('mobile')
+        flex: 3
+
+copy-right
+  background-color: $navy
+  color: $white
+  display: block
+  font-size: 60%
+  padding: 1.5em 0
+  text-align: center
