@@ -79,12 +79,6 @@ function SEO({ description, lang, meta, keywords, title }) {
         .concat(meta)}
     >
       <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/brands.min.css"
-        integrity="sha256-G2I5BfHSSC9AXQyjI9B2w0Fue6RdgGpTAt3m2Zmzw04="
-        crossorigin="anonymous"
-      />
-      <link
         href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800|Roboto:400,700&display=swap"
         rel="stylesheet"
       ></link>

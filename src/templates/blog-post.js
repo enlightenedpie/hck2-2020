@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
-import Layout from "../components/layout"
+import Layout from "../templates/layout"
 import SEO from "../components/seo"
 
 class BlogPostTemplate extends React.Component {

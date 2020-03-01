@@ -2,26 +2,6 @@ const urljoin = require("url-join")
 const siteConfig = require("./siteConfig")
 
 module.exports = {
-  menus: {
-    mainNav: [
-      {
-        label: "agency",
-        link: "/agency",
-      },
-      {
-        label: "expertise",
-        link: "/expertise",
-      },
-      {
-        label: "work",
-        link: "/our-work",
-      },
-      {
-        label: "media",
-        link: "/media",
-      },
-    ],
-  },
   siteMetadata: {
     title: siteConfig.name,
     author: siteConfig.author,
@@ -29,6 +9,40 @@ module.exports = {
     siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
     address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
+    menus: {
+      mainNav: [
+        {
+          label: "agency",
+          link: "/agency",
+        },
+        {
+          label: "expertise",
+          link: "/expertise",
+        },
+        {
+          label: "work",
+          link: "/our-work",
+        },
+        {
+          label: "media",
+          link: "/media",
+        },
+      ],
+      socialNav: [
+        {
+          label: "fa-instagram",
+          link: "#",
+        },
+        {
+          label: "fa-facebook-f",
+          link: "#",
+        },
+        {
+          label: "fa-linkedin-in",
+          link: "#",
+        },
+      ],
+    },
   },
   plugins: [
     {

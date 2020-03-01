@@ -2,7 +2,11 @@ import React from "react"
 
 export default {
   logo: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258.993 343.614">
+    <svg
+      className="logo"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 258.993 343.614"
+    >
       <defs>
         <style>{`.b0e75149-a54a-4182-8a38-619a96c2a466{fill:#f47b29;}`}</style>
       </defs>
@@ -130,8 +134,12 @@ export default {
       </g>
     </svg>
   ),
-  logoNoText: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245.787 245.787">
+  LogoNoText: () => (
+    <svg
+      className="logo--noText"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 245.787 245.787"
+    >
       <defs>
         <style>{`.a7689f29-4699-405f-b238-e870477815cf{fill:#f47b29;}`}</style>
       </defs>

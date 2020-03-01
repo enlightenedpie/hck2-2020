@@ -1,0 +1,58 @@
+.siteHeader
+  position: sticky
+  z-index: 2000
+  background: $white
+  display: flex
+  align-items: center
+  justify-content: center
+  +mq('tportrait')
+    position: relative
+
+    & > *
+      flex: 1 1 100%
+      justify-content: center
+
+  & > nav
+    flex: 2
+    justify-content: center
+    +mq('tportrait')
+      flex: 1 1 100%
+
+  .logoBox
+    padding: .75rem
+    text-align: center
+
+    svg
+      width: 2.5rem
+      height: 2.5rem
+  
+  .headerMenu
+    font-family: $fontStackH
+    font-weight: 800
+    color: $orange
+    text-transform: uppercase
+    text-align: center
+
+    a
+      &:not(:last-of-type)
+        margin-right: 1em
+
+    +mq('tportrait')
+      display: block
+
+  .snHeader
+    a
+      border-color: $orange
+
+      svg
+        path
+          fill: $orange
+
+      +mq('tportrait')
+        &:hover
+          border-color: $orange
+          background-color: $orange
+
+          svg
+            path
+              fill: $white
