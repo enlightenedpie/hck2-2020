@@ -1,37 +1,21 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import Layout from "../components/layout"
+
+import Layout from "../templates/layout"
 import SEO from "../components/seo"
 
-// import "../utils/global.scss"
-import "../utils/normalize.css"
-import "../utils/css/screen.css"
-//TODO: switch to staticQuery, get rid of comments, remove unnecessary components, export as draft template
-const BlogIndex = ({ data }, location) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
-  let postCounter = 0
+import styles from "./front.module.sass"
+
+const FrontPage = ({ data }, location) => {
+  const { title, description } = data.site.siteMetadata
 
   return (
-    <Layout title={siteTitle}>
+    <Layout {...data} location={location} title={title}>
       <SEO
-        title="Posts"
+        title={title}
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
+        description={description}
       />
-      {/* <Bio /> */}
-      {data.site.siteMetadata.description && (
-        <header className="page-head">
-          <h2 className="page-head-title">
-            {data.site.siteMetadata.description}
-          </h2>
-        </header>
-      )}
-      <div className="post-feed">
-        {posts.map(({ node }) => {
-          postCounter++
-          return null
-        })}
-      </div>
     </Layout>
   )
 }
@@ -44,40 +28,14 @@ const indexQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM D, YYYY")
-            title
-            description
-            tags
-            thumbnail {
-              childImageSharp {
-                fluid(maxWidth: 1360) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 `
 
-export default props => {
-  console.log(props)
+export default ({ location, ...rest }) => {
   return (
     <StaticQuery
       query={indexQuery}
-      render={data => (
-        <BlogIndex location={props.location} props data={data} {...props} />
-      )}
+      render={data => <FrontPage location={location} data={data} {...rest} />}
     />
   )
 }

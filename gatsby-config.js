@@ -7,8 +7,41 @@ module.exports = {
     author: siteConfig.author,
     description: siteConfig.description,
     siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
-    social: {
-      twitter: siteConfig.twitter,
+    address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
+    phone: "972.716.0500",
+    menus: {
+      mainNav: [
+        {
+          label: "agency",
+          link: "/agency",
+        },
+        {
+          label: "expertise",
+          link: "/expertise",
+        },
+        {
+          label: "work",
+          link: "/our-work",
+        },
+        {
+          label: "media",
+          link: "/media",
+        },
+      ],
+      socialNav: [
+        {
+          label: "fa-instagram",
+          link: "#",
+        },
+        {
+          label: "fa-facebook-f",
+          link: "#",
+        },
+        {
+          label: "fa-linkedin-in",
+          link: "#",
+        },
+      ],
     },
   },
   plugins: [
@@ -101,6 +134,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
+        data: `@import "${__dirname}/src/styles/entry"`,
         useResolveUrlLoader: true,
       },
     },
