@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 
 import SVG from "../SVG"
@@ -28,29 +28,22 @@ const toggleMenu = () => document.body.classList.toggle("menu-open")
 
 const Header = ({ menus }) => {
   let { mainNav } = menus
-  let [stHea, setStHea] = useState(false)
 
   useEffect(() => {
     const attachOnScroll = () => {
       if (window.scrollY < 400) {
-        document.body.classList.remove("header-sticky")
-        setStHea(false)
+        document.documentElement.classList.remove("header-sticky")
         return false
       }
 
-      document.body.classList.add("header-sticky")
-      setStHea(true)
+      document.documentElement.classList.add("header-sticky")
     }
     if (window.innerWidth > 576)
       window.addEventListener("scroll", attachOnScroll)
   }, [])
 
   return (
-    <header
-      className={[styles.siteHeader, "siteHeader", stHea ? " sticky" : ""].join(
-        " "
-      )}
-    >
+    <header className={[styles.siteHeader, "siteHeader"].join(" ")}>
       <menu
         className={styles.headerMenu + " node--siteMenu"}
         onClick={toggleMenu}
