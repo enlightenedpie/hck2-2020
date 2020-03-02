@@ -2,7 +2,9 @@ import React from "react"
 import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../templates/layout"
+import SVG from "../components/SVG"
 import SEO from "../components/seo"
+import CaseStudyHero from "../components/CaseStudyHero"
 
 import styles from "./front.module.sass"
 
@@ -16,6 +18,42 @@ const FrontPage = ({ data }, location) => {
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
         description={description}
       />
+      <section className={styles.stage_ATF}>
+        <img src="/assets/img/video-placeholder.jpg" />
+        <div className={styles.stage_logoOverlay}>
+          <SVG.logo />
+        </div>
+      </section>
+      <section className={styles.callOut_ATF}>
+        <h1>Discover. Imagine. Create.</h1>
+        <p>
+          Whether you’re ready to launch a new company, take your existing
+          enterprise to the next level or revitalize your brand to compete more
+          effectively in today’s market, you’ve come to the right place.
+        </p>
+        <p>
+          HCK2 is a full-service marketing agency that can bring together the
+          ideal combination of creative concepts and design, interactive
+          experiences, digital communication, public relations and media to help
+          you get noticed – and get results.
+        </p>
+        <p>
+          Come discover our difference. Imagine the possibilities. And let’s
+          create something powerful together.
+        </p>
+        <div className={styles.lineArt}>
+          <SVG.marketingStrat />
+          <SVG.creative />
+          <SVG.web />
+          <SVG.pr />
+          <SVG.social />
+        </div>
+      </section>
+      <section className={styles.caseStudies}>
+        <CaseStudyHero bg="/assets/img/zix-corp.jpg" />
+        <CaseStudyHero bg="/assets/img/emagispace.jpg" />
+        <CaseStudyHero bg="/assets/img/austin-college.jpg" />
+      </section>
     </Layout>
   )
 }

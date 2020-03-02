@@ -33,9 +33,12 @@
     text-transform: uppercase
     text-align: center
 
-    a
-      &:not(:last-of-type)
-        margin-right: 1em
+    nav
+      font-size: 125%
+      padding-left: 1em
+      letter-spacing: 1px
+      +mq('tportrait')
+        padding-left: 2em
 
     +mq('tportrait')
       display: block
