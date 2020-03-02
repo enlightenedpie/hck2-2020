@@ -6,5 +6,4 @@ module.exports = {
   url: "https://hck2.dev",
   prefix: "/",
   author: "David Paul Crouch",
-  twitter: "",
 }

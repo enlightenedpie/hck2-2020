@@ -1,0 +1,69 @@
+.stage_ATF
+  width: 100%
+  position: relative
+  padding-top: 56.25%
+  overflow: hidden
+  +mq('tportrait')
+    padding-top: 41.67%
+
+  .stage_logoOverlay
+    display: flex
+    height: 100%
+    align-items: center
+    justify-content: center
+    background: rgba($black,.25)
+
+    svg
+      height: 50%
+
+      path
+        fill: $white
+
+  img
+    display: block
+    height: 100%
+    +mq('tportrait')
+      height: auto
+
+  img, .stage_logoOverlay
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+
+.callOut_ATF
+  background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
+  padding: 3rem
+  text-align: center
+  color: $white
+  +mq('tportrait')
+    padding: 3rem 20%
+
+  h1
+    color: $orange
+    font-size: 3rem
+    margin-bottom: 1em
+
+  p
+    line-height: 1.5
+    margin-bottom: 1.5rem
+    
+    &:last-of-type
+      font-weight: 700
+
+  .lineArt
+    padding: 2rem 0 0
+    width: 100%
+    display: flex
+    align-items: flex-end
+    +mq('tportrait')
+      padding: 2rem 5rem 0
+
+
+    svg
+      width: 20%
+
+      path
+        stroke: $white
+
+.caseStudies
