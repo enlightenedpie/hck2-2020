@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useCallback } from "react"
 import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../templates/layout"
