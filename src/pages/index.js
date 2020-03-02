@@ -19,7 +19,7 @@ const FrontPage = ({ data }, location) => {
         description={description}
       />
       <section className={styles.stage_ATF}>
-        <img src="/assets/img/video-placeholder.jpg" />
+        <img loading="lazy" src="/assets/img/video-placeholder.jpg" />
         <div className={styles.stage_logoOverlay}>
           <SVG.logo />
         </div>
@@ -53,6 +53,24 @@ const FrontPage = ({ data }, location) => {
         <CaseStudyHero bg="/assets/img/zix-corp.jpg" />
         <CaseStudyHero bg="/assets/img/emagispace.jpg" />
         <CaseStudyHero bg="/assets/img/austin-college.jpg" />
+      </section>
+      <section className={styles.testimonials}>
+        <h3>Testimonials</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
+          suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+          lacus vel facilisis.
+        </p>
+        <p>Name | Title | Company</p>
+      </section>
+      <section className={styles.blogMedia}>
+        <div className={styles.blog}>
+          <h4>Blog</h4>
+        </div>
+        <div className={styles.media}>
+          <h4>Newsroom</h4>
+        </div>
       </section>
     </Layout>
   )
