@@ -67,3 +67,45 @@
         stroke: $white
 
 .caseStudies
+
+.testimonials
+  background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
+  padding: 3rem
+  text-align: center
+  color: $white
+  +mq('tportrait')
+    padding: 3rem 25%
+
+  h3
+    color: $orange
+    font-size: 3rem
+    margin-bottom: 1em
+  
+  p
+    line-height: 1.5
+    margin-bottom: 1.5rem
+    
+    &:last-of-type
+      font-weight: 700
+
+.blogMedia
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+  min-height: 20rem
+  background: $white
+
+  & > div
+    text-align: center
+    padding: 4rem
+
+    h4
+      font-size: 3rem
+      margin-bottom: 1em
+  
+  .blog
+    h4
+      color: $green
+
+  .media
+    h4
+      color: $blue

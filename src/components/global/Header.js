@@ -35,7 +35,7 @@ const Header = ({ menus }) => {
       >
         <nav onClick={e => e.stopPropagation()}>
           {mainNav.map((node, idx) => (
-            <Link to={node.link} key={idx * 25}>
+            <Link className={styles.slideLink} to={node.link} key={idx * 25}>
               {node.label}
             </Link>
           ))}
