@@ -42,11 +42,7 @@ const FrontPage = ({ data }, location) => {
           create something powerful together.
         </p>
         <div className={styles.lineArt}>
-          <SVG.marketingStrat />
-          <SVG.creative />
-          <SVG.web />
-          <SVG.pr />
-          <SVG.social />
+          <SVG.allFive />
         </div>
       </section>
       <section className={styles.caseStudies}>
