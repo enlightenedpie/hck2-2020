@@ -1,12 +1,9 @@
-body.header-sticky
+html.header-sticky
   margin-top: 3rem
 
   header.siteHeader
     position: fixed
     top: 0
     width: 100%
-    transform: translate3d(0,-3rem,0)
     transition: all 250ms ease-in-out
-
-    &.sticky
-      transform: translate3d(0,0,0)
+    animation: 250ms ease-in-out 0ms normal both 1 headerSlide
