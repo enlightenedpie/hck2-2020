@@ -7,7 +7,7 @@
 
 [[redirects]]
   from = "/admin"
-  to = "https://hck2.com"
+  to = "https://admin.hck2.com/wp/wp-admin"
   force = true
   signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
   status = 200
