@@ -2,7 +2,7 @@ const path = require(`path`)
 const _ = require("lodash")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({ graphql, actions }) => {
+/* exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
@@ -61,9 +61,9 @@ exports.createPages = ({ graphql, actions }) => {
 
     return null
   })
-}
+} */
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+/* exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
@@ -74,4 +74,4 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
-}
+} */

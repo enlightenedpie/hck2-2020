@@ -31,7 +31,7 @@ const Header = ({ menus }) => {
 
   useEffect(() => {
     const attachOnScroll = () => {
-      if (window.scrollY < 400) {
+      if (window.scrollY < 450) {
         document.documentElement.classList.remove("header-sticky")
         return false
       }
