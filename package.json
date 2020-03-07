@@ -32,6 +32,8 @@
     "gatsby-remark-responsive-iframe": "^2.1.1",
     "gatsby-remark-smartypants": "^2.0.9",
     "gatsby-source-filesystem": "^2.0.33",
+    "gatsby-source-graphql": "^2.1.33",
+    "gatsby-source-wordpress": "^3.1.63",
     "gatsby-transformer-remark": "^2.3.12",
     "gatsby-transformer-sharp": "^2.1.19",
     "node-sass": "^4.13.1",
