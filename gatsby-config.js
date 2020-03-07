@@ -47,6 +47,11 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "WPQUERY",
+        fieldName: "wpquery",
+        url: "http://admin.hck2.com/wp/graphql",
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
