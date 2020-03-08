@@ -3,17 +3,21 @@ module.exports = {
     title: "HCK2",
     author: "HCK2",
     description: "HCK2",
-    siteUrl: "/",
+    siteUrl: "https://hck2.com",
     address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
+    menus: {
+      mainNav: [],
+      socialNav: [],
+    },
   },
   plugins: [
     {
       resolve: `gatsby-source-graphql`,
       options: {
-        typeName: "Wpquery",
-        fieldName: "wpquery",
-        url: "https://admin.hck2.com/wp/graphql",
+        typeName: `Wpquery`,
+        fieldName: `wpquery`,
+        url: `https://admin.hck2.com/wp/graphql`,
       },
     },
     {
@@ -74,18 +78,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-feed`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: "HCK2 dot com",
-        short_name: "hck2",
-        start_url: "https://hck2.com",
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/hck2-logo.png`,
-      },
-    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {

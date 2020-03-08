@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
-import styles from "./mainnav.module.sass"
+import "./mainnav.module.sass"
 
 const mainQuery = graphql`
   query {
@@ -23,7 +23,7 @@ const mainQuery = graphql`
   }
 `
 
-const MainNav = ({ mainNav }) => {
+const MainNav = ({ mainNav, xtraClass }) => {
   return (
     <nav onClick={e => e.stopPropagation()}>
       {mainNav.map((noda, idx) => {
@@ -37,10 +37,21 @@ const MainNav = ({ mainNav }) => {
         return (
           <Link
             {...rest}
-            className={[styles.slideLink, cssClasses].join(" ")}
+            className={[]
+              .concat(
+                [
+                  xtraClass,
+                  "node--menuItem " +
+                    menuItemId +
+                    "__itemID_" +
+                    btoa((idx + 1) * 25 * Math.random()),
+                ],
+                cssClasses
+              )
+              .join(" ")}
             rel={rel}
             to={noda.url}
-            key={idx * 25}
+            key={idx * 25 * Math.random()}
           >
             {label}
           </Link>

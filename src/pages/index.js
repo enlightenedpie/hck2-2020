@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react"
+import React from "react"
 import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../templates/layout"
@@ -8,11 +8,10 @@ import CaseStudyHero from "../components/CaseStudyHero"
 
 import styles from "./front.module.sass"
 
-const FrontPage = ({ data }, location) => {
-  const { title, description } = data.site.siteMetadata
-
+const FrontPage = ({ query, location, ...rest }) => {
+  const { title, description } = query.generalSettings
   return (
-    <Layout {...data} location={location} title={title}>
+    <Layout {...rest} location={location} title={title}>
       <SEO
         title={title}
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
@@ -74,10 +73,11 @@ const FrontPage = ({ data }, location) => {
 
 const indexQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
+    wpquery {
+      generalSettings {
         description
+        title
+        language
       }
     }
   }
@@ -87,7 +87,9 @@ export default ({ location, ...rest }) => {
   return (
     <StaticQuery
       query={indexQuery}
-      render={data => <FrontPage location={location} data={data} {...rest} />}
+      render={query => (
+        <FrontPage location={location} query={query.wpquery} {...rest} />
+      )}
     />
   )
 }
