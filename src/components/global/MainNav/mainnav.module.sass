@@ -1,0 +1,23 @@
+.slideLink
+  +mq('tportrait')
+    color: $orange
+    position: relative
+    display: inline-block
+    padding-bottom: 5px
+
+    &:hover
+      &:after
+        width: 100%
+        left: 0
+        background: $orange
+
+    &:after
+      content: ''
+      position: absolute
+      width: 0px
+      height: 2px
+      display: block
+      right: 0
+      bottom: 0
+      background: transparent
+      transition: width 250ms ease-in-out

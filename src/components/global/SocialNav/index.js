@@ -6,12 +6,18 @@ import styles from "./socialnav.module.sass"
 
 const socialQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        menus {
-          socialNav {
-            label
-            link
+    wpquery {
+      menus(where: { slug: "socialnav" }) {
+        nodes {
+          menuItems {
+            nodes {
+              cssClasses
+              linkRelationship
+              menuItemId
+              url
+              title
+              label
+            }
           }
         }
       }
@@ -19,7 +25,7 @@ const socialQuery = graphql`
   }
 `
 
-const SocialNav = ({ socialNav, xtraClass }) => {
+const SocialNav = ({ socialNav, xtraClass, ...rest }) => {
   useEffect(() => {
     library.add(fab)
     dom.i2svg()
@@ -40,7 +46,10 @@ export default props => {
     <StaticQuery
       query={socialQuery}
       render={query => (
-        <SocialNav {...props} {...query.site.siteMetadata.menus} />
+        <SocialNav
+          {...props}
+          socialNav={query.wpquery.menus.nodes[0].menuItems.nodes}
+        />
       )}
     />
   )
