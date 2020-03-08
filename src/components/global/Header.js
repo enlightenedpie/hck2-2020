@@ -32,7 +32,7 @@ export default props => {
         className={styles.headerMenu + " node--siteMenu"}
         onClick={toggleMenu}
       >
-        <MainNav />
+        <MainNav xtraClass={styles.slideLink} />
       </menu>
       <div className={styles.logoBox}>
         <Link to={`/`}>
