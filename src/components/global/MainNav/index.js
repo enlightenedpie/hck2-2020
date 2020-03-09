@@ -34,24 +34,19 @@ const MainNav = ({ mainNav, xtraClass }) => {
           menuItemId,
           ...rest
         } = noda
+        const key = btoa((idx + 1) * 25 * Math.random())
         return (
           <Link
             {...rest}
             className={[]
               .concat(
-                [
-                  xtraClass,
-                  "node--menuItem " +
-                    menuItemId +
-                    "__itemID_" +
-                    btoa((idx + 1) * 25 * Math.random()),
-                ],
+                [xtraClass, "node--menuItem " + menuItemId + "__itemID_" + key],
                 cssClasses
               )
               .join(" ")}
             rel={rel}
             to={noda.url}
-            key={idx * 25 * Math.random()}
+            key={key}
           >
             {label}
           </Link>
