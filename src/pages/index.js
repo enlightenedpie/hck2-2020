@@ -8,8 +8,8 @@ import CaseStudyHero from "../components/CaseStudyHero"
 
 import styles from "./front.module.sass"
 
-const FrontPage = ({ query, location, ...rest }) => {
-  const { title, description } = query.generalSettings
+const FrontPage = ({ wpquery, location, ...rest }) => {
+  const { title, description } = wpquery.generalSettings
   return (
     <Layout {...rest} location={location} title={title}>
       <SEO
@@ -87,9 +87,7 @@ export default ({ location, ...rest }) => {
   return (
     <StaticQuery
       query={indexQuery}
-      render={qry => (
-        <FrontPage location={location} query={qry.wpquery} {...rest} />
-      )}
+      render={query => <FrontPage location={location} {...query} {...rest} />}
     />
   )
 }
