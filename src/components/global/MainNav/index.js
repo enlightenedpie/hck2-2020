@@ -34,7 +34,7 @@ const MainNav = ({ mainNav, xtraClass }) => {
           menuItemId,
           ...rest
         } = noda
-        const key = window.btoa((idx + 1) * 25 * Math.random())
+        const key = (idx + 1) * 25 * Math.random()
         return (
           <Link
             {...rest}
