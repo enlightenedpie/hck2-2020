@@ -7,27 +7,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
 
-  return graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-                tags
-              }
-            }
-          }
-        }
-      }
-    `
+  return null
   ).then(result => {
     if (result.errors) {
       throw result.errors

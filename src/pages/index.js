@@ -87,8 +87,8 @@ export default ({ location, ...rest }) => {
   return (
     <StaticQuery
       query={indexQuery}
-      render={query => (
-        <FrontPage location={location} query={query.wpquery} {...rest} />
+      render={qry => (
+        <FrontPage location={location} query={qry.wpquery} {...rest} />
       )}
     />
   )

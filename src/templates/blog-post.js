@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+//import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../templates/layout"
@@ -55,14 +55,3 @@ class BlogPostTemplate extends React.Component {
 }
 
 export default BlogPostTemplate
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-  }
-`
