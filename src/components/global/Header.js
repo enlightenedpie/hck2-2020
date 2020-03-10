@@ -1,7 +1,8 @@
 import React, { useEffect } from "react"
-import { Link, graphql, StaticQuery } from "gatsby"
+import { Link } from "gatsby"
 
 import SVG from "../SVG"
+import MainNav from "./MainNav"
 import SocialNav from "./SocialNav"
 import Hamburger from "./Hamburger"
 
@@ -9,26 +10,9 @@ import styles from "./header.module.sass"
 import "./mobilemenu.sass"
 import "./header.sticky.sass"
 
-const headerQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        menus {
-          mainNav {
-            label
-            link
-          }
-        }
-      }
-    }
-  }
-`
-
 const toggleMenu = () => document.body.classList.toggle("menu-open")
 
-const Header = ({ menus }) => {
-  let { mainNav } = menus
-
+export default props => {
   useEffect(() => {
     const attachOnScroll = () => {
       if (window.scrollY < 450) {
@@ -48,13 +32,7 @@ const Header = ({ menus }) => {
         className={styles.headerMenu + " node--siteMenu"}
         onClick={toggleMenu}
       >
-        <nav onClick={e => e.stopPropagation()}>
-          {mainNav.map((node, idx) => (
-            <Link className={styles.slideLink} to={node.link} key={idx * 25}>
-              {node.label}
-            </Link>
-          ))}
-        </nav>
+        <MainNav xtraClass={styles.slideLink} />
       </menu>
       <div className={styles.logoBox}>
         <Link to={`/`}>
@@ -64,14 +42,5 @@ const Header = ({ menus }) => {
       <SocialNav xtraClass={styles.snHeader} />
       <Hamburger toggleMenu={toggleMenu} />
     </header>
-  )
-}
-
-export default props => {
-  return (
-    <StaticQuery
-      query={headerQuery}
-      render={query => <Header {...query.site.siteMetadata} />}
-    />
   )
 }

@@ -1,56 +1,23 @@
-const urljoin = require("url-join")
-const siteConfig = require("./siteConfig")
-
 module.exports = {
   siteMetadata: {
-    title: siteConfig.name,
-    author: siteConfig.author,
-    description: siteConfig.description,
-    siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
+    title: "HCK2",
+    author: "HCK2",
+    description: "HCK2",
+    siteUrl: "https://hck2.com",
     address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
     menus: {
-      mainNav: [
-        {
-          label: "agency",
-          link: "/agency",
-        },
-        {
-          label: "expertise",
-          link: "/expertise",
-        },
-        {
-          label: "work",
-          link: "/our-work",
-        },
-        {
-          label: "media",
-          link: "/media",
-        },
-      ],
-      socialNav: [
-        {
-          label: "fa-instagram",
-          link: "#",
-        },
-        {
-          label: "fa-facebook-f",
-          link: "#",
-        },
-        {
-          label: "fa-linkedin-in",
-          link: "#",
-        },
-      ],
+      mainNav: [],
+      socialNav: [],
     },
   },
   plugins: [
     {
       resolve: `gatsby-source-graphql`,
       options: {
-        typeName: "WPQUERY",
-        fieldName: "wpquery",
-        url: "http://admin.hck2.com/wp/graphql",
+        typeName: `Wpquery`,
+        fieldName: `wpquery`,
+        url: `https://admin.hck2.com/wp/graphql`,
       },
     },
     {
@@ -95,7 +62,7 @@ module.exports = {
           require("postcss-easy-import")(),
           require("postcss-custom-properties")({ preserve: false }),
           require("postcss-color-function")(),
-          require("autoprefixer")({ browsers: ["last 2 versions"] }),
+          require("autoprefixer")({}),
         ],
       },
     },
@@ -108,19 +75,6 @@ module.exports = {
         // whitelist: ['whitelist'], // Don't remove this selector
         ignore: ["/ignored.css", "prismjs/", "/prism.css", "docsearch.js/"], // Ignore files/folders
         purgeOnly: ["components/", "/main.css", "bootstrap/"], // Purge only these files/folders
-      },
-    },
-    `gatsby-plugin-feed`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: siteConfig.name,
-        short_name: siteConfig.shortName,
-        start_url: siteConfig.prefix,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/hck2-logo.png`,
       },
     },
     `gatsby-plugin-offline`,

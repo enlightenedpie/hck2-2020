@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 
 import SVG from "../SVG"
 import Newsletter from "./Newsletter"
+import MainNav from "./MainNav"
 import SocialNav from "./SocialNav"
 
 import styles from "./footer.module.sass"
@@ -13,20 +14,13 @@ const footerQuery = graphql`
       siteMetadata {
         address
         phone
-        menus {
-          mainNav {
-            label
-            link
-          }
-        }
       }
     }
   }
 `
 
 const Footer = ({ siteMetadata }) => {
-  let { mainNav } = siteMetadata.menus,
-    { address, phone } = siteMetadata
+  let { address, phone } = siteMetadata
 
   return (
     <>
@@ -35,11 +29,7 @@ const Footer = ({ siteMetadata }) => {
           <nav id="footernav" className={null}>
             <h4>Navigate</h4>
             <div>
-              {mainNav.map((node, idx) => (
-                <Link to={node.link} key={idx * 25}>
-                  {node.label}
-                </Link>
-              ))}
+              <MainNav />
               <Link to={"/contact-us"}>contact us</Link>
             </div>
           </nav>
