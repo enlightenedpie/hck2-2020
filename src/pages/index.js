@@ -14,6 +14,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
   return (
     <Layout {...rest} location={location} title={title || ""}>
       <SEO
+        bodyClass="page-front"
         title={title || ""}
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
         description={description || ""}
