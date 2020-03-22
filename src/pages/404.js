@@ -1,32 +1,41 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../templates/layout"
 import SEO from "../components/seo"
 
-class NotFoundPage extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
+import styles from "./404.module.sass"
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      </Layout>
-    )
-  }
-}
-
-export default NotFoundPage
-
-export const pageQuery = graphql`
+const NFQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
+    wpquery {
+      pages(where: { name: "not-found" }) {
+        nodes {
+          id
+          title
+          seo
+          contentData
+        }
       }
     }
   }
 `
+
+const Error404 = props => {
+  console.log(props)
+  return (
+    <Layout location={props.location} title={"404: Not Found"}>
+      <SEO title="404: Not Found" />
+      {}
+    </Layout>
+  )
+}
+
+export default ({ location, ...rest }) => {
+  return (
+    <StaticQuery
+      query={NFQuery}
+      render={query => <Error404 location={location} {...query} {...rest} />}
+    />
+  )
+}
