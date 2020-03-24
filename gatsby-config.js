@@ -92,6 +92,7 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-page-transitions`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
