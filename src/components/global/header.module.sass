@@ -4,18 +4,13 @@
   background: $white
   display: flex
   align-items: center
-  justify-content: center
-  +mq('tportrait')
+  +mq($activeBreak)
     position: relative
-
-    & > *
-      flex: 1 1 100%
-      justify-content: center
 
   & > nav
     flex: 2
-    justify-content: center
-    +mq('tportrait')
+
+    +mq($activeBreak)
       flex: 1 1 100%
 
   .logoBox
@@ -32,16 +27,19 @@
     color: $orange
     text-transform: uppercase
     text-align: center
+    +mq($activeBreak)
+      flex: 1 1 100%
+      text-align: left
 
     nav
       font-size: 125%
       padding-left: 1em
       letter-spacing: 1px
-      +mq('tportrait')
+      +mq($activeBreak)
         padding-left: 2em
 
       .slideLink
-        +mq('tportrait')
+        +mq($activeBreak)
           color: $orange
           position: relative
           display: inline-block
@@ -64,10 +62,15 @@
             background: transparent
             transition: width 250ms ease-in-out
 
-    +mq('tportrait')
+    +mq($activeBreak)
       display: block
 
   .snHeader
+    justify-content: center
+    +mq($activeBreak)
+      padding-right: 2em
+      justify-content: flex-end
+
     a
       cursor: pointer
       border-color: $orange
@@ -76,7 +79,7 @@
         path
           fill: $orange
 
-      +mq('tportrait')
+      +mq($activeBreak)
         &:hover
           border-color: $orange
           background-color: $orange
