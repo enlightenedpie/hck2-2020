@@ -22,7 +22,7 @@ export default props => {
 
       document.documentElement.classList.add("header-sticky")
     }
-    if (window.innerWidth > 576)
+    if (window.innerWidth > 1365)
       window.addEventListener("scroll", attachOnScroll)
   }, [])
 
