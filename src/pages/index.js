@@ -9,13 +9,15 @@ import CaseStudyHero from "../components/CaseStudyHero"
 import styles from "./front.module.sass"
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  const { title, description } = wpquery.generalSettings
+  const { title, description, contentData } = wpquery.pages.nodes[0]
+  let cdata = JSON.parse(contentData)
   return (
-    <Layout {...rest} location={location} title={title}>
+    <Layout {...rest} location={location} title={title || ""}>
       <SEO
-        title={title}
+        bodyClass="page-front"
+        title={title || ""}
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
-        description={description}
+        description={description || ""}
       />
       <section className={styles.stage_ATF}>
         <img loading="lazy" src="/assets/img/video-placeholder.jpg" />
@@ -23,23 +25,11 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           <SVG.logo />
         </div>
       </section>
-      <section className={styles.callOut_ATF}>
-        <h1>Discover. Imagine. Create.</h1>
-        <p>
-          Whether you’re ready to launch a new company, take your existing
-          enterprise to the next level or revitalize your brand to compete more
-          effectively in today’s market, you’ve come to the right place.
-        </p>
-        <p>
-          HCK2 is a full-service marketing agency that can bring together the
-          ideal combination of creative concepts and design, interactive
-          experiences, digital communication, public relations and media to help
-          you get noticed – and get results.
-        </p>
-        <p>
-          Come discover our difference. Imagine the possibilities. And let’s
-          create something powerful together.
-        </p>
+      <section className={styles.callOutATF}>
+        {cdata.callOutATF.map((noda, i) => {
+          const Tag = noda.tagName
+          return <Tag {...noda.attributes}>{noda.contents}</Tag>
+        })}
         <div className={styles.lineArt}>
           <SVG.allFive />
         </div>
@@ -74,10 +64,13 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
 const indexQuery = graphql`
   query {
     wpquery {
-      generalSettings {
-        description
-        title
-        language
+      pages(where: { name: "front-page" }) {
+        nodes {
+          uri
+          id
+          seo
+          contentData
+        }
       }
     }
   }

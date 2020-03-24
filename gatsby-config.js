@@ -77,6 +77,19 @@ module.exports = {
         purgeOnly: ["components/", "/main.css", "bootstrap/"], // Purge only these files/folders
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `HCK2 Marketing + Communications`,
+        short_name: `HCK2`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#e87722`,
+        display: `minimal-ui`,
+        icon: `static/assets/img/hck2-logo-square.png`,
+        legacy: false,
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {

@@ -1,32 +1,58 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
+import HCK2 from "../utils/hck2"
 
 import Layout from "../templates/layout"
 import SEO from "../components/seo"
 
-class NotFoundPage extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
+import "./404.sass"
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      </Layout>
-    )
-  }
-}
-
-export default NotFoundPage
-
-export const pageQuery = graphql`
+const NFQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
+    wpquery {
+      pages(where: { name: "not-found" }) {
+        nodes {
+          id
+          title
+          seo
+          contentData
+        }
       }
     }
   }
 `
+
+const Error404 = ({ wpquery, location, ...rest }) => {
+  const { title, description, contentData } = wpquery.pages.nodes[0]
+  let cdata = JSON.parse(HCK2.html.entities.decode(contentData))
+  return (
+    <Layout location={location} title={title}>
+      <SEO
+        bodyClass="page-404-notfound"
+        title={title || "404: Not Found"}
+        description={description || ""}
+      />
+      {cdata.fourOHfour.map((noda, i) => {
+        const Tag = noda.tagName
+        return (
+          <Tag
+            data-key={(i + Math.random()) * 978473}
+            key={(i + Math.random()) * 978473}
+            {...noda.attributes}
+          >
+            {noda.contents}
+          </Tag>
+        )
+      })}
+    </Layout>
+  )
+}
+
+export default ({ location, ...rest }) => {
+  return (
+    <StaticQuery
+      query={NFQuery}
+      render={query => <Error404 location={location} {...query} {...rest} />}
+    />
+  )
+}

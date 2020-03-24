@@ -40,7 +40,7 @@ menu.node--siteMenu
         margin: 0
         margin-bottom: 1em
 
-    +mq('tportrait')
+    +mq($activeBreak)
       display: block
       position: relative
       width: 100%
@@ -54,7 +54,7 @@ menu.node--siteMenu
     body.menu-open &
       transform: translate3d(0,0,0)
 
-  +mq('tportrait')
+  +mq($activeBreak)
     position: relative
     height: unset
     visibility: visible
