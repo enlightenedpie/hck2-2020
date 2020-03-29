@@ -1,17 +1,54 @@
-.caseStudy
+.caseStudyHero
   width: 100%
   position: relative
   padding-top: 100%
   +mq('tportrait')
-    padding-top: 56.25%
+    padding-top: 41.84%
   
-  .scalar
-    background-position: top center
-    background-repeat: no-repeat
-    background-size: cover
-    +mq('tportrait')
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
+  .csHeroImg
+    overflow: hidden
+    display: block
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+
+    img
+      display: block
+      width: 100%
+  
+  .informatic
+    position: absolute
+    z-index: 505
+    bottom: 0
+    width: 100%
+    display: flex
+    flex-flow: column wrap
+    align-items: center
+    padding: 3rem 0
+
+    h3, h4
+      font-size: 3rem
+      margin-bottom: .5rem
+    
+    h3
+      color: $white
+
+    h4
+      color: $ltgray
+    
+    .orange
+      color: $orange
+    
+    .green
+      color: $green
+
+    .default
+      color: $ltgray
+
+  .hasMore
+    display: block
+    width: 100%
+    text-align: center
+    padding-top: 2rem

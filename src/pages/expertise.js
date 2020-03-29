@@ -14,7 +14,7 @@ const WorkPage = props => {
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
         description={"work page"}
       />
-      <section className={styles.work}>{"Work"}</section>
+      <section className={styles.work}>{"Expertise"}</section>
     </Layout>
   )
 }
