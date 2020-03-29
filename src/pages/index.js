@@ -4,12 +4,13 @@ import { graphql, StaticQuery } from "gatsby"
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
 import SEO from "../components/seo"
-import CaseStudyHero from "../components/CaseStudyHero"
+import CSHero from "../components/CaseStudyHero"
 
 import styles from "./front.module.sass"
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  const { title, description, contentData } = wpquery.pages.nodes[0]
+  const { title, description, contentData } = wpquery.pages.nodes[0],
+    { caseStudies } = wpquery
   let cdata = JSON.parse(contentData)
   return (
     <Layout {...rest} location={location} title={title || ""}>
@@ -34,10 +35,10 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           <SVG.allFive />
         </div>
       </section>
-      <section className={styles.caseStudies}>
-        <CaseStudyHero bg="/assets/img/zix-corp.jpg" />
-        <CaseStudyHero bg="/assets/img/emagispace.jpg" />
-        <CaseStudyHero bg="/assets/img/austin-college.jpg" />
+      <section id="csFeature" className={styles.caseStudies_feature}>
+        {caseStudies.nodes.map((noda, i) => (
+          <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
+        ))}
       </section>
       <section className={styles.testimonials}>
         <h3>Testimonials</h3>
@@ -64,6 +65,22 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
 const indexQuery = graphql`
   query {
     wpquery {
+      caseStudies(first: 3, where: { isFeatured: true }) {
+        nodes {
+          link
+          title
+          client
+          stats
+          featuredImage {
+            altText
+            id
+            srcSet
+            title
+            sourceUrl
+            mimeType
+          }
+        }
+      }
       pages(where: { name: "front-page" }) {
         nodes {
           uri
