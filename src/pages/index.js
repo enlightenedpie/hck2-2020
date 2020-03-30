@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
+import RellaxWrapper from "react-rellax-wrapper"
 
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
