@@ -13,6 +13,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
   const { title, description, contentData } = wpquery.pages.nodes[0],
     { caseStudies } = wpquery
   let cdata = JSON.parse(contentData)
+  console.log(cdata)
   return (
     <Layout {...rest} location={location} title={title || ""}>
       <SEO
@@ -22,6 +23,15 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         description={description || ""}
       />
       <section className={styles.stage_ATF}>
+        {/* {cdata.stage.map((noda, i) => {
+          return (
+            <div>{typeof noda.contents != 'object' ? noda.contents : 
+            noda.contents.map((nd) => {
+              let Tag = nd.tagName
+            })
+            }</div>
+          )
+        })} */}
         <img loading="lazy" src="/assets/img/video-placeholder.jpg" />
         <div className={styles.stage_logoOverlay}>
           <SVG.logo />
