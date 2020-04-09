@@ -4,8 +4,10 @@
   background: $white
   display: flex
   align-items: center
+  width: 100%
   +mq($activeBreak)
-    position: relative
+    position: absolute
+    background: transparent
 
   & > nav
     flex: 2
@@ -20,6 +22,10 @@
     svg
       width: 2.5rem
       height: 2.5rem
+
+      +mq($activeBreak)
+        path
+          fill: $white
   
   .headerMenu
     font-family: $fontStackH
@@ -39,8 +45,9 @@
         padding-left: 2em
 
       .slideLink
+        color: $orange
         +mq($activeBreak)
-          color: $orange
+          color: $white
           position: relative
           display: inline-block
           padding-bottom: 5px
@@ -49,7 +56,7 @@
             &:after
               width: 100%
               left: 0
-              background: $orange
+              background: $white
 
           &:after
             content: ''
@@ -67,9 +74,6 @@
 
   .snHeader
     justify-content: center
-    +mq($activeBreak)
-      padding-right: 2em
-      justify-content: flex-end
 
     a
       cursor: pointer
@@ -81,9 +85,19 @@
 
       +mq($activeBreak)
         &:hover
-          border-color: $orange
-          background-color: $orange
+          background-color: $white
 
           svg
             path
-              fill: $white
+              fill: $navy
+
+    +mq($activeBreak)
+      padding-right: 2em
+      justify-content: flex-end
+
+      a
+        border-color: $white
+
+        svg
+          path
+            fill: $white

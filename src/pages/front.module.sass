@@ -1,27 +1,29 @@
 .stage_ATF
   width: 100%
   position: relative
-  padding-top: 56%
+  padding-top: 56.25%
   overflow: hidden
+  +mq($activeBreak)
+    padding-top: 50%
 
   video, source
     display: block
-    height: 100%
-    +mq('tportrait')
+    +mq($activeBreak)
       height: auto
 
   video
     position: absolute
-    top: 0
-    left: 0
+    top: 50%
+    left: 50%
     width: 100%
+    transform: translate3d(-50%,-50%,0)
 
 .callOutATF
   //background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
   padding: 3rem
   text-align: center
   color: $white
-  +mq('tportrait')
+  +mq($activeBreak)
     padding: 3rem 20%
 
   h1
@@ -41,7 +43,7 @@
     width: 100%
     display: flex
     align-items: flex-end
-    +mq('tportrait')
+    +mq($activeBreak)
       padding: 2rem 5rem 0
 
     svg
@@ -61,7 +63,7 @@
   padding: 6rem
   text-align: center
   color: $white
-  +mq('tportrait')
+  +mq($activeBreak)
     padding: 6rem 25%
 
   h3
