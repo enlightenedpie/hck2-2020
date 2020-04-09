@@ -1,38 +1,23 @@
 .stage_ATF
   width: 100%
   position: relative
-  padding-top: 56.25%
+  padding-top: 56%
   overflow: hidden
-  +mq('tportrait')
-    padding-top: 41.67%
 
-  .stage_logoOverlay
-    display: flex
-    height: 100%
-    align-items: center
-    justify-content: center
-    background: rgba($black,.25)
-
-    svg
-      height: 50%
-
-      path
-        fill: $white
-
-  img
+  video, source
     display: block
     height: 100%
     +mq('tportrait')
       height: auto
 
-  img, .stage_logoOverlay
+  video
     position: absolute
     top: 0
     left: 0
     width: 100%
 
 .callOutATF
-  background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
+  //background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
   padding: 3rem
   text-align: center
   color: $white
@@ -72,7 +57,7 @@
   transform: translateZ(1)
 
 .testimonials
-  background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
+  //background: linear-gradient(135deg, rgba(whitesmoke, 0.03), $navy 15%, $navy 75%, rgba(whitesmoke, 0.03))
   padding: 6rem
   text-align: center
   color: $white

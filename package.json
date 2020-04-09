@@ -43,6 +43,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-rellax-wrapper": "^1.0.1",
+    "react-scroll-parallax": "^2.3.2",
     "resolve-url-loader": "^3.1.1",
     "url-join": "^4.0.0"
   },
