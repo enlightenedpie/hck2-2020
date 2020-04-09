@@ -2,7 +2,7 @@
   width: 100%
   position: relative
   padding-top: 100%
-  +mq('tportrait')
+  +mq($activeBreak)
     padding-top: 100%
   
   .csHeroImg
@@ -11,16 +11,16 @@
     position: absolute
     top: 0
     bottom: 0
-    right: 0
     left: 0
-
-    & > div
-      transform-origin: center center !important
+    right: 0
 
     img
       display: block
-      width: 125%
+      position: absolute
       height: 100%
+      top: 50%
+      left: 50%
+      transform: translate3d(-50%,-50%,0)
   
   .informatic
     position: absolute

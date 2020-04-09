@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { Parallax } from "react-scroll-parallax"
+import { Transition, Spring } from "react-spring/renderprops"
 import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
@@ -16,16 +16,27 @@ export default ({
   ...rest
 }) => {
   let colores = ["default", "orange", "green"],
-    { id, altText: alt, sourceUrl: src, mimeType: type, ...fi } = featuredImage
+    { id, altText: alt, sourceUrl: src, mimeType: type, ...fi } = featuredImage,
+    newId = "_csHero-" + id.replace("=", ""),
+    items = []
+
   stats = JSON.parse(stats)
-  let newId = "_csHero-" + id.replace("=", "")
+
+  stats.map((stat, i) => {
+    items.push(
+      <div key={"stat" + i + id}>
+        <p>{stat.icon}</p>
+        <p>{stat.data}</p>
+        <p>{stat.label}</p>
+      </div>
+    )
+  })
+
   return (
     <article className={styles.caseStudyHero}>
       <picture className={styles.csHeroImg} id={newId}>
         <source type={type} alt={alt} type={type} {...fi}></source>
-        <Parallax y={[-50, 50]}>
-          <img src={src} alt={alt} />
-        </Parallax>
+        <img loading="lazy" src={src} alt={alt} />
       </picture>
       <div className={styles.informatic}>
         <div>
@@ -33,15 +44,15 @@ export default ({
             <h3>{client}</h3>
             <h4 className={styles[colores[idx]]}>{title}</h4>
             <aside className={styles.csStats}>
-              {stats.map((stat, i) => {
-                return (
-                  <div key={"stat" + i + id}>
-                    <p>{stat.icon}</p>
-                    <p>{stat.data}</p>
-                    <p>{stat.label}</p>
-                  </div>
-                )
-              })}
+              <Transition
+                items={items}
+                keys={item => item.key}
+                from={{ transform: "translate3d(0,-40px,0)" }}
+                enter={{ transform: "translate3d(0,0px,0)" }}
+                leave={{ transform: "translate3d(0,-40px,0)" }}
+              >
+                {item => props => item}
+              </Transition>
             </aside>
             {hasMore ? (
               <span className={styles.hasMore}>

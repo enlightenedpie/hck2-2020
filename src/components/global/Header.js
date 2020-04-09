@@ -15,7 +15,7 @@ const toggleMenu = () => document.body.classList.toggle("menu-open")
 export default props => {
   useEffect(() => {
     const attachOnScroll = () => {
-      if (window.scrollY < 450) {
+      if (window.scrollY < 250) {
         document.documentElement.classList.remove("header-sticky")
         return false
       }
