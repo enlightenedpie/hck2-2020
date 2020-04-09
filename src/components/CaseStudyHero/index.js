@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import RellaxWrapper from "react-rellax-wrapper"
+import { Parallax } from "react-scroll-parallax"
 import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
@@ -18,16 +18,14 @@ export default ({
   let colores = ["default", "orange", "green"],
     { id, altText: alt, sourceUrl: src, mimeType: type, ...fi } = featuredImage
   stats = JSON.parse(stats)
+  let newId = "_csHero-" + id.replace("=", "")
   return (
     <article className={styles.caseStudyHero}>
-      <picture
-        className={styles.csHeroImg}
-        id={"_csHero-" + id.replace("=", "")}
-      >
+      <picture className={styles.csHeroImg} id={newId}>
         <source type={type} alt={alt} type={type} {...fi}></source>
-        <RellaxWrapper center={true} speed={-7} percentage={0.5}>
+        <Parallax y={[-50, 50]}>
           <img src={src} alt={alt} />
-        </RellaxWrapper>
+        </Parallax>
       </picture>
       <div className={styles.informatic}>
         <div>

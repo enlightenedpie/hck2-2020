@@ -8,6 +8,15 @@ import SEO from "../components/seo"
 import CSHero from "../components/CaseStudyHero"
 
 import styles from "./front.module.sass"
+import { Parallax } from "react-scroll-parallax"
+
+const videoAtts = {
+  poster: "/assets/img/video-placeholder.jpg",
+  playsInline: true,
+  loop: true,
+  muted: true,
+  autoPlay: true,
+}
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
   const { title, description, contentData } = wpquery.pages.nodes[0],
@@ -23,19 +32,10 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         description={description || ""}
       />
       <section className={styles.stage_ATF}>
-        {/* {cdata.stage.map((noda, i) => {
-          return (
-            <div>{typeof noda.contents != 'object' ? noda.contents : 
-            noda.contents.map((nd) => {
-              let Tag = nd.tagName
-            })
-            }</div>
-          )
-        })} */}
-        <img loading="lazy" src="/assets/img/video-placeholder.jpg" />
-        <div className={styles.stage_logoOverlay}>
-          <SVG.logo />
-        </div>
+        <video {...videoAtts}>
+          <source type="video/mp4" src={cdata.stage}></source>
+          Your browser doesn't support embedded videos.
+        </video>
       </section>
       <section className={styles.callOutATF}>
         {cdata.callOutATF.map((noda, i) => {
