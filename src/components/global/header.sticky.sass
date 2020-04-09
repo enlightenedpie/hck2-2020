@@ -4,6 +4,29 @@ html.header-sticky
   header.siteHeader
     position: fixed
     top: 0
-    width: 100%
-    transition: all 250ms ease-in-out
+    background-color: $white
+    transition: transform 250ms ease-in-out
     animation: 250ms ease-in-out 0ms normal both 1 headerSlide
+
+    .node--logoBox
+      svg
+        path
+          fill: $orange
+
+    .node--siteMenu
+
+      a
+        color: $orange
+
+        &:hover
+          &:after
+            background: $orange
+
+    .node--socialNav
+
+      a
+        border-color: $orange
+
+        svg
+          path
+            fill: $orange

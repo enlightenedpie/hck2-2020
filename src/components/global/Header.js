@@ -29,17 +29,17 @@ export default props => {
   return (
     <header className={[styles.siteHeader, "siteHeader"].join(" ")}>
       <menu
-        className={styles.headerMenu + " node--siteMenu"}
+        className={[styles.headerMenu, "node--siteMenu"].join(" ")}
         onClick={toggleMenu}
       >
         <MainNav xtraClass={styles.slideLink} />
       </menu>
-      <div className={styles.logoBox}>
+      <div className={[styles.logoBox, , "node--logoBox"].join(" ")}>
         <Link to={`/`}>
           <SVG.LogoNoText />
         </Link>
       </div>
-      <SocialNav xtraClass={styles.snHeader} />
+      <SocialNav xtraClass={[styles.snHeader, "node--socialNav"].join(" ")} />
       <Hamburger toggleMenu={toggleMenu} />
     </header>
   )

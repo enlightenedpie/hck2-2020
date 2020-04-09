@@ -1,14 +1,14 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import RellaxWrapper from "react-rellax-wrapper"
 
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
 import SEO from "../components/seo"
 import CSHero from "../components/CaseStudyHero"
+import PromotedBlog from "../components/PromotedBlog"
+import PromotedNews from "../components/PromotedNews"
 
 import styles from "./front.module.sass"
-import { Parallax } from "react-scroll-parallax"
 
 const videoAtts = {
   poster: "/assets/img/video-placeholder.jpg",
@@ -19,10 +19,9 @@ const videoAtts = {
 }
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  const { title, description, contentData } = wpquery.pages.nodes[0],
-    { caseStudies } = wpquery
-  let cdata = JSON.parse(contentData)
-  console.log(cdata)
+  let { title, description, contentData } = wpquery.pages.nodes[0],
+    { caseStudies } = wpquery,
+    cdata = JSON.parse(contentData)
   return (
     <Layout {...rest} location={location} title={title || ""}>
       <SEO
@@ -62,12 +61,8 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         <p>Name | Title | Company</p>
       </section>
       <section className={styles.blogMedia}>
-        <div className={styles.blog}>
-          <h4>Blog</h4>
-        </div>
-        <div className={styles.media}>
-          <h4>Newsroom</h4>
-        </div>
+        <PromotedBlog className={styles.blog} />
+        <PromotedNews className={styles.media} />
       </section>
     </Layout>
   )
