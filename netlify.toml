@@ -8,6 +8,7 @@
 [[redirects]]
   from = "/admin"
   to = "https://admin.hck2.com/wp/wp-admin"
-  force = true
-  signed = "jTCjhcCU^%cjyrCy53XU$YrjcJTY"
   status = 200
+  force = true
+  headers = {X-From = "Netlify Front-End"}
+  signed = "API_SIGNATURE_TOKEN"
