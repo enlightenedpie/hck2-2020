@@ -1,5 +1,6 @@
 .siteHeader
-  position: sticky
+  position: fixed
+  top: 0
   z-index: 2000
   background: $white
   display: flex
@@ -30,7 +31,7 @@
   .headerMenu
     font-family: $fontStackH
     font-weight: 800
-    color: $orange
+    color: get-color('orange',2)
     text-transform: uppercase
     text-align: center
     +mq($activeBreak)
@@ -45,7 +46,7 @@
         padding-left: 2em
 
       .slideLink
-        color: $orange
+        color: get-color('orange',2)
         +mq($activeBreak)
           color: $white
           position: relative

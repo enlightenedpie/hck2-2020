@@ -47,9 +47,9 @@ export default ({
               <Transition
                 items={items}
                 keys={item => item.key}
-                from={{ transform: "translate3d(0,-40px,0)" }}
-                enter={{ transform: "translate3d(0,0px,0)" }}
-                leave={{ transform: "translate3d(0,-40px,0)" }}
+                from={{ transform: "translate3d(0,-40px,1px)" }}
+                enter={{ transform: "translate3d(0,0px,1px)" }}
+                leave={{ transform: "translate3d(0,-40px,1px)" }}
               >
                 {item => props => item}
               </Transition>
