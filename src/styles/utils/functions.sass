@@ -1,0 +1,5 @@
+@function get-color($color:null,$mapped:1)
+  @if $color == null
+    @return null
+  $newmap: map-get($colors,$color)
+  @return nth($newmap, $mapped)
