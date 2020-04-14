@@ -100,5 +100,12 @@ module.exports = {
         useResolveUrlLoader: true,
       },
     },
+    {
+      resolve: `gatsby-source-googlemaps-static`,
+      options: {
+        key: `AIzaSyBHH4AWBt_2PXFV2w5IqS-Gjx8ifVXlDrQ`,
+        center: `32.9355065,-96.8510314`,
+      },
+    },
   ],
 }
