@@ -94,7 +94,6 @@ const ContactPage = props => {
             </div>
             <div className="col-12 col-md-6">
               <h2>LOCATION</h2>
-
               <p>We are located in Vitruvian Park</p>
               <p>3875 Ponte Ave. Suite 420</p>
               <p>972.716.0500</p>
@@ -109,19 +108,17 @@ const ContactPage = props => {
 
 export default ContactPage
 
-// const mapQuery = graphql`
-//   query {
-//     StaticMapQuery {
-//       staticMap {
-//         childFile {
-//           childImageSharp {
-//               ...GatsbyImageSharpFluid
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+const mapQuery = graphql`
+  query {
+    staticMap {
+      childFile {
+        childImageSharp {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 // export default ({ location, ...rest }) => {
 //   return (
