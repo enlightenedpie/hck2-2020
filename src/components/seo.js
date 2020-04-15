@@ -75,7 +75,7 @@ function SEO({ bodyClass, description, lang, meta, keywords, title }) {
         .concat(meta)}
     >
       <link
-        href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800|Roboto:400,700&display=swap"
+        href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800%7CRoboto:400,700&display=swap"
         rel="stylesheet"
       ></link>
     </Helmet>

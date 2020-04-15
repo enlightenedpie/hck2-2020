@@ -2,56 +2,79 @@ const path = require(`path`)
 const _ = require("lodash")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-/* exports.createPages = ({ graphql, actions }) => {
+const postNodes = ["blog", "news"]
+
+exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = 
-
-  return null
-  ).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
-
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
-    const tagSet = new Set()
-
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
-      // Get tags for tags pages.
-      if (post.node.frontmatter.tags) {
-        post.node.frontmatter.tags.forEach(tag => {
-          tagSet.add(tag)
-        })
+  postNodes.forEach(async (postNode, i) => {
+    const result = await graphql(`
+      query {
+        wpquery {
+          posts(where: {categoryName: "${postNode}"}, first: 500) {
+            nodes {
+              categories {
+                nodes {
+                  name
+                }
+              }
+              contentData
+              databaseId
+              id
+              seo
+              slug
+              title
+              date
+              excerpt
+              featuredImage {
+                altText
+                databaseId
+                link
+                mediaType
+                sizes
+                sourceUrl
+                srcSet
+                title
+              }
+            }
+          }
+        }
       }
+    `).then(result => {
+      if (result.errors) throw result.errors
 
-      createPage({
-        path: post.node.fields.slug,
-        component: path.resolve(`./src/templates/blog-post.js`),
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
+      // Create blog posts pages.
+      const posts = result.data.wpquery.posts.nodes
+
+      posts.forEach((post, index) => {
+        let theSlug = [postNode, post.slug].join("/")
+        createPage({
+          path: theSlug,
+          component: path.resolve(`./src/templates/blog-post.js`),
+          context: {
+            slug: theSlug,
+          },
+        })
       })
+
+      return null
     })
-
-    return null
   })
-} */
+}
 
-/* exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  return null
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
-} */
+  postNodes.forEach(async (postNode, i) => {
+    if (node.internal.type === `SitePage`) {
+      const value = createFilePath({ node, getNode, basePath: postNode })
+
+      createNodeField({
+        name: `slug`,
+        node,
+        value,
+      })
+    }
+  })
+}

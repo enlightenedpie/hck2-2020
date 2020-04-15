@@ -1,3 +1,9 @@
 @mixin mq($breakpoint)
   @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)})
     @content
+
+@mixin angleAdjust
+  margin-top: calc(-#{$angleDist} - .25rem)
+
+@mixin angleBlock
+  clip-path: polygon(0 0,100% $angleDist,100% 100%,0 calc(100% - #{$angleDist}))
