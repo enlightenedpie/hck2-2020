@@ -105,6 +105,20 @@ module.exports = {
       options: {
         key: `AIzaSyAAdvgg4M-WqLiOJ1tL2rWutnXw88WuTSQ`,
         center: `32.9355065,-96.8510314`,
+        zoom: `18`,
+        markers: [
+          {
+            location: `32.9355065,-96.8510314`,
+          },
+        ],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/`,
       },
     },
   ],
