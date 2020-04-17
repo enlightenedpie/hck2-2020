@@ -10,7 +10,8 @@ const encode = data => {
 }
 
 const ContactPage = ({ props, staticMap }) => {
-  let [subd, updSubd] = useState(false)
+  let [submitted, updSubd] = useState(false)
+  let [formType, setType] = useState("general")
   let [state, setState] = useState({})
 
   setState = e => Object.assign(state, { [e.target.name]: e.target.value })
@@ -50,7 +51,7 @@ const ContactPage = ({ props, staticMap }) => {
               ].join(" ")}
             >
               <div className={styles.form_container}>
-                {subd ? (
+                {submitted ? (
                   <span>Thx bro!</span>
                 ) : (
                   <form
@@ -93,13 +94,42 @@ const ContactPage = ({ props, staticMap }) => {
                         Inquiry Type<sup>*</sup>
                       </label>
                       <div className={styles.select_wrapper}>
-                        <select name="type">
+                        <select
+                          name="type"
+                          onChange={e => setType(e.target.value)}
+                        >
                           <option value="general">General Information</option>
                           <option value="rfp">Request for Proposal</option>
                           <option value="career">Career Opportunities</option>
                         </select>
                       </div>
                     </div>
+                    {formType === "rfp" && (
+                      <div>
+                        <div className={styles.form_group}>
+                          <label htmlFor="rfp_file">Upload your RFP</label>
+                          <input
+                            type="file"
+                            name="rfp_file"
+                            accept=".pdf, .doc, .docx"
+                          />
+                          <p className={styles.small}>
+                            Files must be less than 32 MB | Allowed file types:
+                            PDF, DOC, DOCX
+                          </p>
+                        </div>
+
+                        <div className={styles.form_group}>
+                          <label htmlFor="budget">Estimaged Budget</label>
+                          <input
+                            type="number"
+                            min="0.01"
+                            step="0.01"
+                            name="budget"
+                          />
+                        </div>
+                      </div>
+                    )}
 
                     <div className={styles.form_group}>
                       <label htmlFor="organization">
