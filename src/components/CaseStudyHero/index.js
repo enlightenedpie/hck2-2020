@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import { Transition, Spring } from "react-spring/renderprops"
 import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
@@ -43,17 +42,7 @@ export default ({
           <div>
             <h3>{client}</h3>
             <h4 className={styles[colores[idx]]}>{title}</h4>
-            <aside className={styles.csStats}>
-              <Transition
-                items={items}
-                keys={item => item.key}
-                from={{ transform: "translate3d(0,-40px,1px)" }}
-                enter={{ transform: "translate3d(0,0px,1px)" }}
-                leave={{ transform: "translate3d(0,-40px,1px)" }}
-              >
-                {item => props => item}
-              </Transition>
-            </aside>
+            <aside className={styles.csStats}>{items}</aside>
             {hasMore ? (
               <span className={styles.hasMore}>
                 <Link to={link.replace("https://hck2.com", "")}>

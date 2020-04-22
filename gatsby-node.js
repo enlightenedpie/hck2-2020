@@ -1,80 +1,148 @@
-const path = require(`path`)
 const _ = require("lodash")
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
-const postNodes = ["blog", "news"]
+const getOnlyPublished = nodes =>
+  _.filter(nodes, ({ node }) => node.status === "publish")
 
-exports.createPages = ({ graphql, actions }) => {
+const stripSite = link => link.replace("https://hck2.com/", "")
+
+exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  postNodes.forEach(async (postNode, i) => {
-    const result = await graphql(`
-      query {
-        wpquery {
-          posts(where: {categoryName: "${postNode}"}, first: 500) {
-            nodes {
-              categories {
-                nodes {
-                  name
-                }
+  return graphql(`
+    query {
+      wpquery {
+        posts(first: 300) {
+          nodes {
+            categories {
+              nodes {
+                name
+                slug
               }
-              contentData
+            }
+            databaseId
+            seo
+            title
+            date
+            excerpt
+            featuredImage {
+              altText
               databaseId
-              id
-              seo
-              slug
+              link
+              mediaType
+              sizes
+              sourceUrl
+              srcSet
               title
-              date
-              excerpt
-              featuredImage {
-                altText
-                databaseId
-                link
-                mediaType
-                sizes
-                sourceUrl
-                srcSet
-                title
-              }
+            }
+            slug
+            link
+            status
+            content
+          }
+        }
+        categories(where: {}) {
+          edges {
+            node {
+              id
             }
           }
         }
       }
-    `).then(result => {
-      if (result.errors) throw result.errors
+    }
+  `)
+    .then(result => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()))
+        return Promise.reject(result.errors)
+      }
 
-      // Create blog posts pages.
-      const posts = result.data.wpquery.posts.nodes
+      const postTemplate = path.resolve(`./src/templates/singlePost.js`)
+      const allPosts = result.data.wpquery.posts.nodes
+      const posts =
+        process.env.NODE_ENV === "production"
+          ? getOnlyPublished(allPosts)
+          : allPosts
 
-      posts.forEach((post, index) => {
-        let theSlug = [postNode, post.slug].join("/")
+      // Create a Gatsby page for each WordPress post
+      _.each(posts, post => {
         createPage({
-          path: theSlug,
-          component: path.resolve(`./src/templates/blog-post.js`),
+          path: `${stripSite(post.link)}`,
+          component: postTemplate,
           context: {
-            slug: theSlug,
+            ...post,
           },
         })
       })
-
-      return null
     })
-  })
+    .then(() => {
+      return graphql(`
+        query {
+          wpquery {
+            pages(where: { name: "services" }) {
+              nodes {
+                uri
+                databaseId
+                seo
+                contentData
+              }
+            }
+            services {
+              nodes {
+                name
+                uri
+                description
+                id
+                databaseId
+              }
+            }
+          }
+        }
+      `)
+    })
+    .then(result => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()))
+        return Promise.reject(result.errors)
+      }
+
+      const serviceTemplate = path.resolve(`./src/templates/singleService.js`),
+        serviceLines = path.resolve(`./src/templates/allServices.js`)
+      ;(allServices = result.data.wpquery.services.nodes),
+        (page = result.data.wpquery.services.nodes[0]),
+        (services =
+          process.env.NODE_ENV === "production"
+            ? getOnlyPublished(allServices)
+            : allServices)
+
+      createPage({
+        path: `${stripSite(page.uri)}`,
+        component: serviceLines,
+      })
+
+      // Create a Gatsby page for each individual service line
+      _.each(services, service => {
+        createPage({
+          path: `${stripSite(service.uri)}`,
+          component: serviceTemplate,
+          context: {
+            id: service.databaseId,
+          },
+        })
+      })
+    })
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  return null
   const { createNodeField } = actions
 
-  postNodes.forEach(async (postNode, i) => {
-    if (node.internal.type === `SitePage`) {
-      const value = createFilePath({ node, getNode, basePath: postNode })
-
-      createNodeField({
-        name: `slug`,
-        node,
-        value,
-      })
-    }
-  })
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
 }

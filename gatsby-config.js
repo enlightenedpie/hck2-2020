@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: "HCK2 Marketing + Communications",
-    author: "HCK2",
-    description: "HCK2",
+    author: "HCK2 Marketing + Communications",
+    description: "HCK2 Marketing + Communications",
     siteUrl: "https://hck2.com",
     address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
@@ -115,7 +115,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/data/`,
+        path: `${__dirname}/data/`,
       },
     },
   ],

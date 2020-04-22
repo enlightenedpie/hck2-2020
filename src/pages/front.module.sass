@@ -1,25 +1,5 @@
 .stage_ATF
-  width: 100%
-  position: relative
-  margin-top: 3rem
-  padding-top: 56.25%
-  overflow: hidden
-
-  +mq($activeBreak)
-    margin-top: 0
-    padding-top: 50%
-
-  video, source
-    display: block
-    +mq($activeBreak)
-      height: auto
-
-  video
-    position: absolute
-    top: 50%
-    left: 50%
-    width: 100%
-    transform: translate3d(-50%,-50%,0)
+  +stageBlock
 
 .callOutATF
   padding: 6rem 2rem

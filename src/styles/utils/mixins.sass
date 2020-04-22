@@ -7,3 +7,26 @@
 
 @mixin angleBlock
   clip-path: polygon(0 0,100% $angleDist,100% 100%,0 calc(100% - #{$angleDist}))
+
+@mixin stageBlock
+  width: 100%
+  position: relative
+  margin-top: 3rem
+  padding-top: 56.25%
+  overflow: hidden
+
+  +mq($activeBreak)
+    margin-top: 0
+    padding-top: 50%
+
+  video, source, img
+    display: block
+    +mq($activeBreak)
+      height: auto
+
+  video, img
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 100%
+    transform: translate3d(-50%,-50%,0)
