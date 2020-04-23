@@ -24,14 +24,14 @@ const NFQuery = graphql`
 
 const Error404 = ({ wpquery, location, ...rest }) => {
   const { title, description, contentData } = wpquery.pages.nodes[0]
-  let cdata = JSON.parse(HCK2.html.entities.decode(contentData))
+  let cdata = JSON.parse(HCK2.html.entities.decode(contentData)),
+    seo = {
+      bodyClass: "page-404-notfound",
+      title: title || "404: Not Found",
+      description: description || "",
+    }
   return (
-    <Layout location={location} title={title}>
-      <SEO
-        bodyClass="page-404-notfound"
-        title={title || "404: Not Found"}
-        description={description || ""}
-      />
+    <Layout seo={seo} location={location} title={title}>
       {cdata.fourOHfour.map((noda, i) => {
         const Tag = noda.tagName
         return (

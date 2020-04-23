@@ -1,0 +1,16 @@
+.h6040container
+
+  & > div
+    .h6040slide
+      animation-timing-function: cubic-bezier(.25,1.35,.65,.98)
+      animation-fill-mode: both
+      animation-name: h6040fade
+
+    +mq('tportrait')
+      &:nth-of-type(odd)
+        .h6040slide
+          animation-name: h6040slideleft
+      
+      &:nth-of-type(even)
+        .h6040slide
+          animation-name: h6040slideright

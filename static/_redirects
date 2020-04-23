@@ -1,2 +1,6 @@
 # main site redirects
 /about-us   /agency   301
+/contact-us /contact  301
+/services/* /expertise/:splat 301
+/services /expertise 301
+/our-work/*/:name /case-studies/:name 301

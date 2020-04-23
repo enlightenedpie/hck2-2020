@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { StaticQuery, graphql } from "gatsby"
 import Layout from "../templates/layout"
 import styles from "./contact.module.sass"
 
@@ -8,7 +9,7 @@ const encode = data => {
     .join("&")
 }
 
-const ContactPage = props => {
+const ContactPage = ({ props, staticMap }) => {
   let [subd, updSubd] = useState(false)
   let [state, setState] = useState({})
 
@@ -19,7 +20,9 @@ const ContactPage = props => {
       <div className={[styles.container_fluid, styles.bg_blue].join(" ")}>
         <div className={styles.container}>
           <div className={styles.row}>
-            <div className={[styles.col_12, styles.intro].join(" ")}>
+            <div
+              className={[styles.col_12, styles.col, styles.intro].join(" ")}
+            >
               <h1>CONTACT US</h1>
               <hr />
               <p>
@@ -42,6 +45,7 @@ const ContactPage = props => {
               className={[
                 styles.col_12,
                 styles.col_md_6,
+                styles.col,
                 styles.border_right,
               ].join(" ")}
             >
@@ -128,12 +132,24 @@ const ContactPage = props => {
                 </form>
               )}
             </div>
-            <div className="col-12 col-md-6">
-              <h2>LOCATION</h2>
-              <p>We are located in Vitruvian Park</p>
-              <p>3875 Ponte Ave. Suite 420</p>
-              <p>972.716.0500</p>
-              <a href="#">DOWNLOAD DIRECTIONS</a>
+            <div
+              className={[styles.col_12, styles.col_md_6, styles.col].join(" ")}
+            >
+              <div className={styles.location}>
+                <h2>LOCATION</h2>
+                <a className={styles.map} href={staticMap.mapUrl}>
+                  <img src={staticMap.childFile.childImageSharp.fixed.src} />
+                </a>
+                <p>We are located in Vitruvian Park</p>
+                <p>3875 Ponte Ave. Suite 420</p>
+                <p>Addison, TX 75001</p>
+                <p>
+                  <a href="tel:972.716.0500">972.716.0500</a>
+                </p>
+                <a href="#" className={styles.button}>
+                  DOWNLOAD DIRECTIONS
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -149,18 +165,25 @@ const mapQuery = graphql`
     staticMap {
       childFile {
         childImageSharp {
-          ...GatsbyImageSharpFluid
+          fixed(width: 300) {
+            base64
+            width
+            height
+            src
+            srcSet
+          }
         }
       }
+      mapUrl
     }
   }
 `
 
-// export default ({ location, ...rest }) => {
-//   return (
-//     <StaticQuery
-//       query={indexQuery}
-//       render={query => <FrontPage location={location} {...query} {...rest} />}
-//     />
-//   )
-// }
+export default ({ location, ...rest }) => {
+  return (
+    <StaticQuery
+      query={mapQuery}
+      render={query => <ContactPage location={location} {...query} {...rest} />}
+    />
+  )
+}

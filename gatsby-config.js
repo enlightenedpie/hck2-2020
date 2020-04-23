@@ -1,15 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: "HCK2",
-    author: "HCK2",
-    description: "HCK2",
+    title: "HCK2 Marketing + Communications",
+    author: "HCK2 Marketing + Communications",
+    description: "HCK2 Marketing + Communications",
     siteUrl: "https://hck2.com",
     address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
-    menus: {
-      mainNav: [],
-      socialNav: [],
-    },
+    separator: "|",
   },
   plugins: [
     {
@@ -105,6 +102,20 @@ module.exports = {
       options: {
         key: `AIzaSyAAdvgg4M-WqLiOJ1tL2rWutnXw88WuTSQ`,
         center: `32.9355065,-96.8510314`,
+        zoom: `18`,
+        markers: [
+          {
+            location: `32.9355065,-96.8510314`,
+          },
+        ],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/data/`,
       },
     },
   ],

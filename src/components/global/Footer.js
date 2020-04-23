@@ -30,7 +30,7 @@ const Footer = ({ siteMetadata }) => {
             <h4>Navigate</h4>
             <div>
               <MainNav />
-              <Link to={"/contact-us"}>contact us</Link>
+              <Link to={"/contact"}>contact us</Link>
             </div>
           </nav>
           <div className={styles.hrContainer}>
