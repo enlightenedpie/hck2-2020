@@ -58,7 +58,6 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
-      console.log(result.data.wpquery)
       const postTemplate = path.resolve(`./src/templates/singlePost.js`)
       const posts = result.data.wpquery.posts.nodes
 
@@ -107,7 +106,6 @@ exports.createPages = ({ actions, graphql }) => {
                 uri
                 description
                 id
-                status
                 databaseId
               }
             }
