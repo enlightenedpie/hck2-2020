@@ -58,6 +58,7 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
+      console.log(result)
       const postTemplate = path.resolve(`./src/templates/singlePost.js`)
       const allPosts = result.data.wpquery.posts.nodes
       const posts =
