@@ -110,6 +110,7 @@ exports.createPages = ({ actions, graphql }) => {
                 uri
                 description
                 id
+                status
                 databaseId
               }
             }
