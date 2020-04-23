@@ -9,53 +9,25 @@
 
 .btn
   button
-    background-color: transparent
-    padding: .5em .75em
-    text-transform: uppercase
-    border: 2px solid $gray700
-    transition: all $transTiming ease-in-out
-
-    &:hover
-      color: $white
+    +button
 
   .default
-    color: $gray700
-    &:hover
-      background-color: $gray700
+    +buttonDefault
 
   .white
-    color: $white
-    border-color: $white
-    &:hover
-      color: $navy
-      background-color: $white
+    +buttonWhite
 
   .orange
-    color: $orange
-    border-color: $orange
-    &:hover
-      background-color: $orange
+    +buttonOrange
 
   .navy
-    color: $navy
-    border-color: $navy
-    &:hover
-      background-color: $navy
+    +buttonNavy
 
   .green
-    color: $green
-    border-color: $green
-    &:hover
-      background-color: $green
+    +buttonGreen
 
   .blue
-    color: $blue
-    border-color: $blue
-    &:hover
-      background-color: $blue
+    +buttonBlue
 
   .ltgray
-    color: $ltgray
-    border-color: $ltgray
-    &:hover
-      background-color: $ltgray
+    +buttonLtGray

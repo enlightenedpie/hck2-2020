@@ -1,3 +1,91 @@
 @mixin mq($breakpoint)
   @media only screen and (min-width: #{map-get($breakpoints, $breakpoint)})
     @content
+
+@mixin angleAdjust
+  margin-top: calc(-#{$angleDist} - .25rem)
+
+@mixin angleBlock
+  clip-path: polygon(0 0,100% $angleDist,100% 100%,0 calc(100% - #{$angleDist}))
+
+@mixin stageBlock
+  width: 100%
+  position: relative
+  margin-top: 3rem
+  padding-top: 56.25%
+  overflow: hidden
+
+  +mq($activeBreak)
+    margin-top: 0
+    padding-top: 50%
+
+  video, source, img
+    display: block
+    +mq($activeBreak)
+      height: auto
+
+  video, img
+    position: absolute
+    top: 50%
+    left: 50%
+    width: 100%
+    transform: translate3d(-50%,-50%,0)
+
+// Buttons
+
+@mixin button
+  background-color: transparent
+  padding: .5em .75em
+  text-transform: uppercase
+  border: 2px solid $gray700
+  transition: all $transTiming ease-in-out
+
+  &:hover
+    color: $white
+
+@mixin buttonDefault
+  color: $gray700
+  &:hover
+    background-color: $gray700
+
+@mixin buttonWhite
+  color: $white
+  border-color: $white
+  &:hover
+    color: $navy
+    background-color: $white
+
+@mixin buttonOrange
+  color: $orange
+  border-color: $orange
+  &:hover
+    color: $white
+    background-color: $orange
+
+@mixin buttonNavy
+  color: $navy
+  border-color: $navy
+  &:hover
+    color: $white
+    background-color: $navy
+
+@mixin buttonGreen
+  color: $green
+  border-color: $green
+  &:hover
+    color: $white
+    background-color: $green
+
+@mixin buttonBlue
+  color: $blue
+  border-color: $blue
+  &:hover
+    color: $white
+    background-color: $blue
+
+@mixin buttonLtGray
+  color: $ltgray
+  border-color: $ltgray
+  &:hover
+    color: $white
+    background-color: $ltgray
