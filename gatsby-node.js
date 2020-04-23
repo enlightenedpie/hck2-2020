@@ -60,11 +60,9 @@ exports.createPages = ({ actions, graphql }) => {
 
       console.log(result)
       const postTemplate = path.resolve(`./src/templates/singlePost.js`)
-      const allPosts = result.data.wpquery.posts.nodes
-      const posts =
-        process.env.NODE_ENV === "production"
-          ? getOnlyPublished(allPosts)
-          : allPosts
+      const { posts } = result.data.wpquery.posts.nodes
+
+      posts = posts.nodes
 
       // Create a Gatsby page for each WordPress post
       _.each(posts, post => {
