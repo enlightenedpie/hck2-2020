@@ -1,18 +1,17 @@
 .stage_ATF
-  +stageBlock
+  figure
+    +stageBlock
 
-.callOutATF
+div[class*="callOutATF"]
   padding: 6rem 2rem
   text-align: center
   color: $white
   position: relative
   z-index: 99
   background-color: $navy
-  +angleBlock
-  +angleAdjust
 
   +mq($activeBreak)
-    padding: 6rem 20%
+    padding: 6rem 20% 0
 
   h1
     color: $orange
@@ -26,25 +25,23 @@
     &:last-of-type
       font-weight: 700
 
-  .lineArt
-    padding: 2rem 4rem 0
+.lineArt
+  padding: 2rem 4rem
+  width: 100%
+  display: flex
+  align-items: flex-end
+  +mq($activeBreak)
+    padding: 2rem 20% 6rem
+
+  svg
     width: 100%
-    display: flex
-    align-items: flex-end
-    +mq($activeBreak)
-      padding: 2rem 5rem 0
 
-    svg
-      width: 100%
-
-      path
-        stroke: $white
-        stroke-dasharray: 0,1518
-        stroke-dash-offset: 0
-        animation: drawLineArt 20s ease-in-out 5s infinite both
+    path
+      stroke: $white
+      stroke-dasharray: 0,1518
+      stroke-dash-offset: 0
 
 .caseStudies_feature
-  +angleAdjust
   transform: translateZ(1)
 
   article > div > div
@@ -57,8 +54,6 @@
   text-align: center
   color: $white
   background-color: $navy
-  +angleBlock
-  +angleAdjust
 
   +mq($activeBreak)
     padding: 6rem 25%
@@ -79,7 +74,6 @@
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
   background: $white
-  +angleAdjust
   padding: $angleDist 0
 
   & > div

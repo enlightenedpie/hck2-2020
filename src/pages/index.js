@@ -1,14 +1,20 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
+import HtmlToReact from "html-to-react"
+import ScrollEffect from "react-animate-on-scroll"
 
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
 import SEO from "../components/seo"
 import CSHero from "../components/CaseStudyHero"
+import Services6040 from "../components/Services6040"
 import PromotedBlog from "../components/PromotedBlog"
 import PromotedNews from "../components/PromotedNews"
 
 import styles from "./front.module.sass"
+import "./lineartanim.sass"
+
+const HTR = new HtmlToReact.Parser()
 
 const videoAtts = {
   poster: "/assets/img/video-placeholder.jpg",
@@ -19,7 +25,7 @@ const videoAtts = {
 }
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  let { title, description, contentData } = wpquery.pages.nodes[0],
+  let { title, description, contentData, content } = wpquery.pages.nodes[0],
     { caseStudies } = wpquery,
     cdata = JSON.parse(contentData)
   return (
@@ -31,7 +37,8 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         description={description || ""}
       />
       <section className={styles.stage_ATF}>
-        <video {...videoAtts}>
+        {HTR.parse(content)}
+        {/* <video {...videoAtts}>
           <source type="video/mp4" src={cdata.stage}></source>
           Your browser doesn't support embedded videos.
         </video>
@@ -40,11 +47,14 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         {cdata.callOutATF.map((noda, i) => {
           const Tag = noda.tagName
           return <Tag {...noda.attributes}>{noda.contents}</Tag>
-        })}
+        })} */}
         <div className={styles.lineArt}>
-          <SVG.allFive />
+          <ScrollEffect animateOnce animateIn="drawLineArt">
+            <SVG.allFive />
+          </ScrollEffect>
         </div>
       </section>
+      <Services6040 />
       <section id="csFeature" className={styles.caseStudies_feature}>
         {caseStudies.nodes.map((noda, i) => (
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
@@ -93,6 +103,7 @@ const indexQuery = graphql`
           id
           seo
           contentData
+          content
         }
       }
     }
