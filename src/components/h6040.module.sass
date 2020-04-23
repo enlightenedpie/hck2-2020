@@ -1,0 +1,111 @@
+.container
+  display: block
+  background-color: $white
+
+  & > div
+
+    article
+      display: flex
+      flex-flow: column wrap
+      text-align: center
+      align-items: center
+      justify-content: center
+      padding: 3rem 10vw
+
+      h2
+        padding-bottom: 1rem
+      
+      div-spacer
+        display: block
+        padding: 1px 25% 0
+        width: 100%
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0))
+
+      p
+        font-size: .8rem
+        line-height: 1.5
+        padding: 1rem 0
+      
+      span
+
+        button
+          font-weight: bold
+
+    aside
+      padding: 1.5rem 2rem
+      display: flex
+      align-items: center
+
+      img
+        display: block
+        box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+        border: .5rem solid $white
+        width: 100%
+        height: auto
+
+    &:nth-of-type(3n+1)
+    
+      article
+        h2
+          color: get-color('orange',2)
+
+        span
+          button
+            +buttonOrange
+
+      aside
+        background-color: get-color('orange',2)
+    
+    &:nth-of-type(3n+2)
+    
+      article
+        h2
+          color: get-color('green',1)
+
+        button
+          +buttonGreen
+
+      aside
+        background-color: get-color('green',2)
+
+    &:nth-of-type(3n+3)
+    
+      article
+        h2
+          color: get-color('blue',3)
+
+        button
+          +buttonBlue
+
+      aside
+        background-color: get-color('blue',2)
+
+    +mq('tportrait')
+      display: flex
+
+      article
+        width: 50vw
+        +mq($activeBreak)
+          width: 60vw
+
+      aside
+        width: 50vw
+        +mq($activeBreak)
+          width: 40vw
+      
+      &:nth-of-type(odd)
+
+        article
+          order: 1
+
+        aside
+          order: 2
+      
+      &:nth-of-type(even)
+
+        article
+          order: 2
+
+        aside
+          order: 1
+      

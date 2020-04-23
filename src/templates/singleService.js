@@ -7,10 +7,14 @@ import Layout from "./layout"
 const HTR = new HtmlToReact.Parser()
 
 export default ({ data }) => {
-  let service = data.wpquery.service
+  let service = data.wpquery.service,
+    seo = {
+      title: ["Our Expertise:", service.name].join(" "),
+      description: service.description,
+    }
 
   return (
-    <Layout>
+    <Layout seo={seo}>
       <p>{HTR.parse(service.description)}</p>
     </Layout>
   )

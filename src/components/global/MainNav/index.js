@@ -15,6 +15,18 @@ const mainQuery = graphql`
               url
               title
               label
+              childItems {
+                nodes {
+                  label
+                  linkRelationship
+                  menuItemId
+                  target
+                  title
+                  url
+                  description
+                  cssClasses
+                }
+              }
             }
           }
         }

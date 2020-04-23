@@ -5,7 +5,7 @@ const { createFilePath } = require("gatsby-source-filesystem")
 const getOnlyPublished = nodes =>
   _.filter(nodes, ({ node }) => node.status === "publish")
 
-const stripSite = link => link.replace("https://hck2.com/", "")
+const stripSite = link => (link ? link.replace("https://hck2.com/", "") : "")
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -80,12 +80,28 @@ exports.createPages = ({ actions, graphql }) => {
       return graphql(`
         query {
           wpquery {
-            pages(where: { name: "services" }) {
+            pages(where: { name: "expertise" }) {
               nodes {
                 uri
                 databaseId
                 seo
+                content
                 contentData
+                title
+                status
+                date
+                featuredImage {
+                  uri
+                  title
+                  srcSet
+                  sourceUrl
+                  sizes
+                  mediaType
+                  mimeType
+                  id
+                  databaseId
+                  altText
+                }
               }
             }
             services {
@@ -109,19 +125,15 @@ exports.createPages = ({ actions, graphql }) => {
 
       const serviceTemplate = path.resolve(`./src/templates/singleService.js`),
         serviceLines = path.resolve(`./src/templates/allServices.js`)
-      ;(allServices = result.data.wpquery.services.nodes),
-        (page = result.data.wpquery.services.nodes[0]),
-        (services =
+
+      let allServices = result.data.wpquery.services.nodes,
+        page = result.data.wpquery.pages.nodes[0],
+        services =
           process.env.NODE_ENV === "production"
             ? getOnlyPublished(allServices)
-            : allServices)
+            : allServices
 
-      createPage({
-        path: `${stripSite(page.uri)}`,
-        component: serviceLines,
-      })
-
-      // Create a Gatsby page for each individual service line
+      // Create a Gatsby page for each individual expertise
       _.each(services, service => {
         createPage({
           path: `${stripSite(service.uri)}`,
@@ -130,6 +142,16 @@ exports.createPages = ({ actions, graphql }) => {
             id: service.databaseId,
           },
         })
+      })
+
+      // Create a Gatsby page for Expertise landing
+      createPage({
+        path: `${stripSite(page.uri)}`,
+        component: serviceLines,
+        context: {
+          services: services,
+          ...page,
+        },
       })
     })
 }
