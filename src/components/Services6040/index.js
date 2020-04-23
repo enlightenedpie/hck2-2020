@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, StaticQuery } from "gatsby"
 import ScrollEffect from "react-animate-on-scroll"
 import HtmlToReact from "html-to-react"
 
@@ -10,19 +10,40 @@ import "../h6040anim.sass"
 
 const HTR = new HtmlToReact.Parser()
 
-export default ({ data }) => {
-  console.log(data)
+const query = graphql`
+  query {
+    wpquery {
+      services {
+        nodes {
+          name
+          uri
+          description
+          id
+          databaseId
+          seo
+          featuredImg
+        }
+      }
+    }
+  }
+`
+
+const Services6040 = ({ data }) => {
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {
         return (
           <div key={item.id}>
             <aside>
-              <ScrollEffect duration=".5" animateOnce animateIn="h6040slide">
-                <img
-                  alt="image placeholder"
-                  src="/assets/img/video-placeholder.jpg"
-                />
+              <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
+                {item.featuredImg ? (
+                  HTR.parse(item.featuredImg)
+                ) : (
+                  <img
+                    alt="image placeholder"
+                    src="/assets/img/video-placeholder.jpg"
+                  />
+                )}
               </ScrollEffect>
             </aside>
             <article>
@@ -38,5 +59,16 @@ export default ({ data }) => {
         )
       })}
     </section>
+  )
+}
+
+export default props => {
+  return (
+    <StaticQuery
+      query={query}
+      render={query => (
+        <Services6040 {...props} data={query.wpquery.services.nodes} />
+      )}
+    />
   )
 }

@@ -107,6 +107,8 @@ exports.createPages = ({ actions, graphql }) => {
                 description
                 id
                 databaseId
+                seo
+                featuredImg
               }
             }
           }
@@ -143,7 +145,6 @@ exports.createPages = ({ actions, graphql }) => {
         path: `${stripSite(pages.uri)}`,
         component: serviceLines,
         context: {
-          services: services,
           ...pages,
         },
       })
