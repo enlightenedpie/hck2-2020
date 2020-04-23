@@ -58,11 +58,9 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
-      console.log(result)
+      console.log(result.data.wpquery)
       const postTemplate = path.resolve(`./src/templates/singlePost.js`)
-      const { posts } = result.data.wpquery.posts.nodes
-
-      posts = posts.nodes
+      const posts = result.data.wpquery.posts.nodes
 
       // Create a Gatsby page for each WordPress post
       _.each(posts, post => {
