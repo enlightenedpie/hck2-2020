@@ -127,12 +127,10 @@ exports.createPages = ({ actions, graphql }) => {
       const serviceTemplate = path.resolve(`./src/templates/singleService.js`),
         serviceLines = path.resolve(`./src/templates/allServices.js`)
 
-      let allServices = result.data.wpquery.services.nodes,
-        page = result.data.wpquery.pages.nodes[0],
-        services =
-          process.env.NODE_ENV === "production"
-            ? getOnlyPublished(allServices)
-            : allServices
+      let { services, pages } = result.data.wpquery
+
+      pages = pages.nodes[0]
+      services = services.nodes
 
       // Create a Gatsby page for each individual expertise
       _.each(services, service => {
@@ -147,11 +145,11 @@ exports.createPages = ({ actions, graphql }) => {
 
       // Create a Gatsby page for Expertise landing
       createPage({
-        path: `${stripSite(page.uri)}`,
+        path: `${stripSite(pages.uri)}`,
         component: serviceLines,
         context: {
           services: services,
-          ...page,
+          ...pages,
         },
       })
     })
