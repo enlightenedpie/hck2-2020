@@ -5,7 +5,6 @@ import ScrollEffect from "react-animate-on-scroll"
 
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
-import SEO from "../components/seo"
 import CSHero from "../components/CaseStudyHero"
 import Services6040 from "../components/Services6040"
 import PromotedBlog from "../components/PromotedBlog"
@@ -16,38 +15,14 @@ import "./lineartanim.sass"
 
 const HTR = new HtmlToReact.Parser()
 
-const videoAtts = {
-  poster: "/assets/img/video-placeholder.jpg",
-  playsInline: true,
-  loop: true,
-  muted: true,
-  autoPlay: true,
-}
-
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  let { title, description, contentData, content } = wpquery.pages.nodes[0],
-    { caseStudies } = wpquery,
-    cdata = JSON.parse(contentData)
+  let { content, seo } = wpquery.pages.nodes[0],
+    { caseStudies } = wpquery
+
   return (
-    <Layout {...rest} location={location} title={title || ""}>
-      <SEO
-        bodyClass="page-front"
-        title={title || ""}
-        keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
-        description={description || ""}
-      />
+    <Layout seo={seo} {...rest} location={location}>
       <section className={styles.stage_ATF}>
         {HTR.parse(content)}
-        {/* <video {...videoAtts}>
-          <source type="video/mp4" src={cdata.stage}></source>
-          Your browser doesn't support embedded videos.
-        </video>
-      </section>
-      <section className={styles.callOutATF}>
-        {cdata.callOutATF.map((noda, i) => {
-          const Tag = noda.tagName
-          return <Tag {...noda.attributes}>{noda.contents}</Tag>
-        })} */}
         <div className={styles.lineArt}>
           <ScrollEffect animateOnce animateIn="drawLineArt">
             <SVG.allFive />

@@ -13,8 +13,6 @@ const HTR = new HtmlToReact.Parser()
 export default ({ pageContext: page }) => {
   let { seo, content, title, featuredImage } = page
 
-  seo = JSON.parse(seo)
-
   return (
     <Layout seo={seo} title={title || "work page"}>
       <section className={styles.asIntro}>

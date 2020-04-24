@@ -5,6 +5,7 @@ import Header from "../components/global/Header"
 import Footer from "../components/global/Footer"
 
 export default ({ seo, children, ...props }) => {
+  seo = JSON.parse(seo)
   return (
     <PageTransition>
       <SEO {...seo} />

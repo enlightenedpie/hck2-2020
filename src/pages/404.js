@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import HCK2 from "../utils/hck2"
+import HtmlToReact from "html-to-react"
 
 import Layout from "../templates/layout"
-import SEO from "../components/seo"
 
 import "./404.sass"
+
+const HTR = new HtmlToReact.Parser()
 
 const NFQuery = graphql`
   query {
@@ -15,7 +16,7 @@ const NFQuery = graphql`
           id
           title
           seo
-          contentData
+          content
         }
       }
     }
@@ -23,27 +24,11 @@ const NFQuery = graphql`
 `
 
 const Error404 = ({ wpquery, location, ...rest }) => {
-  const { title, description, contentData } = wpquery.pages.nodes[0]
-  let cdata = JSON.parse(HCK2.html.entities.decode(contentData)),
-    seo = {
-      bodyClass: "page-404-notfound",
-      title: title || "404: Not Found",
-      description: description || "",
-    }
+  const { title, id, content, seo } = wpquery.pages.nodes[0]
+
   return (
-    <Layout seo={seo} location={location} title={title}>
-      {cdata.fourOHfour.map((noda, i) => {
-        const Tag = noda.tagName
-        return (
-          <Tag
-            data-key={(i + Math.random()) * 978473}
-            key={(i + Math.random()) * 978473}
-            {...noda.attributes}
-          >
-            {noda.contents}
-          </Tag>
-        )
-      })}
+    <Layout seo={seo} location={location}>
+      {HTR.parse(content)}
     </Layout>
   )
 }

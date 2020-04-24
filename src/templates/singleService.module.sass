@@ -1,0 +1,43 @@
+.ssIntro
+  width: 100%
+  position: relative
+  margin-top: 4rem
+  padding-top: 100%
+  overflow: hidden
+  text-align: center
+
+  +mq($activeBreak)
+    margin-top: 0
+    padding-top: 41.67%
+  
+  video, source, img
+    display: block
+    width: auto
+    height: 100%
+    +mq($activeBreak)
+      width: 100%
+      height: auto
+
+  video, img, article
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%,-50%,0)
+
+  img
+    filter: brightness(.5)
+
+  article
+    padding: 2rem
+
+    h1
+      color: $white
+
+    svg
+      width: 6rem
+      padding: 1rem 0
+
+      path
+        stroke: $white
+        stroke-dasharray: 500
+        stroke-dashoffset: 0

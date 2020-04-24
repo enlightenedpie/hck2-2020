@@ -187,7 +187,7 @@ export default {
       </g>
     </svg>
   ),
-  marketingStrat: () => (
+  marketingStrategy: () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.891 50.959">
       <defs>
         <style>{`.b8c6c18f-2c6d-4217-a998-8ea87a7022db{fill:none;stroke:#231f20;stroke-miterlimit:10;}`}</style>
@@ -219,7 +219,7 @@ export default {
       </g>
     </svg>
   ),
-  social: () => (
+  digitalSocial: () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.815 42.983">
       <defs>
         <style>{`.af0537fb-0a3c-4b72-ba2e-338b6cbc3462{fill:none;stroke:#231f20;stroke-miterlimit:10;}`}</style>
