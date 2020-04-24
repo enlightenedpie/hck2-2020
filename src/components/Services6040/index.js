@@ -4,6 +4,8 @@ import ScrollEffect from "react-animate-on-scroll"
 import HtmlToReact from "html-to-react"
 
 import Button from "../Button"
+import SVG from "../SVG"
+import { kebabToCamel } from "../../utils"
 
 import h6040 from "../h6040.module.sass"
 import "../h6040anim.sass"
@@ -22,6 +24,7 @@ const query = graphql`
           databaseId
           seo
           featuredImg
+          slug
         }
       }
     }
@@ -32,6 +35,8 @@ const Services6040 = ({ data }) => {
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {
+        let Icon = SVG[kebabToCamel(item.slug)]
+
         return (
           <div key={item.id}>
             <aside>
@@ -40,14 +45,16 @@ const Services6040 = ({ data }) => {
                   HTR.parse(item.featuredImg)
                 ) : (
                   <img
-                    alt="image placeholder"
+                    alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
                     src="/assets/img/video-placeholder.jpg"
                   />
                 )}
               </ScrollEffect>
             </aside>
             <article>
-              <i className="icon"></i>
+              <i className="icon">
+                <Icon />
+              </i>
               <h2>{HTR.parse(item.name)}</h2>
               <div-spacer />
               <p>{HTR.parse(item.description)}</p>

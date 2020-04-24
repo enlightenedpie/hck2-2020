@@ -10,10 +10,10 @@ const HTR = new HtmlToReact.Parser()
 
 export default ({ pathContext: post }) => {
   let { featuredImage: image, title, content } = post,
-    seo = {
+    seo = `{
       title: title,
       bodyClass: "single single-post",
-    }
+    }`
   return (
     <Layout title={title} {...seo}>
       <section className={styles.singleStage}>
