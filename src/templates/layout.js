@@ -4,11 +4,11 @@ import SEO from "../components/seo"
 import Header from "../components/global/Header"
 import Footer from "../components/global/Footer"
 
-export default ({ seo, children, ...props }) => {
+export default ({ seo, bodyClass, children, ...props }) => {
   seo = JSON.parse(seo)
   return (
     <PageTransition>
-      <SEO {...seo} />
+      <SEO {...seo} bodyClass={bodyClass} />
       <Header {...props} />
       <main id="node--content-wrapper" className="site-main">
         {children}

@@ -32,13 +32,15 @@ function SEO({
 
   const metaDescription = description || site.siteMetadata.description
 
+  bodyClass = [bodyClass, "hck2--node"].join(" ")
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       bodyAttributes={{
-        class: bodyClass || null,
+        class: bodyClass,
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
