@@ -1,19 +1,12 @@
 import React from "react"
 
 import Layout from "../templates/layout"
-import SEO from "../components/seo"
 
 import styles from "./work.module.sass"
 
 const WorkPage = props => {
   return (
-    <Layout {...props} title={"work page"}>
-      <SEO
-        bodyClass="page-work"
-        title={"work page"}
-        keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
-        description={"work page"}
-      />
+    <Layout {...props} seo={"{}"}>
       <section className={styles.work}>{"Media"}</section>
     </Layout>
   )

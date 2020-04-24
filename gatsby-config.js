@@ -53,6 +53,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        data: `@import "${__dirname}/src/styles/entry"`,
+        useResolveUrlLoader: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-postcss`,
       options: {
         postCssPlugins: [
@@ -90,13 +97,6 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-page-transitions`,
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        data: `@import "${__dirname}/src/styles/entry"`,
-        useResolveUrlLoader: true,
-      },
-    },
     {
       resolve: `gatsby-source-googlemaps-static`,
       options: {

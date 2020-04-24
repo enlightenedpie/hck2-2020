@@ -5,10 +5,16 @@
     transform: translate3d(0,0,0)
 
 @keyframes drawLineArt
-  0%
-    stroke-dasharray: 0,1518
-  100%
-    stroke-dasharray: 1518,0
+  from
+    stroke-dasharray: 1,1518
+  to
+    stroke-dasharray: 1518,1
+
+@keyframes drawLineArtSingle
+  from
+    stroke-dashoffset: 500
+  to
+    stroke-dashoffset: 0
 
 @keyframes h6040slideright
   from

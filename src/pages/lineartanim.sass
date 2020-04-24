@@ -1,7 +1,16 @@
+[class*="drawLineArt"]
+  svg
+    path
+      animation-timing-function: cubic-bezier(.5,1,.5,1)
+      animation-fill-mode: both
+      animation-duration: 5s
+
 .drawLineArt
   svg
     path
-      animation-timing-function: ease-in-out
-      animation-fill-mode: both
       animation-name: drawLineArt
-      animation-duration: 4s
+      
+.drawLineArtSingle
+  svg
+    path
+      animation-name: drawLineArtSingle

@@ -3,7 +3,19 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ bodyClass, description, lang, meta, keywords, title }) {
+function SEO({
+  doctitle: title,
+  og_title,
+  tw_title,
+  description,
+  og_description,
+  tw_description,
+  bodyClass,
+  lang,
+  meta,
+  keywords,
+  author,
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,13 +32,15 @@ function SEO({ bodyClass, description, lang, meta, keywords, title }) {
 
   const metaDescription = description || site.siteMetadata.description
 
+  bodyClass = [bodyClass, "hck2--node"].join(" ")
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       bodyAttributes={{
-        class: bodyClass || null,
+        class: bodyClass,
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -37,11 +51,11 @@ function SEO({ bodyClass, description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: og_title || title,
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: og_description || metaDescription,
         },
         {
           property: `og:type`,
@@ -53,15 +67,15 @@ function SEO({ bodyClass, description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author || site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: tw_title || title,
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: tw_description || metaDescription,
         },
       ]
         .concat(
