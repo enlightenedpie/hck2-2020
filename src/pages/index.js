@@ -16,11 +16,11 @@ import "./lineartanim.sass"
 const HTR = new HtmlToReact.Parser()
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  let { content, seo } = wpquery.pages.nodes[0],
+  let { content, seo, slug } = wpquery.pages.nodes[0],
     { caseStudies } = wpquery
 
   return (
-    <Layout seo={seo} {...rest} location={location}>
+    <Layout seo={seo} bodyClass={slug} {...rest} location={location}>
       <section className={styles.stage_ATF}>
         {HTR.parse(content)}
         <div className={styles.lineArt}>
@@ -76,6 +76,7 @@ const indexQuery = graphql`
         nodes {
           uri
           id
+          slug
           seo
           contentData
           content
