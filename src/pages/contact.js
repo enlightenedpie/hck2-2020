@@ -16,7 +16,7 @@ const ContactPage = ({ props, staticMap }) => {
   setState = e => Object.assign(state, { [e.target.name]: e.target.value })
 
   return (
-    <Layout {...props} title={"contact page"}>
+    <Layout {...props} seo={"{}"}>
       <div className={[styles.container_fluid, styles.bg_blue].join(" ")}>
         <div className={styles.container}>
           <div className={styles.row}>
