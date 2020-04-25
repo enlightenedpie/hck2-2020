@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
+import _ from "lodash"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({
@@ -16,7 +17,9 @@ function SEO({
   keywords,
   author,
 }) {
-  const { site } = useStaticQuery(
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery(
     graphql`
       query {
         site {
@@ -30,7 +33,7 @@ function SEO({
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || siteMetadata.description
 
   bodyClass = [bodyClass, "hck2--node"].join(" ")
 
@@ -42,8 +45,8 @@ function SEO({
       bodyAttributes={{
         class: bodyClass,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={_.unescape(title)}
+      titleTemplate={`%s | ${siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -67,7 +70,7 @@ function SEO({
         },
         {
           name: `twitter:creator`,
-          content: author || site.siteMetadata.author,
+          content: author || siteMetadata.author,
         },
         {
           name: `twitter:title`,
