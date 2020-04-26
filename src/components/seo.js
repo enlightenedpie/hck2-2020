@@ -16,6 +16,7 @@ function SEO({
   meta,
   keywords,
   author,
+  canonical,
 }) {
   const {
     site: { siteMetadata },
@@ -27,6 +28,8 @@ function SEO({
             title
             description
             author
+            separator
+            siteUrl
           }
         }
       }
@@ -46,7 +49,7 @@ function SEO({
         class: bodyClass,
       }}
       title={_.unescape(title)}
-      titleTemplate={`%s | ${siteMetadata.title}`}
+      titleTemplate={`%s ${siteMetadata.separator} ${siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -95,6 +98,7 @@ function SEO({
         href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800%7CRoboto:300,700&display=swap"
         rel="stylesheet"
       ></link>
+      <link rel="canonical" href={canonical || siteMetadata.siteUrl} />
     </Helmet>
   )
 }

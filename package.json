@@ -43,6 +43,7 @@
     "html-to-react": "^1.4.2",
     "node-sass": "^4.13.1",
     "prismjs": "^1.16.0",
+    "pure-react-carousel": "^1.27.1",
     "react": "^16.8.6",
     "react-animate-on-scroll": "^2.1.5",
     "react-dom": "^16.8.6",
