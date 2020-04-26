@@ -7,6 +7,7 @@ import Layout from "../templates/layout"
 import SVG from "../components/SVG"
 import CSHero from "../components/CaseStudyHero"
 import Services6040 from "../components/Services6040"
+import Testimonials from "../components/Testimonials"
 import PromotedBlog from "../components/PromotedBlog"
 import PromotedNews from "../components/PromotedNews"
 
@@ -35,16 +36,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
         ))}
       </section>
-      <section className={styles.testimonials}>
-        <h3>Testimonials</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-          suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-          lacus vel facilisis.
-        </p>
-        <p>Name | Title | Company</p>
-      </section>
+      <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
         <PromotedNews className={styles.media} />

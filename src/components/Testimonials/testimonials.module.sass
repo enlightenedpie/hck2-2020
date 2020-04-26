@@ -1,0 +1,38 @@
+.headLikeAHole
+  position: relative
+  padding: 4rem
+  text-align: center
+  color: $white
+  background-color: $navy
+
+  +mq($activeBreak)
+    padding: 4rem 25%
+
+  h3
+    color: $orange
+    margin-bottom: 1em
+
+    +mq($activeBreak)
+      font-size: 3rem
+  
+  p
+    line-height: 1.5
+    margin: 0 .5rem 1.5rem
+    font-size: .8rem
+    
+    &:last-of-type
+      font-weight: 700
+    
+    &:not(:last-of-type)
+      font-style: italic
+
+  button
+    box-sizing: border-box
+    border: none
+    padding: 4px
+    color: $white
+    overflow: hidden
+    border-radius: 50%
+
+    &:not(:last-of-type)
+      margin-right: 1rem

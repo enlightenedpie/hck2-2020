@@ -12,10 +12,13 @@ import "../pages/lineartanim.sass"
 
 const HTR = new HtmlToReact.Parser()
 
-export default ({ data }) => {
-  let service = data.wpquery.service,
-    { description, seo, name, slug, featuredImg } = service
-
+export default ({
+  data: {
+    wpquery: {
+      service: { description, seo, name, slug, featuredImg },
+    },
+  },
+}) => {
   let Icon = SVG[kebabToCamel(slug)]
 
   return (

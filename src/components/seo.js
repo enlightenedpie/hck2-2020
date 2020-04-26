@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
+import _ from "lodash"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({
@@ -15,8 +16,11 @@ function SEO({
   meta,
   keywords,
   author,
+  canonical,
 }) {
-  const { site } = useStaticQuery(
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery(
     graphql`
       query {
         site {
@@ -24,13 +28,15 @@ function SEO({
             title
             description
             author
+            separator
+            siteUrl
           }
         }
       }
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || siteMetadata.description
 
   bodyClass = [bodyClass, "hck2--node"].join(" ")
 
@@ -42,8 +48,8 @@ function SEO({
       bodyAttributes={{
         class: bodyClass,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={_.unescape(title)}
+      titleTemplate={`%s ${siteMetadata.separator} ${siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -67,7 +73,7 @@ function SEO({
         },
         {
           name: `twitter:creator`,
-          content: author || site.siteMetadata.author,
+          content: author || siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -92,6 +98,7 @@ function SEO({
         href="https://fonts.googleapis.com/css?family=Barlow+Condensed:500,800%7CRoboto:300,700&display=swap"
         rel="stylesheet"
       ></link>
+      <link rel="canonical" href={canonical || siteMetadata.siteUrl} />
     </Helmet>
   )
 }
