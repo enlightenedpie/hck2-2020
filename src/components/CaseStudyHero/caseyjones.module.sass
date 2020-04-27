@@ -70,11 +70,18 @@
     padding-top: 2rem
 
   .csStats
-    display: flex
+    display: grid
+    gap: .5rem
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
     color: $white
     width: 100%
     max-width: 1000px
     padding: 2rem
 
     & > div
-      flex: 1 1 100%
+      text-align: center
+
+      p
+        strong
+          font-family: $fontStackH
+          font-size: 2rem

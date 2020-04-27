@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
+import ScrollEffect from "react-animate-on-scroll"
+
 import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
@@ -22,11 +24,21 @@ export default ({
   stats = JSON.parse(stats)
 
   stats.map((stat, i) => {
+    let delay = i / 2
     items.push(
       <div key={"stat" + i + id}>
-        <p>{stat.icon}</p>
-        <p>{stat.data}</p>
-        <p>{stat.label}</p>
+        <ScrollEffect
+          delay={delay}
+          duration={1}
+          animateOnce
+          animateIn="statsIn"
+        >
+          {/* <p>{stat.icon}</p> */}
+          <p>
+            <strong>{stat.data}</strong>
+          </p>
+          <p>{stat.label}</p>
+        </ScrollEffect>
       </div>
     )
   })

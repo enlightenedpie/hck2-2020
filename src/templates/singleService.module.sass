@@ -18,14 +18,17 @@
       width: 100%
       height: auto
 
-  video, img, article
+  img, article
     position: absolute
     top: 50%
     left: 50%
+  
+  article
     transform: translate3d(-50%,-50%,0)
 
   img
-    filter: brightness(.5)
+    filter: brightness(.35) grayscale(.5) blur(1rem)
+    transform: translate3d(-50%,-50%,0) scale3d(-1,1,1)
 
   article
     padding: 2rem
