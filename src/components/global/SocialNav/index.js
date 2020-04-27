@@ -12,11 +12,10 @@ const socialQuery = graphql`
           menuItems {
             nodes {
               cssClasses
-              linkRelationship
-              menuItemId
               url
               title
               label
+              id
             }
           }
         }
@@ -31,12 +30,19 @@ const SocialNav = ({ socialNav, xtraClass, ...rest }) => {
     dom.i2svg()
   })
   return (
-    <nav className={[styles.socialNav, xtraClass].join(" ")}>
-      {socialNav.map((noda, idx) => (
-        <a href={noda.link} key={idx * 26}>
-          <i className={"fab " + noda.label}></i>
-        </a>
-      ))}
+    <nav
+      role="navigation"
+      aria-label="Social Media Links"
+      className={[styles.socialNav, xtraClass].join(" ")}
+    >
+      {socialNav.map(noda => {
+        let { label, url, id, cssClasses: className, ...rest } = noda
+        return (
+          <a className={className} href={url} key={id} {...rest}>
+            <i className={"fab " + label}></i>
+          </a>
+        )
+      })}
     </nav>
   )
 }

@@ -50,8 +50,6 @@ export default props => {
       },
     } = query
 
-  console.log(testimonials)
-
   let slides = []
 
   testimonials.map(({ title, content, organization, jobTitle }, i) => {
