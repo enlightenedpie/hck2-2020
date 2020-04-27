@@ -28,12 +28,12 @@ export default props => {
 
   return (
     <header className={[styles.siteHeader, "siteHeader"].join(" ")}>
-      <menu
+      <div
         className={[styles.headerMenu, "node--siteMenu"].join(" ")}
         onClick={toggleMenu}
       >
         <MainNav xtraClass={styles.slideLink} />
-      </menu>
+      </div>
       <div className={[styles.logoBox, , "node--logoBox"].join(" ")}>
         <Link to={`/`}>
           <SVG.LogoNoText />
