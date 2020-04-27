@@ -73,20 +73,30 @@ div[class*="callOutATF"]
     div-spacer
       width: 50%
 
-    img
-      +cardImg
+    a
+      & > *:not(:last-child)
+        margin-bottom: 1rem
 
-    p, blog-title
-      display: block
-      width: 100%
+        +mq($activeBreak)
+          margin-bottom: 2rem
 
-    blog-title
-      font-family: $fontStackH
-      font-weight: 300
+      picture
+        display: block
+        
+      img
+        +cardImg
 
-      +mq($activeBreak)
-        font-size: 1.5rem
-  
+      p, blog-title
+        display: block
+        width: 100%
+
+      blog-title
+        font-family: $fontStackH
+        font-weight: 300
+
+        +mq($activeBreak)
+          font-size: 1.5rem
+    
   .blog
     h4, blog-title
       color: $green
