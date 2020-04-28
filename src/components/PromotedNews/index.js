@@ -44,9 +44,9 @@ export default props => {
         {img ? (
           <ResponsiveImg {...img} />
         ) : (
-          <img
-            alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
-            src="/assets/img/video-placeholder.jpg"
+          <ResponsiveImg
+            altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
+            sourceUrl="/assets/img/video-placeholder.jpg"
           />
         )}
         <blog-title>{title}</blog-title>

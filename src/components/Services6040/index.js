@@ -5,6 +5,7 @@ import HtmlToReact from "html-to-react"
 
 import Button from "../Button"
 import SVG from "../SVG"
+import FeaturedImg from "../ResponsiveImg"
 import { kebabToCamel } from "../../utils"
 
 import h6040 from "../h6040.module.sass"
