@@ -5,3 +5,6 @@ export const kebabToCamel = item =>
       ii ? item.charAt(0).toUpperCase() + item.substr(1).toLowerCase() : item
     )
     .join("")
+
+export const stripSite = link =>
+  link ? link.replace("https://hck2.com/", "") : ""

@@ -1,5 +1,10 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import HtmlToReact from "html-to-react"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import ResponsiveImg from "../ResponsiveImg"
+import { stripSite } from "../../utils"
+
+const HTR = new HtmlToReact.Parser()
 
 export default props => {
   const data = useStaticQuery(graphql`
@@ -8,21 +13,45 @@ export default props => {
         posts(first: 1, where: { categoryName: "news", isFeatured: true }) {
           nodes {
             title
-            contentData
-            content
-            seo
+            excerpt
+            uri
+            featuredImage {
+              altText
+              sourceUrl
+              srcSet
+              sizes
+              mimeType
+              title
+            }
           }
         }
       }
     }
   `)
 
-  let dist = data.wpquery.posts.nodes[0]
+  let {
+      wpquery: {
+        posts: { nodes },
+      },
+    } = data,
+    { title, excerpt, uri, featuredImage: img } = nodes[0]
 
   return (
     <div {...props}>
       <h4>Newsroom</h4>
-      <div>{dist.title}</div>
+      <div-spacer />
+      <Link to={stripSite(uri)}>
+        {img ? (
+          <ResponsiveImg {...img} />
+        ) : (
+          <ResponsiveImg
+            altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
+            sourceUrl="/assets/img/video-placeholder.jpg"
+          />
+        )}
+        <blog-title>{title}</blog-title>
+        {HTR.parse(excerpt)}
+      </Link>
     </div>
   )
 }

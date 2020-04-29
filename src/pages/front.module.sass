@@ -3,7 +3,7 @@
     +stageBlock
 
 div[class*="callOutATF"]
-  padding: 6rem 2rem
+  padding: 4rem 2rem
   text-align: center
   color: $white
   position: relative
@@ -11,7 +11,7 @@ div[class*="callOutATF"]
   background-color: $navy
 
   +mq($activeBreak)
-    padding: 6rem 20% 0
+    padding: 4rem 20% 0
 
   h1
     color: $orange
@@ -44,50 +44,59 @@ div[class*="callOutATF"]
 .caseStudies_feature
   transform: translateZ(1)
 
-  article > div > div
-    &:last-of-type
-      padding-bottom: $angleDist
-
-.testimonials
-  position: relative
-  padding: 6rem
-  text-align: center
-  color: $white
-  background-color: $navy
-
-  +mq($activeBreak)
-    padding: 6rem 25%
-
-  h3
-    color: $orange
-    font-size: 3rem
-    margin-bottom: 1em
-  
-  p
-    line-height: 1.5
-    margin-bottom: 1.5rem
-    
-    &:last-of-type
-      font-weight: 700
-
 .blogMedia
   display: grid
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
   background: $white
-  padding: $angleDist 0
 
   & > div
-    text-align: center
-    padding: 4rem
+    display: flex
+    flex-flow: column wrap
+    align-items: center
+    padding: 2rem
+
+    +mq($activeBreak)
+      padding: 4rem
+
+    & > *:not(:last-child)
+      margin-bottom: 1rem
+
+      +mq($activeBreak)
+        margin-bottom: 2rem
 
     h4
-      font-size: 3rem
-      margin-bottom: 1em
-  
+      font-size: 2rem
+
+      +mq($activeBreak)
+        font-size: 3rem
+
+    div-spacer
+      width: 50%
+
+    a
+      width: 100%
+      
+      & > *:not(:last-child)
+        margin-bottom: 1rem
+
+        +mq($activeBreak)
+          margin-bottom: 2rem
+
+      p, blog-title
+        display: block
+        width: 100%
+
+      blog-title
+        font-family: $fontStackH
+        font-weight: 300
+
+        +mq($activeBreak)
+          font-size: 1.5rem
+    
   .blog
-    h4
+    h4, blog-title
       color: $green
 
   .media
-    h4
+    h4, blog-title
       color: $blue

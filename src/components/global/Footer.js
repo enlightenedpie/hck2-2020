@@ -26,8 +26,13 @@ const Footer = ({ siteMetadata }) => {
     <>
       <footer className={styles.siteFooter}>
         <div className={styles.left}>
-          <nav id="footernav" className={null}>
-            <h4>Navigate</h4>
+          <nav
+            role="navigation"
+            aria-label="Footer"
+            id="footernav"
+            className={null}
+          >
+            <h5>Navigate</h5>
             <div>
               <MainNav />
               <Link to={"/contact"}>contact us</Link>
@@ -37,7 +42,7 @@ const Footer = ({ siteMetadata }) => {
             <hr />
           </div>
           <div>
-            <h4>Contact Us</h4>
+            <h5>Contact Us</h5>
             <div>
               <a href={"tel:" + phone.replace(/\.+/g, "")}>{phone}</a>
               <address>{address}</address>
@@ -51,7 +56,7 @@ const Footer = ({ siteMetadata }) => {
             </Link>
           </div>
           <div>
-            <h4>Stay Connected</h4>
+            <h5>Stay Connected</h5>
             <Newsletter />
             <SocialNav xtraClass={styles.snFooter} />
           </div>

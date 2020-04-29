@@ -1,9 +1,7 @@
 import React from "react"
 import HtmlToReact from "html-to-react"
-import { Link } from "gatsby"
-
 import Layout from "./layout"
-import Button from "../components/Button"
+import ReqProp from "../components/ReqProp"
 import Services6040 from "../components/Services6040"
 
 import styles from "./allServices.module.sass"
@@ -20,9 +18,7 @@ export default ({ pageContext: page }) => {
           <h1>{title}</h1>
           <div-spacer />
           {HTR.parse(content)}
-          <Link to="/contact">
-            <Button color="white">Request A Proposal</Button>
-          </Link>
+          <ReqProp />
         </div>
       </section>
       <Services6040 />

@@ -5,6 +5,7 @@ import HtmlToReact from "html-to-react"
 
 import Button from "../Button"
 import SVG from "../SVG"
+import ResponsiveImg from "../ResponsiveImg"
 import { kebabToCamel } from "../../utils"
 
 import h6040 from "../h6040.module.sass"
@@ -42,11 +43,11 @@ const Services6040 = ({ data }) => {
             <aside>
               <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
                 {item.featuredImg ? (
-                  HTR.parse(item.featuredImg)
+                  <ResponsiveImg>{HTR.parse(item.featuredImg)}</ResponsiveImg>
                 ) : (
-                  <img
-                    alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
-                    src="/assets/img/video-placeholder.jpg"
+                  <ResponsiveImg
+                    altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
+                    sourceUrl="/assets/img/video-placeholder.jpg"
                   />
                 )}
               </ScrollEffect>
