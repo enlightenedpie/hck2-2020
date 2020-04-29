@@ -1,11 +1,13 @@
 import React from "react"
 import ScrollEffect from "react-animate-on-scroll"
 import HtmlToReact from "html-to-react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "./layout"
+import CSHero from "../components/CaseStudyHero"
 import SVG from "../components/SVG"
-import { kebabToCamel } from "../utils"
+import ReqProp from "../components/ReqProp"
+import { kebabToCamel, stripSite } from "../utils"
 
 import styles from "./singleService.module.sass"
 import "../pages/lineartanim.sass"
@@ -15,11 +17,21 @@ const HTR = new HtmlToReact.Parser()
 export default ({
   data: {
     wpquery: {
-      service: { description, seo, name, slug, featuredImg },
+      service: {
+        subtitle,
+        description,
+        seo,
+        name,
+        slug,
+        featuredImg,
+        caseStudies,
+      },
     },
   },
 }) => {
   let Icon = SVG[kebabToCamel(slug)]
+
+  let others = []
 
   return (
     <Layout seo={seo}>
@@ -32,18 +44,40 @@ export default ({
             src="/assets/img/video-placeholder.jpg"
           />
         )}
-        <article>
+        <aside>
           <i className="icon single">
             <ScrollEffect animateOnce animateIn="drawLineArtSingle">
               <Icon />
             </ScrollEffect>
           </i>
           <h1>{HTR.parse(name)}</h1>
-        </article>
+        </aside>
       </section>
-      <section>
-        <div-spacer />
+      <section className={styles.ssContent}>
+        <h2>{subtitle}</h2>
+        <div-spacer-white />
         <p>{HTR.parse(description)}</p>
+        <ReqProp />
+      </section>
+      <section className={styles.ssCaseStudies}>
+        {caseStudies.nodes.map((noda, i) => {
+          if (i < 3) {
+            return <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
+          } else {
+            console.log(noda.featuredImage)
+            others.push(
+              <Link to={stripSite(noda.link)}>
+                <case-study-card>
+                  <picture>
+                    <img {...noda.featuredImage} />
+                  </picture>
+                  <h3>{noda.client}</h3>
+                </case-study-card>
+              </Link>
+            )
+          }
+        })}
+        <div className={styles.theOthers}>{others}</div>
       </section>
     </Layout>
   )
@@ -53,17 +87,26 @@ export const query = graphql`
   query($id: ID!) {
     wpquery {
       service(id: $id, idType: DATABASE_ID) {
+        subtitle
+        featuredImg
         description
         slug
-        count
-        uri
         name
-        id
         seo
-        featuredImg
         caseStudies {
           nodes {
+            link
             title
+            client
+            stats
+            featuredImage {
+              altText
+              id
+              srcSet
+              title
+              sourceUrl
+              mimeType
+            }
           }
         }
       }

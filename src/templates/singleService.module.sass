@@ -6,7 +6,7 @@
   overflow: hidden
   text-align: center
 
-  +mq($activeBreak)
+  +mq('tportrait')
     margin-top: 0
     padding-top: 41.67%
   
@@ -14,23 +14,23 @@
     display: block
     width: auto
     height: 100%
-    +mq($activeBreak)
+    +mq('tportrait')
       width: 100%
       height: auto
 
-  img, article
+  img, aside
     position: absolute
     top: 50%
     left: 50%
   
-  article
+  aside
     transform: translate3d(-50%,-50%,0)
 
   img
-    filter: brightness(.35) grayscale(.5) blur(1rem)
+    filter: brightness(.35) grayscale(.5) blur(.5rem)
     transform: translate3d(-50%,-50%,0) scale3d(-1,1,1)
 
-  article
+  aside
     padding: 2rem
 
     h1
@@ -44,3 +44,62 @@
         stroke: $white
         stroke-dasharray: 500
         stroke-dashoffset: 0
+
+.ssContent
+  color: $white
+  text-align: center
+  padding: 2rem
+
+  +mq($activeBreak)
+    padding: 4rem 20%
+
+  h2
+    color: get-color('orange',1)
+
+  div-spacer-white
+    margin: 2rem 0
+
+  & > p
+    line-height: 1.5
+
+  button
+    margin-top: 2rem
+
+.ssCaseStudies
+
+  .theOthers
+    background-color: $white
+    padding: 4rem
+    overflow: hidden
+    text-align: center
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+    grid-auto-rows: 1fr
+    gap: 2rem
+
+    case-study-card
+      height: 100%
+      padding: 1rem
+      box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+
+      h3
+        color: get-color('orange',3)
+        font-weight: normal
+        font-size: 1.25rem
+
+      picture
+        background-color: get-color('navy',3)
+        margin-bottom: 1rem
+        display: block
+        position: relative
+        padding-top: 100%
+        width: 100%
+        overflow: hidden
+
+        img
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate3d(-50%,-50%,0)
+          height: 100%
+          width: auto

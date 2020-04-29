@@ -149,6 +149,66 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
+    .then(() => {
+      return graphql(`
+        query {
+          wpquery {
+            caseStudies {
+              nodes {
+                content
+                client
+                databaseId
+                seo
+                stats
+                slug
+                status
+                title
+                uri
+                featuredImage {
+                  uri
+                  title
+                  srcSet
+                  sourceUrl
+                  sizes
+                  mediaType
+                  mimeType
+                  id
+                  databaseId
+                  altText
+                }
+              }
+            }
+          }
+        }
+      `)
+    })
+    .then(result => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()))
+        return Promise.reject(result.errors)
+      }
+
+      const csTemplate = path.resolve(`./src/templates/singleCaseStudy.js`)
+
+      let {
+        data: {
+          wpquery: {
+            caseStudies: { nodes: caseStudies },
+          },
+        },
+      } = result
+
+      // Create a Gatsby page for each individual case studies
+      _.each(caseStudies, cs => {
+        createPage({
+          path: `${stripSite(cs.uri)}`,
+          component: csTemplate,
+          context: {
+            id: cs.databaseId,
+          },
+        })
+      })
+    })
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

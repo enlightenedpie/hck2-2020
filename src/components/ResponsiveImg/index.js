@@ -14,11 +14,10 @@ export default ({
 }) => {
   return (
     <picture className={styles.respImg} {...rest}>
-      <source type={mimeType} srcSet={srcSet} />
       {typeof children == "object" ? (
         <>{children}</>
       ) : (
-        <img title={title} alt={altText} src={sourceUrl} />
+        <img type={mimeType} alt={altText} src={sourceUrl} {...rest} />
       )}
     </picture>
   )
