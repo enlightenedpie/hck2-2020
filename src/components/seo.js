@@ -95,9 +95,9 @@ function SEO({
         .concat(meta)}
     >
       <link
-        href="https://fonts.googleapis.com/css?family=Barlow+Condensed:300,500,800%7CRoboto:300,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;500;800&family=Roboto:wght@300;700&display=swap"
         rel="stylesheet"
-      ></link>
+      />
       <link rel="canonical" href={canonical || siteMetadata.siteUrl} />
     </Helmet>
   )
