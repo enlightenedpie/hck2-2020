@@ -1,0 +1,60 @@
+.singleCaseStudyHero
+
+  h1, h2, h3, h4
+    text-align: center
+
+  +mq('tportrait')
+    padding-top: 33.33333%
+
+    img
+      width: 100%
+      height: auto !important
+      filter: brightness(.35) grayscale(.5)
+
+.csTags
+  padding: 2rem 2rem 0
+  background-color: white
+  display: flex
+  justify-content: flex-end
+  align-items: center
+
+  +mq('tportrait')
+    padding: 2rem 20% 0
+
+  span
+    font-weight: 700
+    color: get-color('orange',3)
+    vertical-align: middle
+
+    &:not(:nth-of-type(2))
+      font-size: .8rem
+
+    &:nth-of-type(2)
+      font-size: 1.25rem
+      margin: 0 .25rem
+
+.contentArea
+  background-color: white
+  padding: 2rem
+
+  +mq('tportrait')
+    padding: 2rem 20%
+
+  img
+    display: block
+    width: 100%
+    height: auto
+
+  p, ul
+    line-height: 1.25
+
+  & > p:first-child, & > div > p:first-child
+    font-size: 110%
+    padding-bottom: 1.5rem
+
+  p:not(:first-child)
+    padding-bottom: 1rem
+
+  h2, h3, h4
+    color: get-color('orange',3)
+    padding: 1rem 0

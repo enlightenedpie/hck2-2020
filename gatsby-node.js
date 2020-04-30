@@ -76,7 +76,7 @@ exports.createPages = ({ actions, graphql }) => {
       return graphql(`
         query {
           wpquery {
-            pages(where: { name: "expertise" }) {
+            pages(where: { id: 661 }) {
               nodes {
                 uri
                 databaseId
@@ -155,27 +155,8 @@ exports.createPages = ({ actions, graphql }) => {
           wpquery {
             caseStudies {
               nodes {
-                content
-                client
                 databaseId
-                seo
-                stats
-                slug
-                status
-                title
                 uri
-                featuredImage {
-                  uri
-                  title
-                  srcSet
-                  sourceUrl
-                  sizes
-                  mediaType
-                  mimeType
-                  id
-                  databaseId
-                  altText
-                }
               }
             }
           }
