@@ -7,7 +7,9 @@ import Button from "../Button"
 import styles from "./caseyjones.module.sass"
 
 export default ({
+  isAtTop = false,
   hasMore = false,
+  otherClass = "",
   link,
   title,
   client,
@@ -38,7 +40,7 @@ export default ({
   })
 
   return (
-    <article className={styles.caseStudyHero}>
+    <article className={[styles.caseStudyHero, otherClass].join(" ")}>
       <picture className={styles.csHeroImg} id={newId}>
         <source type={type} alt={alt} type={type} {...fi}></source>
         <img loading="lazy" src={src} alt={alt} />
@@ -46,8 +48,12 @@ export default ({
       <div className={styles.informatic}>
         <div>
           <div>
-            <h3>{client}</h3>
-            <h4 className={styles[colores[idx]]}>{title}</h4>
+            {isAtTop ? <h1>{client}</h1> : <h3>{client}</h3>}
+            {isAtTop ? (
+              <h2 className={styles[colores[idx]]}>{title}</h2>
+            ) : (
+              <h4 className={styles[colores[idx]]}>{title}</h4>
+            )}
             <aside className={styles.csStats}>{items}</aside>
             {hasMore ? (
               <span className={styles.hasMore}>

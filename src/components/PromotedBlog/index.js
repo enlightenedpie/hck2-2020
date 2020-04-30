@@ -36,8 +36,6 @@ export default props => {
     } = data,
     { title, excerpt, uri, featuredImage: img } = nodes[0]
 
-  console.log(img)
-
   return (
     <div {...props}>
       <h4>Blog</h4>

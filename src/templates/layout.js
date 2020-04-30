@@ -10,7 +10,7 @@ export default ({ seo, bodyClass, children, ...props }) => {
     <PageTransition>
       <SEO {...seo} bodyClass={bodyClass} />
       <Header {...props} />
-      <main id="node--content-wrapper" className="site-main">
+      <main role="main" id="node--content-wrapper" className="site-main">
         {children}
       </main>
       <Footer {...props} />

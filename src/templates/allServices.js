@@ -12,7 +12,7 @@ export default ({ pageContext: page }) => {
   let { seo, content, title, featuredImage } = page
 
   return (
-    <Layout seo={seo} title={title || "work page"}>
+    <Layout seo={seo} bodyClass="landing services">
       <section className={styles.asIntro}>
         <div>
           <h1>{title}</h1>
