@@ -280,4 +280,62 @@ export default {
       />
     </svg>
   ),
+  back: () => (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 28 50"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlSpace="preserve"
+      className="slider-back-arrow"
+      style={{
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        strokeMiterlimit: 2,
+      }}
+    >
+      <g clip-path="url(#_clip1)">
+        <g transform="matrix(-1,0,0,1,27.1183,0)">
+          <path
+            d="M2.118,47.763L25,24.882L2.118,2"
+            style={{
+              fill: "none",
+              stroke: "white",
+              strokeWidth: "2.5px",
+            }}
+          />
+        </g>
+      </g>
+    </svg>
+  ),
+  forward: () => (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 28 50"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlSpace="preserve"
+      className="slider-back-arrow"
+      style={{
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        strokeMiterlimit: 2,
+      }}
+    >
+      <g clip-path="url(#_clip1)">
+        <path
+          d="M2.118,47.763L25,24.882L2.118,2"
+          style={{
+            fill: "none",
+            stroke: "white",
+            strokeWidth: "2.5px",
+          }}
+        />
+      </g>
+    </svg>
+  ),
 }
