@@ -76,28 +76,25 @@ exports.createPages = ({ actions, graphql }) => {
       return graphql(`
         query {
           wpquery {
-            pages(where: { id: 661 }) {
-              nodes {
+            page(id: "661", idType: DATABASE_ID) {
+              uri
+              databaseId
+              seo
+              content
+              title
+              status
+              date
+              featuredImage {
                 uri
-                databaseId
-                seo
-                content
-                contentData
                 title
-                status
-                date
-                featuredImage {
-                  uri
-                  title
-                  srcSet
-                  sourceUrl
-                  sizes
-                  mediaType
-                  mimeType
-                  id
-                  databaseId
-                  altText
-                }
+                srcSet
+                sourceUrl
+                sizes
+                mediaType
+                mimeType
+                id
+                databaseId
+                altText
               }
             }
             services {
@@ -124,10 +121,10 @@ exports.createPages = ({ actions, graphql }) => {
       const serviceTemplate = path.resolve(`./src/templates/singleService.js`),
         serviceLines = path.resolve(`./src/templates/allServices.js`)
 
-      let { services, pages } = result.data.wpquery
-
-      pages = pages.nodes[0]
-      services = services.nodes
+      let {
+        services: { nodes: services },
+        page,
+      } = result.data.wpquery
 
       // Create a Gatsby page for each individual expertise
       _.each(services, service => {
@@ -142,10 +139,10 @@ exports.createPages = ({ actions, graphql }) => {
 
       // Create a Gatsby page for Expertise landing
       createPage({
-        path: `${stripSite(pages.uri)}`,
+        path: `${stripSite(page.uri)}`,
         component: serviceLines,
         context: {
-          ...pages,
+          ...page,
         },
       })
     })
@@ -153,7 +150,14 @@ exports.createPages = ({ actions, graphql }) => {
       return graphql(`
         query {
           wpquery {
-            caseStudies {
+            page(id: "814", idType: DATABASE_ID) {
+              id
+              seo
+              title
+              uri
+              content
+            }
+            caseStudies(where: { status: PUBLISH }) {
               nodes {
                 databaseId
                 uri
@@ -169,17 +173,19 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
-      const csTemplate = path.resolve(`./src/templates/singleCaseStudy.js`)
+      const csTemplate = path.resolve(`./src/templates/singleCaseStudy.js`),
+        csAllTemplate = path.resolve(`./src/templates/allCaseStudies.js`)
 
       let {
         data: {
           wpquery: {
+            page,
             caseStudies: { nodes: caseStudies },
           },
         },
       } = result
 
-      // Create a Gatsby page for each individual case studies
+      // Create a Gatsby page for each individual case study
       _.each(caseStudies, cs => {
         createPage({
           path: `${stripSite(cs.uri)}`,
@@ -188,6 +194,16 @@ exports.createPages = ({ actions, graphql }) => {
             id: cs.databaseId,
           },
         })
+      })
+
+      // Create a Gatsby Case Studies landing page
+      createPage({
+        path: `${stripSite(page.uri)}`,
+        component: csAllTemplate,
+        context: {
+          caseStudies,
+          ...page,
+        },
       })
     })
 }
