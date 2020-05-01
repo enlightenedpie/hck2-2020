@@ -1,0 +1,72 @@
+.landingIntro
+  padding: 3rem 0
+  text-align: center
+  background-color: $navy
+  color: $white
+  display: flex
+  justify-content: center
+  align-items: center
+
+  & > div
+    padding: 4rem 2rem 2rem
+    width: 100%
+    max-width: 40rem
+
+    h1
+      color: get-color('orange',1)
+      padding-bottom: 1rem
+
+    div-spacer
+      display: block
+      padding: 1px 25% 0
+      width: 100%
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0))
+    
+    p
+      padding: 1rem 0
+      line-height: 1.5
+
+    button
+      margin-top: 2rem
+      font-weight: bold
+
+.serviceFilter
+  background-color: get-color('blue',3)
+  padding: .5rem 1rem
+
+  +mq($activeBreak)
+    padding: .5rem 25%
+  
+  .selectWrapper
+    border: 1px solid get-color('blue',1)
+    position: relative
+    width: 100%
+    border-radius: .25rem
+    overflow: hidden
+
+    &::after
+      content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
+      background-color: get-color('blue',3)
+      display: block
+      position: absolute
+      top: 0
+      right: 0
+      height: 100%
+      width: 1.5rem
+      pointer-events: none
+
+  select
+    appearance: none
+    width: 100%
+    border: 0px solid transparent
+    border-radius: 0px !important
+    background-color: white
+    font-size: 0.75rem
+    padding: 0.5rem
+
+.landingsContent
+  background-color: white
+  padding: 2rem
+
+  +mq($activeBreak)
+    padding: 2rem 20%
