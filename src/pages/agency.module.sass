@@ -1,0 +1,240 @@
+$green: #739600
+$orange: #e87622
+$blue: #1A4784
+$gray: #91A2AC
+
+.agency
+  font-size: 2rem
+  padding: 15rem 0
+  text-align: center
+  background-image: url('https://picsum.photos/1920/1080')
+  background-position: center
+  background-size: cover
+  position: relative
+
+  &::before
+    content: ''
+    display: block
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: rgba(0,0,0,0.5)
+    top: 0
+    left: 0
+
+.intro
+    padding: 2rem 1rem
+    text-align: center
+
+    h1
+        color: $orange
+        text-transform: uppercase
+        margin-bottom: 1rem
+    
+    p
+        color: white
+        max-width: 900px
+        margin: auto
+        line-height: 1.5rem
+
+
+.content
+    width: 100%
+    background-color: white
+
+    .content_row
+        width: 100%
+        display: flex
+        flex-direction: column
+
+        +mq('tportrait')
+            flex-direction: row
+
+        &.reversed
+            flex-direction: column-reverse
+
+            +mq('tportrait')
+                flex-direction: row
+
+        & > div
+            width: 100%
+            min-height: 300px
+
+            +mq('tportrait')
+                width: 50%
+
+        .who_copy, .values_copy, .leader_copy
+            padding: 1rem
+            text-align: center
+            display: flex
+            justify-content: center
+            align-items: center
+
+
+            hr
+                max-width: 200px
+
+            p
+                max-width: 500px
+                margin: 0px auto 1rem
+                line-height: 1.5rem
+
+        .who_image
+            background-image: url('https://picsum.photos/1080/720')
+            background-position: center
+            background-size: cover
+            position: relative
+
+            .square 
+                background-color: rgba($blue, 0.5)
+
+        .values_icons
+            display: flex
+            flex-wrap: wrap
+
+            .value_square
+                width: 50%
+                padding-top: 50%
+                position: relative
+
+                div
+                    position: absolute
+                    width: 70%
+                    height: 70%
+                    margin-left: -35%
+                    margin-top: -35%
+                    top: 50%
+                    left: 50%
+                    border: 15px solid white
+                    text-align: center
+                    display: flex
+                    align-items: center
+                    flex-direction: column
+                    justify-content: center
+
+                    h4
+                        color: white
+
+                    svg
+                        width: 50%
+                        
+                        path
+                            stroke: white
+
+
+                &:first-child
+                    background-color: #EB710F
+
+                    div
+                        background-color: $green
+
+                &:nth-child(2)
+                    background-color: #DB6709
+
+                    div
+                        background-color: $orange
+
+                &:nth-child(3)
+                    background-color: #D05E02
+
+                    div
+                        background-color: $gray
+
+                &:last-child
+                    background-color: #C15701
+
+                    div
+                        background-color: $blue
+
+        .leader_slider
+            background-color: $green
+            position: relative
+
+            .slider_provider
+                width: 70%
+                position: absolute
+                top: 50%
+                left: 50%
+                margin-left: -36%
+                margin-top: -26%
+
+                .slider
+
+                    .slide
+                        text-align: center
+
+                        img
+                            display: block
+                            border: 15px solid white
+                            height: 60%
+                            margin: auto
+                            width: auto
+                            margin-bottom: 1rem
+                        
+                        h4
+                            color: white
+                            margin-bottom: 0.5rem
+
+                        p
+                            color: white
+                            font-size: 1rem
+                        
+                .back, .next
+                    background-color: transparent
+                    border: none
+                    position: absolute
+                    top: 65%
+
+                    &:disabled
+                        opacity: 0.1
+                        cursor: default
+
+                    svg
+                        width: 30px
+
+                .next
+                    right: 0
+
+
+    h2
+        text-transform: uppercase
+
+        &.blue
+            color: $blue
+        
+        &.orange
+            color: $orange
+
+        &.green
+            color: $green
+
+        
+.button
+    display: inline-block
+    font-family: "Barlow Condensed"
+    text-transform: uppercase
+    font-weight: bold
+    font-size: 1.4rem
+    padding: 0.4rem 0.7rem
+    border: 4px solid
+    transition: all 0.2s
+
+    &:hover
+        color: white !important
+
+    &.orange
+        color: $orange
+        border-color: $orange
+        &:hover
+            background-color: $orange
+
+    &.green
+        color: $green
+        border-color: $green
+        &:hover
+            background-color: $green
+
+
+.square
+    width: 100%
+    padding-top: 100%
