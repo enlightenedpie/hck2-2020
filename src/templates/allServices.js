@@ -4,12 +4,12 @@ import Layout from "./layout"
 import ReqProp from "../components/ReqProp"
 import Services6040 from "../components/Services6040"
 
-import styles from "./allServices.module.sass"
+import styles from "./landings.module.sass"
 
 const HTR = new HtmlToReact.Parser()
 
 export default ({ pageContext: page }) => {
-  let { seo, content, title, featuredImage } = page
+  let { seo, content, title } = page
 
   return (
     <Layout seo={seo} bodyClass="landing services">
