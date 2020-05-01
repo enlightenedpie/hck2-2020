@@ -1,0 +1,30 @@
+.card_container
+            width: 100%
+            padding: 1rem
+
+            +mq('tportrait')
+                width: 50%
+
+            +mq('tlandscape')
+                width: 25%
+
+
+
+            .card
+                max-width: 230px
+                margin: auto
+                box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+                padding: 0.5rem
+                text-align: center
+                display: block
+
+                .image
+                    width: 100%
+                    height: 250px
+                    background-color: red
+                    margin-bottom: 0.5rem
+                    background-size: cover
+                    background-position: center
+
+                h4
+                    color: $orange

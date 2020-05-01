@@ -1,0 +1,143 @@
+$green: #739600
+$orange: #e87622
+$blue: #1A4784
+$gray: #91A2AC
+
+.temp_spacer
+    height: 80px
+    background-color: $blue
+
+.content
+    background-color: white
+    //padding-top: 80px
+    display: flex
+    flex-direction: column
+
+    +mq('tportrait')
+        flex-direction: row
+
+    .column
+        width: 100%
+        min-height: 300px
+
+
+        +mq('tportrait')
+            width: 50%
+
+
+        .image_container
+            width: 100%
+            padding: 2rem
+            position: relative
+            display: flex
+            justify-content: center
+
+            +mq('tportrait')
+                justify-content: flex-end
+
+            &.green
+                background-color: $green
+            &.orange
+                background-color: $orange
+            &.blue
+                background-color: $blue
+                
+            .image
+                width: 400px
+                padding-top: 500px
+                background-size: cover
+                background-position: center
+                position: relative
+                border: 15px solid white
+                right: 0px
+                box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.75);
+
+                +mq('tportrait')
+                    right: -80px
+
+        &.left
+            display: flex
+            flex-direction: column
+            align-items: flex-end
+
+        &.right
+            padding: 70px
+
+            .main_copy
+                p
+                    margin-bottom: 1rem
+                hr
+                    width: 100px
+                    margin: 10px 0px
+                    border-top: 1px solid $gray
+                    border-bottom: 0px
+
+
+            .quote
+                margin-top: 2rem
+
+                blockquote
+                    margin-top: 1.5rem
+                    margin-left: 2.5rem
+                    line-height: 1.5rem
+                    position: relative
+
+                    &::before
+                        content: '“'
+                        display: block
+                        position: absolute
+                        font-size: 4rem
+                        font-family: serif
+                        font-weight: bold
+                        color: $orange
+                        top: 0px
+                        left: -50px
+                
+                p
+                    margin-left: 2.5rem
+
+.water_cooler
+    display: flex
+    max-width: 600px
+    margin-top: 1rem
+
+    .cooler_icon
+        width: 40%
+        padding: 1rem
+
+    .cooler_copy
+        width: 60%
+
+        h2
+            margin-bottom: 1rem
+
+    +mq('tportrait')
+        .cooler_icon
+            width: 30%
+        .cooler_copy
+            width: 70%
+
+
+
+h1.green, h2.green
+    color: $green
+h1.orange, h2.orange
+    color: $orange
+h1.blue, h2.blue
+    color: $blue
+h1.gray, h2.gray
+    color: $gray
+
+p
+    line-height: 1.8rem
+    font-size: 1rem
+
+.mobile
+    display: flex
+    +mq('tportrait')
+        display: none
+
+.desktop
+    display: none
+    +mq('tportrait')
+        display: flex
