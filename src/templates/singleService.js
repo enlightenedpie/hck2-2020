@@ -24,18 +24,19 @@ export default ({
         name,
         slug,
         featuredImg,
-        caseStudies,
+        caseStudies: { nodes: caseStudies },
       },
     },
   },
 }) => {
   let Icon = SVG[kebabToCamel(slug)]
 
+  let heroes = []
   let others = []
 
-  caseStudies.nodes.map((noda, i) => {
+  caseStudies.map((noda, i) => {
     if (i < 3) {
-      return <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
+      heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
     } else {
       others.push(
         <Link to={stripSite(noda.link)}>
@@ -79,6 +80,7 @@ export default ({
         <ReqProp />
       </section>
       <section className={styles.ssCaseStudies}>
+        {heroes}
         <div className={styles.theOthers}>{others}</div>
       </section>
     </Layout>
@@ -96,7 +98,7 @@ export const query = graphql`
         slug
         name
         seo
-        caseStudies {
+        caseStudies(first: 1000) {
           nodes {
             link
             title
