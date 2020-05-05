@@ -21,61 +21,61 @@ const LeadershipPage = props => {
       <section className={styles.container}>
         <div className={styles.list}>
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/600/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/601/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/602/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/603/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/604/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/605/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/606/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/607/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/608/600"
             name="Heather Capps"
             title="President + CEO"
           />
           <LeadershipCard
-            link="/bio"
+            link="/david-paul-crouch-director-web-interactive"
             image="https://picsum.photos/609/600"
             name="Heather Capps"
             title="President + CEO"
