@@ -13,7 +13,7 @@ export default ({ pageContext: page }) => {
 
   return (
     <Layout seo={seo} bodyClass="landing services">
-      <section className={styles.asIntro}>
+      <section className={styles.landingIntro}>
         <div>
           <h1>{title}</h1>
           <div-spacer />

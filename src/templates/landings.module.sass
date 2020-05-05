@@ -33,9 +33,17 @@
 .serviceFilter
   background-color: get-color('blue',3)
   padding: .5rem 1rem
+  color: $white
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
 
   +mq($activeBreak)
     padding: .5rem 25%
+
+  div:first-child
+    padding-right: 1rem
+    white-space: nowrap
   
   .selectWrapper
     border: 1px solid get-color('blue',1)
@@ -70,3 +78,12 @@
 
   +mq($activeBreak)
     padding: 2rem 20%
+
+.contentCardContainer
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+  grid-auto-rows: 1fr
+  gap: 2rem
+
+  case-study-card
+    +case-study-card

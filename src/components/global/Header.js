@@ -34,7 +34,7 @@ export default props => {
       >
         <MainNav xtraClass={styles.slideLink} />
       </div>
-      <div className={[styles.logoBox, , "node--logoBox"].join(" ")}>
+      <div className={[styles.logoBox, "node--logoBox"].join(" ")}>
         <Link to={`/`}>
           <SVG.LogoNoText />
         </Link>

@@ -52,7 +52,8 @@ export default props => {
 
   let slides = []
 
-  testimonials.map(({ title, content, organization, jobTitle }, i) => {
+  testimonials.map((test, i) => {
+    let { title, content, organization, jobTitle } = test
     slides.push(
       <Slide index={i}>
         {HTR.parse(content)}
@@ -61,6 +62,7 @@ export default props => {
         </p>
       </Slide>
     )
+    return test
   })
 
   return (

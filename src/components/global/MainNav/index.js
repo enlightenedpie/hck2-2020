@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 import HtmlToReact from "html-to-react"
-import _ from "lodash"
 import "./mainnav.module.sass"
 
 const mainQuery = graphql`
