@@ -13,19 +13,23 @@ exports.createPages = ({ actions, graphql }) => {
   return graphql(`
     query {
       wpquery {
-        posts(first: 300) {
+        posts(first: 1000) {
           nodes {
+            databaseId
+            seo
+            title
+            date
+            excerpt
+            slug
+            link
+            status
+            content
             categories {
               nodes {
                 name
                 slug
               }
             }
-            databaseId
-            seo
-            title
-            date
-            excerpt
             featuredImage {
               altText
               databaseId
@@ -35,17 +39,6 @@ exports.createPages = ({ actions, graphql }) => {
               sourceUrl
               srcSet
               title
-            }
-            slug
-            link
-            status
-            content
-          }
-        }
-        categories(where: {}) {
-          edges {
-            node {
-              id
             }
           }
         }
@@ -102,7 +95,6 @@ exports.createPages = ({ actions, graphql }) => {
                 name
                 uri
                 description
-                id
                 databaseId
                 seo
                 featuredImg
@@ -150,17 +142,10 @@ exports.createPages = ({ actions, graphql }) => {
       return graphql(`
         query {
           wpquery {
-            page(id: "814", idType: DATABASE_ID) {
-              id
-              seo
-              title
-              uri
-              content
-            }
-            caseStudies(where: { status: PUBLISH }) {
+            caseStudies(first: 1000) {
               nodes {
-                databaseId
                 uri
+                databaseId
               }
             }
           }
@@ -173,37 +158,25 @@ exports.createPages = ({ actions, graphql }) => {
         return Promise.reject(result.errors)
       }
 
-      const csTemplate = path.resolve(`./src/templates/singleCaseStudy.js`),
-        csAllTemplate = path.resolve(`./src/templates/allCaseStudies.js`)
+      const csTemplate = path.resolve(`./src/templates/singleCaseStudy.js`)
 
       let {
         data: {
           wpquery: {
-            page,
             caseStudies: { nodes: caseStudies },
           },
         },
       } = result
 
       // Create a Gatsby page for each individual case study
-      _.each(caseStudies, cs => {
+      _.each(caseStudies, caseStudy => {
         createPage({
-          path: `${stripSite(cs.uri)}`,
+          path: `${stripSite(caseStudy.uri)}`,
           component: csTemplate,
           context: {
-            id: cs.databaseId,
+            id: caseStudy.databaseId,
           },
         })
-      })
-
-      // Create a Gatsby Case Studies landing page
-      createPage({
-        path: `${stripSite(page.uri)}`,
-        component: csAllTemplate,
-        context: {
-          caseStudies,
-          ...page,
-        },
       })
     })
 }

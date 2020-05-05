@@ -13,11 +13,12 @@ const HTR = new HtmlToReact.Parser()
 
 export default ({
   data: {
+    wpquery: { caseStudy },
     site: {
       siteMetadata: { separator },
     },
-    wpquery: { caseStudy },
   },
+  ...props
 }) => {
   let {
     content,
@@ -27,6 +28,7 @@ export default ({
     services: { nodes: services },
     ...rest
   } = caseStudy
+
   return (
     <Layout seo={seo} bodyClass="single single-case-study">
       <article role="article">
@@ -57,18 +59,16 @@ export default ({
 
 export const query = graphql`
   query($id: ID!) {
-    site {
-      siteMetadata {
-        separator
-      }
-    }
     wpquery {
       caseStudy(id: $id, idType: DATABASE_ID) {
+        databaseId
+        uri
         content
         title
         seo
         client
         stats
+        status
         termNames(taxonomies: TAG)
         termSlugs(taxonomies: TAG)
         services {
@@ -89,6 +89,11 @@ export const query = graphql`
           databaseId
           altText
         }
+      }
+    }
+    site {
+      siteMetadata {
+        separator
       }
     }
   }

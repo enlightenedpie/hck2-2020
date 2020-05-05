@@ -8,7 +8,7 @@ import styles from "./single.module.sass"
 
 const HTR = new HtmlToReact.Parser()
 
-export default ({ pathContext: post }) => {
+export default ({ pageContext: post }) => {
   let { featuredImage: image, content, seo } = post
 
   return (

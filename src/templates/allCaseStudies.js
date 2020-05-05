@@ -8,7 +8,7 @@ const HTR = new HtmlToReact.Parser()
 
 export default ({ pageContext: page }) => {
   let { seo, content, title, caseStudies } = page
-  console.log(caseStudies)
+
   return (
     <Layout seo={seo} bodyClass="landing case-studies">
       <section className={styles.landingIntro}>
@@ -19,6 +19,7 @@ export default ({ pageContext: page }) => {
         </div>
       </section>
       <section className={styles.serviceFilter}>
+        <div>Filter Work By: </div>
         <div className={styles.selectWrapper}>
           <select name="serviceLines">
             <option value="general">General Information</option>

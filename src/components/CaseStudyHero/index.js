@@ -6,6 +6,13 @@ import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
 
+const defImg = {
+  id: "",
+  altText: "",
+  sourceUrl: "",
+  mimeType: "",
+}
+
 export default ({
   isAtTop = false,
   hasMore = false,
@@ -18,8 +25,9 @@ export default ({
   idx,
   ...rest
 }) => {
-  let colores = ["default", "orange", "green"],
-    { id, altText: alt, sourceUrl: src, mimeType: type, ...fi } = featuredImage,
+  let colores = ["blue", "orange", "green"],
+    { id, altText: alt, sourceUrl: src, mimeType: type, ...fi } =
+      featuredImage || defImg,
     newId = "_csHero-" + id.replace("=", ""),
     items = []
 
@@ -37,12 +45,13 @@ export default ({
         </ScrollEffect>
       </div>
     )
+    return stat
   })
 
   return (
     <article className={[styles.caseStudyHero, otherClass].join(" ")}>
       <picture className={styles.csHeroImg} id={newId}>
-        <source type={type} alt={alt} type={type} {...fi}></source>
+        <source type={type} alt={alt}></source>
         <img loading="lazy" src={src} alt={alt} />
       </picture>
       <div className={styles.informatic}>

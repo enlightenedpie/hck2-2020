@@ -17,7 +17,7 @@ import "./lineartanim.sass"
 const HTR = new HtmlToReact.Parser()
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  let { content, seo, slug } = wpquery.pages.nodes[0],
+  let { content, seo, slug } = wpquery.page,
     { caseStudies } = wpquery
 
   return (
@@ -54,6 +54,7 @@ const indexQuery = graphql`
           title
           client
           stats
+          status
           featuredImage {
             altText
             id
@@ -64,15 +65,12 @@ const indexQuery = graphql`
           }
         }
       }
-      pages(where: { name: "front-page" }) {
-        nodes {
-          uri
-          id
-          slug
-          seo
-          contentData
-          content
-        }
+      page(id: "10", idType: DATABASE_ID) {
+        uri
+        id
+        slug
+        seo
+        content
       }
     }
   }

@@ -33,6 +33,24 @@ export default ({
 
   let others = []
 
+  caseStudies.nodes.map((noda, i) => {
+    if (i < 3) {
+      return <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
+    } else {
+      others.push(
+        <Link to={stripSite(noda.link)}>
+          <case-study-card>
+            <picture>
+              <img {...noda.featuredImage} />
+            </picture>
+            <h3>{noda.client}</h3>
+          </case-study-card>
+        </Link>
+      )
+      return noda
+    }
+  })
+
   return (
     <Layout seo={seo}>
       <section className={styles.ssIntro}>
@@ -61,23 +79,6 @@ export default ({
         <ReqProp />
       </section>
       <section className={styles.ssCaseStudies}>
-        {caseStudies.nodes.map((noda, i) => {
-          if (i < 3) {
-            return <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
-          } else {
-            console.log(noda.featuredImage)
-            others.push(
-              <Link to={stripSite(noda.link)}>
-                <case-study-card>
-                  <picture>
-                    <img {...noda.featuredImage} />
-                  </picture>
-                  <h3>{noda.client}</h3>
-                </case-study-card>
-              </Link>
-            )
-          }
-        })}
         <div className={styles.theOthers}>{others}</div>
       </section>
     </Layout>
@@ -91,6 +92,7 @@ export const query = graphql`
         subtitle
         featuredImg
         description
+        id
         slug
         name
         seo
