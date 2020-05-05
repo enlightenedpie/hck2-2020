@@ -27,7 +27,7 @@ export default ({
   ...rest
 }) => {
   let colores = ["blue", "orange", "green"],
-    { id, altText: alt, sourceUrl: src, mimeType: type, srcSet, ...all } =
+    { id, altText: alt, sourceUrl: src, mimeType: type, srcSet } =
       featuredImage || defImg,
     newId = "_csHero-" + id.replace("=", ""),
     items = []
@@ -52,7 +52,7 @@ export default ({
   return (
     <article className={[styles.caseStudyHero, otherClass].join(" ")}>
       <picture className={styles.csHeroImg} id={newId}>
-        <source type={type} alt={alt} srcSet={srcSet} {...all}></source>
+        <source type={type} alt={alt} srcSet={srcSet}></source>
         <img loading="lazy" src={src} alt={alt} />
       </picture>
       <div className={styles.informatic}>
