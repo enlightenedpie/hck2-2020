@@ -225,7 +225,7 @@ exports.createPages = ({ actions, graphql }) => {
         let { teamMembers: team } = result.data.wpquery
 
         //   pages = pages.nodes[0]
-        bios = team.nodes
+        let bios = team.nodes
 
         // Create a Gatsby page for each individual Bio
         _.each(bios, bio => {
@@ -244,7 +244,7 @@ exports.createPages = ({ actions, graphql }) => {
           path: `leadership`,
           component: leadershipTemplate,
           context: {
-            ...bios,
+            bios: bios,
           },
         })
       })
