@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 
 import SVG from "../SVG"
@@ -10,9 +10,14 @@ import styles from "./header.module.sass"
 import "./mobilemenu.sass"
 import "./header.sticky.sass"
 
-const toggleMenu = () => document.body.classList.toggle("menu-open")
+const toggleMenu = (e, setToggled) => {
+  document.body.classList.toggle("menu-open")
+  return setToggled(document.body.classList.contains("menu-open"))
+}
 
 export default props => {
+  let [toggled, setToggled] = useState(false)
+
   useEffect(() => {
     const attachOnScroll = () => {
       if (window.scrollY < 250) {
@@ -30,7 +35,7 @@ export default props => {
     <header className={[styles.siteHeader, "siteHeader"].join(" ")}>
       <div
         className={[styles.headerMenu, "node--siteMenu"].join(" ")}
-        onClick={toggleMenu}
+        onClick={e => toggleMenu(e, setToggled)}
       >
         <MainNav xtraClass={styles.slideLink} />
       </div>
@@ -40,7 +45,10 @@ export default props => {
         </Link>
       </div>
       <SocialNav xtraClass={[styles.snHeader, "node--socialNav"].join(" ")} />
-      <Hamburger toggleMenu={toggleMenu} />
+      <Hamburger
+        toggled={toggled}
+        toggleMenu={e => toggleMenu(e, setToggled)}
+      />
     </header>
   )
 }

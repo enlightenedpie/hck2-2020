@@ -20,11 +20,9 @@ const mainQuery = graphql`
                 nodes {
                   label
                   linkRelationship
-                  menuItemId
                   target
                   title
                   url
-                  description
                   cssClasses
                 }
               }
@@ -52,26 +50,61 @@ const MainNav = ({ mainNav, xtraClass }) => {
           linkRelationship: rel,
           menuItemId,
           title,
-          childItems,
+          url,
+          childItems: { nodes: chilrens },
           ...rest
         } = noda
         const key = ((idx + 1) * 25 * Math.random()).toString(16)
+
+        let theAtts = {
+          key: key,
+          className: []
+            .concat(
+              [xtraClass, "node--menuItem " + menuItemId + "__itemID_" + key],
+              cssClasses
+            )
+            .join(" "),
+          title: HTR.parse(title),
+          to: url,
+          href: url,
+          rel: rel,
+          ...rest,
+        }
+
+        if (url === "#") theAtts.onClick = e => e.preventDefault()
+
+        let TheLink = url === "#" ? "a" : Link
+
         return (
-          <Link
-            {...rest}
-            title={HTR.parse(title)}
-            className={[]
-              .concat(
-                [xtraClass, "node--menuItem " + menuItemId + "__itemID_" + key],
-                cssClasses
-              )
-              .join(" ")}
-            rel={rel}
-            to={noda.url}
-            key={key}
-          >
+          <TheLink {...theAtts}>
             {label}
-          </Link>
+            {chilrens.length > 0 && (
+              <div>
+                <span>
+                  {chilrens.map((chld, index) => {
+                    let key2 = ((index + 1) * 25 * Math.random()).toString(16)
+                    let {
+                      cssClasses: cssClasses2,
+                      label: label2,
+                      linkRelationship: rel,
+                      url: url2,
+                      ...rust
+                    } = chld
+                    return (
+                      <Link
+                        key={key2}
+                        {...rust}
+                        to={url2}
+                        className={cssClasses2.join(" ")}
+                      >
+                        {label2}
+                      </Link>
+                    )
+                  })}
+                </span>
+              </div>
+            )}
+          </TheLink>
         )
       })}
     </nav>

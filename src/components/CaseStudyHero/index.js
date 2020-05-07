@@ -1,10 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
+import HtmlToReact from "html-to-react"
 import ScrollEffect from "react-animate-on-scroll"
 
 import Button from "../Button"
 
 import styles from "./caseyjones.module.sass"
+
+const HTR = new HtmlToReact.Parser()
 
 const defImg = {
   id: "",
@@ -58,9 +61,13 @@ export default ({
       <div className={styles.informatic}>
         <div>
           <div>
-            {isAtTop ? <h1>{client}</h1> : <h3>{client}</h3>}
             {isAtTop ? (
-              <h2 className={styles[colores[idx]]}>{title}</h2>
+              <h1>{HTR.parse(client)}</h1>
+            ) : (
+              <h3>{HTR.parse(client)}</h3>
+            )}
+            {isAtTop ? (
+              <h2 className={styles[colores[idx]]}>{HTR.parse(title)}</h2>
             ) : (
               <h4 className={styles[colores[idx]]}>{title}</h4>
             )}

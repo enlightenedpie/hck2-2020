@@ -35,6 +35,7 @@ export default ({
   let others = []
 
   caseStudies.map((noda, i) => {
+    let { altText: alt, sourceUrl: src, ...fi } = noda.featuredImage
     if (i < 3) {
       heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
     } else {
@@ -42,14 +43,14 @@ export default ({
         <Link to={stripSite(noda.link)}>
           <case-study-card>
             <picture>
-              <img {...noda.featuredImage} />
+              <img src={src} alt={alt} {...fi} />
             </picture>
             <h3>{noda.client}</h3>
           </case-study-card>
         </Link>
       )
-      return noda
     }
+    return noda
   })
 
   return (
