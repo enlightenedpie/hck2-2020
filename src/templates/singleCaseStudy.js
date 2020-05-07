@@ -31,7 +31,7 @@ export default ({
 
   return (
     <Layout seo={seo} bodyClass="single single-case-study">
-      <article role="article">
+      <article>
         <CSHero
           isAtTop={true}
           otherClass={styles.singleCaseStudyHero}

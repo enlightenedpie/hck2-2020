@@ -1,6 +1,9 @@
 const _ = require("lodash")
 const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
+const {
+  createFilePath,
+  createRemoteFileNode,
+} = require("gatsby-source-filesystem")
 
 const getOnlyPublished = nodes =>
   _.filter(nodes, ({ node }) => node.status === "publish")

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 import HtmlToReact from "html-to-react"
 import Layout from "../templates/layout"
-import { kebabToCamel, stripSite } from "../utils"
+import { stripSite } from "../utils"
 
 import styles from "../templates/landings.module.sass"
 
@@ -65,10 +65,11 @@ const CaseStudies = ({
             <source type={type} alt={alt} srcSet={srcSet}></source>
             <img loading="lazy" src={src} alt={alt} />
           </picture>
-          <h3>{caseStudy.title}</h3>
+          <h3>{HTR.parse(caseStudy.title)}</h3>
         </case-study-card>
       </Link>
     )
+    return caseStudy
   })
 
   return (

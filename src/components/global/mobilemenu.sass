@@ -35,19 +35,21 @@ div.node--siteMenu
     transform: translate3d(-300px,0,0)
     transition: all 250ms ease-in-out
 
-    a
+    & > a
       &:not(:last-of-type)
         margin: 0
         margin-bottom: 1em
 
     +mq($activeBreak)
-      display: block
+      flex-flow: row nowrap
+      justify-content: flex-start
       position: relative
       width: 100%
       transform: unset
       background-color: transparent
+      overflow: unset
 
-      a
+      & > a
 
         &:not(:last-of-type)
           margin: 0
