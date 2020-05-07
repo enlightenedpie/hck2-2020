@@ -5,9 +5,11 @@ import styles from "./leadership.module.sass"
 
 import LeadershipCard from "../components/LeadershipCard"
 
-const LeadershipPage = props => {
+// const LeadershipPage = ( bios ) => {
+export default ({ pageContext: { bios } }) => {
+  console.log(bios)
   return (
-    <Layout bodyClass="page-bio" {...props} seo={"{}"}>
+    <Layout bodyClass="page-bio" seo={"{}"}>
       <section className={styles.intro}>
         <h1>The HCK2 Leadership Team</h1>
         <hr />
@@ -20,70 +22,25 @@ const LeadershipPage = props => {
       </section>
       <section className={styles.container}>
         <div className={styles.list}>
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/600/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/601/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/602/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/603/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/604/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/605/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/606/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/607/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/608/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
-          <LeadershipCard
-            link="/david-paul-crouch-director-web-interactive"
-            image="https://picsum.photos/609/600"
-            name="Heather Capps"
-            title="President + CEO"
-          />
+          {bios.map((bio, i) => {
+            let splitTitle = bio.title.split("|")
+            return (
+              <LeadershipCard
+                link={"/" + bio.slug}
+                image={
+                  !!bio.featuredImage
+                    ? bio.featuredImage.sourceUrl
+                    : "https://admin.hck2.com/app/uploads/2020/04/Generic-Profile-Placeholder-v3.png"
+                }
+                name={splitTitle[0]}
+                title={!!splitTitle[1] ? splitTitle[1] : ""}
+              />
+            )
+          })}
         </div>
       </section>
     </Layout>
   )
 }
 
-export default LeadershipPage
+// export default LeadershipPage
