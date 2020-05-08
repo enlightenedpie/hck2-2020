@@ -1,4 +1,5 @@
 import React from "react"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
@@ -152,7 +153,10 @@ const WorkPage = props => {
                 non-profits. We represent experience - and some good stories too
                 - from all and draw upon this experience to guide and inspire.
               </p>
-              <a href="#" className={[styles.button, styles.green].join(" ")}>
+              <a
+                href="/leadership"
+                className={[styles.button, styles.green].join(" ")}
+              >
                 Meet The Team
               </a>
             </div>
@@ -169,12 +173,15 @@ export default WorkPage
 /* const indexQuery = graphql`
   query {
     wpquery {
-      pages(where: { name: "front-page" }) {
+      teamMembers {
         nodes {
-          uri
-          id
-          seo
-          contentData
+          slug
+          title
+          featuredImage {
+            sourceUrl
+            srcSet
+            uri
+          }
         }
       }
     }
@@ -188,4 +195,4 @@ export default ({ location, ...rest }) => {
       render={query => <FrontPage location={location} {...query} {...rest} />}
     />
   )
-} */
+}*/
