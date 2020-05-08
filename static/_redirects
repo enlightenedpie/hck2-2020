@@ -4,3 +4,4 @@
 /services/* /expertise/:splat 301
 /services /expertise 301
 /our-work/*/:name /case-studies/:name 301
+/blog/* /blog 301!
