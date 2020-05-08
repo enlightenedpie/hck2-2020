@@ -17,37 +17,51 @@ export default ({
 }) => {
   let { title, content, seo, ...rest } = teamMember
 
-  console.log(rest)
   let splitTitle = title.split("|")
+
+  let pageColor
+  if (rest.databaseId % 3 == 0) {
+    pageColor = styles.green
+  } else if (rest.databaseId % 3 == 1) {
+    pageColor = styles.blue
+  } else {
+    pageColor = styles.orange
+  }
 
   return (
     <Layout bodyClass="page-bio" {...props} seo={"{}"}>
       <div className={styles.temp_spacer}></div>
       <section className={styles.content}>
         <div className={[styles.column, styles.left].join(" ")}>
-          <div className={[styles.image_container, styles.green].join(" ")}>
-            {!!rest.featuredImage && (
-              <div
-                className={styles.image}
-                style={{
-                  backgroundImage: "url(" + rest.featuredImage.sourceUrl + ")",
-                }}
-              ></div>
-            )}
+          <div className={[styles.image_container, pageColor].join(" ")}>
+            <div
+              className={styles.image}
+              style={
+                !!rest.featuredImage
+                  ? {
+                      backgroundImage:
+                        "url(" + rest.featuredImage.sourceUrl + ")",
+                    }
+                  : {
+                      backgroundImage:
+                        "url(https://admin.hck2.com/app/uploads/2020/04/Generic-Profile-Placeholder-v3.png)",
+                    }
+              }
+            ></div>
           </div>
           <div className={[styles.water_cooler, styles.desktop].join(" ")}>
             <div className={styles.cooler_icon}>
               <SVG.waterCooler className={styles.icon} />
             </div>
             <div className={styles.cooler_copy}>
-              <h2 className={styles.green}>Hanging at the water cooler</h2>
+              <h2 className={pageColor}>Hanging at the water cooler</h2>
               {HTR.parse(rest.waterCooler)}
             </div>
           </div>
         </div>
         <div className={[styles.column, styles.right].join(" ")}>
           <div className={styles.content_container}>
-            <h1 className={styles.green}>{splitTitle[0]}</h1>
+            <h1 className={pageColor}>{splitTitle[0]}</h1>
             <h2 className={styles.gray}>
               {!!splitTitle[1] ? splitTitle[1] : ""}
             </h2>
@@ -65,7 +79,7 @@ export default ({
                 <SVG.creative className={styles.icon} />
               </div>
               <div className={styles.cooler_copy}>
-                <h2 className={styles.green}>Hanging at the water cooler</h2>
+                <h2 className={pageColor}>Hanging at the water cooler</h2>
                 {HTR.parse(rest.waterCooler)}
               </div>
             </div>
@@ -82,6 +96,7 @@ export const query = graphql`
   query($id: ID!) {
     wpquery {
       teamMember(id: $id, idType: DATABASE_ID) {
+        databaseId
         content
         title
         seo
