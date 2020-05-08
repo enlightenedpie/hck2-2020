@@ -3,9 +3,6 @@
   h1, h2, h3, h4
     text-align: center
 
-  +mq('tportrait')
-    padding-top: 33.33333%
-
     img
       width: 100%
       height: auto !important
@@ -24,7 +21,10 @@
   span
     font-weight: 700
     color: get-color('orange',3)
-    vertical-align: middle
+    text-align: center
+    flex: 2
+    +mq($activeBreak)
+      flex: unset
 
     &:not(:nth-of-type(2))
       font-size: .8rem
@@ -32,6 +32,9 @@
     &:nth-of-type(2)
       font-size: 1.25rem
       margin: 0 .25rem
+      flex: 1
+      +mq($activeBreak)
+        flex: unset
 
 .contentArea
   background-color: white
