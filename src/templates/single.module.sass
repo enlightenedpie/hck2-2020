@@ -1,6 +1,28 @@
-.singleStage
-  +stageBlock
+.singleFeatured
   background-color: $blue
+  width: 100%
+  margin: 0
+  position: relative
+  padding-top: 56.25%
+  overflow: hidden
+
+  +mq($activeBreak)
+    margin: 0 10% 3rem 0
+    padding-top: 30vw
+    width: 40%
+    float: left
+
+  video, source, img
+    display: block
+    +mq($activeBreak)
+      height: auto
+
+  video, img, article
+    position: absolute
+    width: 100%
+    top: 50%
+    left: 50%
+    transform: translate3d(-50%,-50%,0)
 
   img
     filter: brightness(50%)
@@ -10,20 +32,23 @@
   padding: 2rem
 
   +mq($activeBreak)
-    padding: 2rem 20%
+    padding: 2rem 15%
+
+  h1
+    color: get-color("orange",3)
+    margin-top: 6rem
+    text-align: center
+
+    +mq($activeBreak)
+      text-align: left
 
   img
     width: 100%
     height: auto
 
-  p
-    line-height: 1.25
-
-.singleCaseStudyHero
-
-  +mq($activeBreak)
-    padding-top: 33.33333%
-
-    img
-      width: 100%
-      height: auto !important
+  .mainContent
+    margin: 3rem 12% 0
+    
+    p
+      line-height: 1.75
+      margin-bottom: 1.5rem
