@@ -17,7 +17,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql(`
       query {
         wpquery {
-          posts(first: 1000) {
+          posts(first: 2000, where: { status: PUBLISH }) {
             nodes {
               databaseId
               seo
@@ -55,16 +55,35 @@ exports.createPages = ({ actions, graphql }) => {
           return Promise.reject(result.errors)
         }
 
-        const postTemplate = path.resolve(`./src/templates/singlePost.js`)
-        const posts = result.data.wpquery.posts.nodes
+        const postTemplate = path.resolve(`./src/templates/singlePost.js`),
+          allPosts = path.resolve(`./src/templates/allPosts.js`)
+
+        let {
+            posts: { nodes: posts },
+          } = result.data.wpquery,
+          landings = {}
 
         // Create a Gatsby page for each WordPress post
         _.each(posts, post => {
+          _.each(post.categories.nodes, cat => {
+            landings[cat.slug] = cat.name
+          })
           createPage({
             path: `${stripSite(post.link)}`,
             component: postTemplate,
             context: {
               ...post,
+            },
+          })
+        })
+
+        _.each(Object.keys(landings), slug => {
+          createPage({
+            path: `${slug}`,
+            component: allPosts,
+            context: {
+              slug: slug,
+              name: landings[slug],
             },
           })
         })
