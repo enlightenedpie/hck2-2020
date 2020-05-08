@@ -47,7 +47,7 @@ export default ({
             ))}
           </span>
           <span>{termNames && separator}</span>
-          <span>{termNames && termNames.join(", ")}</span>
+          <span>{termNames && HTR.parse(termNames.join(", "))}</span>
         </aside>
         <section className={[styles.contentArea, "contentArea"].join(" ")}>
           {HTR.parse(content)}
