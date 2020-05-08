@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import HtmlToReact from "html-to-react"
 import Layout from "./layout"
 import Media6040 from "../components/Media6040"
+import { stripSite } from "../utils"
 
 import styles from "./landings.module.sass"
 
@@ -39,6 +40,14 @@ const fetchMore = async (cursor, slug, qty = 12) => {
     .then(q => q)
 }
 
+const defImg = {
+  id: "",
+  altText: "",
+  sourceUrl: "",
+  mimeType: "",
+  srcSet: "",
+}
+
 export default ({
   data: {
     wpquery: {
@@ -53,25 +62,46 @@ export default ({
   },
 }) => {
   let heroes = [],
-    others = []
+    others = posts.filter((post, ind) =>
+      ind < 3 ? heroes.push(post) && false : true
+    )
 
   /* useEffect(async () => {
     if (posts.pageInfo.hasNextPage) console.log(await fetchMore(posts.pageInfo.endCursor,slug))
   },[]) */
-
-  posts.map((post, ind) => {
-    if (ind < 3) heroes.push(post)
-  })
 
   return (
     <Layout seo={seo} bodyClass="landing blog-news-media">
       <section className={styles.landingIntro}>
         <div>
           <h1>{name}</h1>
+          <div-spacer />
+          <p>{HTR.parse(description)}</p>
         </div>
       </section>
       <section className={styles.heroes}>
         <Media6040 data={heroes} />
+      </section>
+      <section
+        className={[
+          styles.contentCardContainer,
+          styles.landingsContentMedia,
+        ].join(" ")}
+      >
+        {others.map((item, idx) => {
+          let { altText: alt, sourceUrl: src, ...fi } =
+            item.featuredImage || defImg
+          return (
+            <Link to={stripSite(item.uri)}>
+              <case-study-card>
+                <picture>
+                  <img src={src} alt={alt} {...fi} />
+                </picture>
+                <h3>{HTR.parse(item.title)}</h3>
+              </case-study-card>
+            </Link>
+          )
+        })}
       </section>
     </Layout>
   )

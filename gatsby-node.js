@@ -28,6 +28,9 @@ exports.createPages = ({ actions, graphql }) => {
               link
               status
               content
+              author {
+                name
+              }
               categories {
                 nodes {
                   name
@@ -65,13 +68,16 @@ exports.createPages = ({ actions, graphql }) => {
 
         // Create a Gatsby page for each WordPress post
         _.each(posts, post => {
+          let catSlug = ""
           _.each(post.categories.nodes, cat => {
             landings[cat.slug] = cat.name
+            catSlug = cat.slug
           })
           createPage({
             path: `${stripSite(post.link)}`,
             component: postTemplate,
             context: {
+              catSlug: catSlug,
               ...post,
             },
           })

@@ -16,7 +16,6 @@ export default ({ data }) => {
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {
-        console.log(item)
         return (
           <div key={item.id}>
             <aside>

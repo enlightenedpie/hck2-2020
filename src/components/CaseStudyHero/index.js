@@ -4,6 +4,7 @@ import HtmlToReact from "html-to-react"
 import ScrollEffect from "react-animate-on-scroll"
 
 import Button from "../Button"
+import { stripSite } from "../../utils"
 
 import styles from "./caseyjones.module.sass"
 
@@ -69,12 +70,12 @@ export default ({
             {isAtTop ? (
               <h2 className={styles[colores[idx]]}>{HTR.parse(title)}</h2>
             ) : (
-              <h4 className={styles[colores[idx]]}>{title}</h4>
+              <h4 className={styles[colores[idx]]}>{HTR.parse(title)}</h4>
             )}
             <aside className={styles.csStats}>{items}</aside>
             {hasMore ? (
               <span className={styles.hasMore}>
-                <Link to={link.replace("https://hck2.com", "")}>
+                <Link to={stripSite(link)}>
                   <Button color="white">Read More</Button>
                 </Link>
               </span>
