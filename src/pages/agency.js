@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
@@ -16,7 +16,13 @@ import "pure-react-carousel/dist/react-carousel.es.css"
 
 import styles from "./agency.module.sass"
 
-const WorkPage = props => {
+const AgencyPage = ({
+  props,
+  wpquery: {
+    teamMembers: { nodes: teamMembers },
+  },
+}) => {
+  console.log(teamMembers)
   return (
     <Layout bodyClass="page-work" {...props} seo={"{}"}>
       <section className={styles.agency}>{""}</section>
@@ -59,13 +65,13 @@ const WorkPage = props => {
               <p>
                 Our own blend of Kool-Aid. The best thing about Kool-Aid is that
                 it mixes well with anything.{" "}
-                <a href="#">Growth, Charity, Integrity and Balance</a> are our
+                <a href="/">Growth, Charity, Integrity and Balance</a> are our
                 flavors. Mix them together and our culture is formed. Sharing
                 sunburns at the Ranger's Ballpark. Giving back to our generous
                 community. Spending long weeks beside our work family. The
                 Kool-Aid is served, on ice.
               </p>
-              <a href="#" className={[styles.button, styles.orange].join(" ")}>
+              <a href="/" className={[styles.button, styles.orange].join(" ")}>
                 Learn More
               </a>
             </div>
@@ -103,37 +109,29 @@ const WorkPage = props => {
             <CarouselProvider
               naturalSlideWidth={80}
               naturalSlideHeight={80}
-              totalSlides={3}
+              totalSlides={teamMembers.length}
               className={styles.slider_provider}
             >
               <Slider className={styles.slider}>
-                <Slide index={0} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr</h4>
-                  <p>Testing 1</p>
-                </Slide>
-                <Slide index={1} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr</h4>
-                  <p>Testing 2</p>
-                </Slide>
-                <Slide index={2} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr ></h4>
-                  <p>Testing 3 ></p>
-                </Slide>
+                {teamMembers.map((teamMember, i) => {
+                  let splitTitle = teamMember.title.split("|")
+                  console.log(i)
+                  return (
+                    <Slide index={i} className={styles.slide}>
+                      <Image
+                        src={
+                          !!teamMember.featuredImage
+                            ? teamMember.featuredImage.sourceUrl
+                            : "https://admin.hck2.com/app/uploads/2020/04/Generic-Profile-Placeholder-v3.png"
+                        }
+                        hasMasterSpinner="true"
+                        className={styles.slide_image}
+                      />
+                      <h4>{splitTitle[0]}</h4>
+                      <p>{!!splitTitle[1] ? splitTitle[1] : ""}</p>
+                    </Slide>
+                  )
+                })}
               </Slider>
               <ButtonBack className={styles.back}>
                 <SVG.back />
@@ -168,9 +166,9 @@ const WorkPage = props => {
   )
 }
 
-export default WorkPage
+//export default AgencyPage
 
-/* const indexQuery = graphql`
+const indexQuery = graphql`
   query {
     wpquery {
       teamMembers {
@@ -188,11 +186,11 @@ export default WorkPage
   }
 `
 
-export default ({ location, ...rest }) => {
+export default ({ team, ...rest }) => {
   return (
     <StaticQuery
       query={indexQuery}
-      render={query => <FrontPage location={location} {...query} {...rest} />}
+      render={query => <AgencyPage team={team} {...query} {...rest} />}
     />
   )
-}*/
+}
