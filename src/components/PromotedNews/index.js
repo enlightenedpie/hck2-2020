@@ -31,10 +31,10 @@ export default props => {
 
   let {
       wpquery: {
-        posts: { nodes },
+        posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = nodes[0]
+    { title, excerpt, uri, featuredImage: img } = posts || {}
 
   return (
     <div {...props}>
