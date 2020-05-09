@@ -11,23 +11,22 @@ const HTR = new HtmlToReact.Parser()
 const NFQuery = graphql`
   query {
     wpquery {
-      pages(where: { name: "not-found" }) {
-        nodes {
-          id
-          title
-          seo
-          content
-        }
+      page(id: "58", idType: DATABASE_ID) {
+        id
+        title
+        seo
+        content
       }
     }
   }
 `
 
-const Error404 = ({ wpquery, location, ...rest }) => {
-  const { title, id, content, seo } = wpquery.pages.nodes[0]
+const Error404 = ({ wpquery: { page }, location, ...rest }) => {
+  const { title, id, content, seo } = page
 
   return (
-    <Layout seo={seo} location={location}>
+    <Layout seo={seo} location={location} bodyClass="404 not-found">
+      <h1>{title}</h1>
       {HTR.parse(content)}
     </Layout>
   )

@@ -50,14 +50,22 @@
 
   p, ul
     line-height: 1.25
+    
 
   & > p:first-child, & > div > p:first-child
-    font-size: 110%
+    font-size: 125%
     padding-bottom: 1.5rem
+    font-family: 'Georgia'
+
+    &:first-letter
+      font-weight: bold
+      font-size: 4rem
+      float: left
+      margin: 0 .25rem 0 0
 
   p:not(:first-child)
     padding-bottom: 1rem
 
   h2, h3, h4
-    color: get-color('orange',3)
+    color: get-color('orange',3) !important
     padding: 1rem 0

@@ -110,6 +110,17 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-3953745-1",
+        head: true,
+        pageTransitionDelay: 250,
+        defer: true,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

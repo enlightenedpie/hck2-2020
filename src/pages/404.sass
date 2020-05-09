@@ -1,13 +1,23 @@
-body.page-404-notfound
+body.not-found
   main.site-main
     background-color: white
-    min-height: 30em
+    min-height: 60vh
     display: flex
     justify-content: center
-    align-items: center
+    align-items: left
     flex-flow: column wrap
 
+    +mq($activeBreak)
+      align-items: center
+      margin-top: 4rem
+
     h1
-      margin-bottom: .25em
-      font-size: 1rem * 6
-      color: $orange
+      padding: 1rem
+      font-size: 1rem * 3
+      color: get-color("orange",3)
+
+      +mq($activeBreak)
+        font-size: 1rem * 6
+    
+    p
+      padding: 1rem
