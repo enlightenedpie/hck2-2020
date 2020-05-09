@@ -34,7 +34,7 @@ export default props => {
         posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = posts
+    { title, excerpt, uri, featuredImage: img } = posts || {}
 
   return (
     <div {...props}>
