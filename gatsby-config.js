@@ -110,7 +110,7 @@ module.exports = {
         ],
       },
     },
-    {
+    /* {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: "UA-3953745-1",
@@ -120,7 +120,7 @@ module.exports = {
         sampleRate: 5,
         siteSpeedSampleRate: 10,
       },
-    },
+    }, */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
