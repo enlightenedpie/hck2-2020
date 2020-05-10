@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 import ScrollEffect from "react-animate-on-scroll"
 import HtmlToReact from "html-to-react"
-
 import Button from "../Button"
 import ResponsiveImg from "../ResponsiveImg"
 import { stripSite } from "../../utils"
@@ -21,7 +20,7 @@ export default ({ data }) => {
             <aside>
               <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
                 {item.featuredImage ? (
-                  <ResponsiveImg>{HTR.parse(item.featuredImage)}</ResponsiveImg>
+                  <ResponsiveImg {...item.featuredImage} />
                 ) : (
                   <ResponsiveImg
                     altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
