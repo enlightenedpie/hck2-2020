@@ -1,15 +1,17 @@
 import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import HtmlToReact from "html-to-react"
+import ScrollEffect from "react-animate-on-scroll"
 import Layout from "./layout"
 import Media6040 from "../components/Media6040"
+import SVG from "../components/SVG"
 import { stripSite } from "../utils"
 
 import styles from "./landings.module.sass"
 
 const HTR = new HtmlToReact.Parser()
 
-const fetchMore = async (cursor, slug, qty = 12) => {
+/* const fetchMore = async (cursor, slug, qty = 12) => {
   let query = `query ($cursor: String!, $slug: ID!, $qty: Int!) {
     category(id: $slug, idType: SLUG) {
       posts(first: $qty, after: $cursor, , where: {status: PUBLISH}) {
@@ -38,7 +40,7 @@ const fetchMore = async (cursor, slug, qty = 12) => {
   })
     .then(res => res.json())
     .then(q => q)
-}
+} */
 
 const defImg = {
   id: "",
@@ -92,14 +94,25 @@ export default ({
           let { altText: alt, sourceUrl: src, ...fi } =
             item.featuredImage || defImg
           return (
-            <Link to={stripSite(item.uri)}>
-              <case-study-card>
-                <picture>
-                  <img src={src} alt={alt} {...fi} />
-                </picture>
-                <h3>{HTR.parse(item.title)}</h3>
-              </case-study-card>
-            </Link>
+            <ScrollEffect
+              style={{ animationDelay: (idx + 1) * 50 + "ms" }}
+              duration="1"
+              animateOnce
+              animateIn="h6040fade"
+            >
+              <Link to={stripSite(item.uri)}>
+                <case-study-card>
+                  <picture>
+                    {src ? (
+                      <img src={src} alt={alt} {...fi} />
+                    ) : (
+                      <SVG.LogoNoText />
+                    )}
+                  </picture>
+                  <h3>{HTR.parse(item.title)}</h3>
+                </case-study-card>
+              </Link>
+            </ScrollEffect>
           )
         })}
       </section>

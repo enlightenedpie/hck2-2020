@@ -32,18 +32,20 @@
 
 .serviceFilter
   background-color: get-color('blue',3)
-  padding: .5rem 1rem
+  padding: 1rem
   color: $white
-  display: flex
-  flex-flow: row nowrap
-  align-items: center
 
   +mq($activeBreak)
     padding: .5rem 25%
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
 
   div:first-child
-    padding-right: 1rem
+    padding-bottom: 1rem
     white-space: nowrap
+    +mq($activeBreak)
+      padding-right: 1rem
   
   .selectWrapper
     border: 1px solid get-color('blue',1)
@@ -92,5 +94,46 @@
   grid-auto-rows: 1fr
   gap: 2rem
 
-  case-study-card
-    +case-study-card
+  picture
+    svg
+      display: block
+      position: absolute
+      top: 0
+      background-color: $white
+
+  & > div
+    a
+      case-study-card
+        +case-study-card
+    
+    &:nth-of-type(4n+1)
+      h3
+        color: get-color("orange",3)
+      picture
+        svg
+          path
+            fill: get-color("orange",3)
+    
+    &:nth-of-type(4n+2)
+      h3
+        color: get-color("navy",3)
+      picture
+        svg
+          path
+            fill: get-color("navy",3)
+    
+    &:nth-of-type(4n+3)
+      h3
+        color: get-color("green",3)
+      picture
+        svg
+          path
+            fill: get-color("green",3)
+
+    &:nth-of-type(4n+4)
+      h3
+        color: get-color("ltgray",3)
+      picture
+        svg
+          path
+            fill: get-color("ltgray",3)
