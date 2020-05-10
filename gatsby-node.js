@@ -40,9 +40,7 @@ exports.createPages = ({ actions, graphql }) => {
               featuredImage {
                 altText
                 databaseId
-                link
-                mediaType
-                sizes
+                mimeType
                 sourceUrl
                 srcSet
                 title

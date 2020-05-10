@@ -40,6 +40,11 @@
   background-color: white
   padding: 2rem
 
+  a
+    &:link, &:hover, &:active, &:visited
+      color: revert
+      text-decoration: revert
+
   +mq('tportrait')
     padding: 2rem 20%
 
@@ -61,11 +66,7 @@
       & + p
         +articleText
 
-    &:first-letter
-      font-weight: bold
-      font-size: 4rem
-      float: left
-      margin: 0 .25rem 0 0
+    +dropCap
 
   p:not(:first-child)
     padding-bottom: 1rem

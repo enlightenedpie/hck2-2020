@@ -34,7 +34,7 @@ export default props => {
     naturalSlideHeight: 100,
     infinite: true,
     isPlaying: true,
-    interval: 7000,
+    interval: 10000,
     transitionTime: 250,
     isIntrinsicHeight: true,
   }

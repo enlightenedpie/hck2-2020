@@ -2,15 +2,15 @@
   background-color: $blue
   width: 100%
   margin: 0
-  position: relative
-  padding-top: 56.25%
-  overflow: hidden
 
-  +mq($activeBreak)
-    margin: 0 10% 3rem 0
-    padding-top: 30vw
+  +mq('mobile')
+    height: 40vw
+
+  +mq('tportrait')
+    margin: 0 10% 4rem 0
     width: 40%
     float: left
+    height: auto
 
   video, source, img
     display: block
@@ -18,38 +18,77 @@
       height: auto
 
   video, img, article
-    position: absolute
     width: 100%
-    top: 50%
-    left: 50%
-    transform: translate3d(-50%,-50%,0)
 
-  img
-    filter: brightness(50%)
+  & > div
+    display: flex
+    align-items: center
+    padding: 2rem
+    height: 100%
+
+    aside, img
+      width: 100%
+      border: .5rem solid $white
+      box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.5)
+
+    aside
+      background-color: get-color("orange",2)
+      padding: 4rem
+      height: 100%
+      +mq($activeBreak)
+        border: 1rem solid $white
+
+      svg
+        display: block
+        width: 100%
+        height: 100%
+
+        path
+          fill: $white
 
 .singleContent
   background-color: white
   padding: 2rem
   min-height: 100vh
 
-  +mq($activeBreak)
+  +mq('tportrait')
     padding: 2rem 15%
 
   h1
-    color: get-color("orange",3)
-    margin-top: 6rem
+    color: get-color("green",1)
+    margin-top: 2rem
     text-align: center
+    font-size: 1.75rem
 
-    +mq($activeBreak)
+    +mq('tportrait')
       text-align: left
+    
+    +mq('laptop')
+      font-size: 2.5rem
 
   img
     width: 100%
     height: auto
+  
+  .bug
+    padding-top: 3rem
+    font-size: .75rem
+    color: get-color("ltgray",1)
+
+    time
+      font-weight: bold
 
   .mainContent
-    margin: 3rem 12% 0
+    margin: 3rem 0 0
+    font-family: 'Georgia'
+    line-height: 1.25
+
+    +mq($activeBreak)
+      margin: 3rem 12% 0
     
-    p
-      line-height: 1.75
-      margin-bottom: 1.5rem
+    p:first-child
+      +articleText
+      +dropCap
+    
+    p:not(:first-child)
+      padding-bottom: 1rem

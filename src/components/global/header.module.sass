@@ -23,6 +23,8 @@
     svg
       width: 2.5rem
       height: 2.5rem
+      path
+        fill: get-color("orange",3)
 
       +mq($activeBreak)
         path
@@ -31,7 +33,7 @@
   .headerMenu
     font-family: $fontStackH
     font-weight: 800
-    color: get-color('orange',2)
+    color: get-color('orange',3)
     text-transform: uppercase
     text-align: center
     +mq($activeBreak)
@@ -46,10 +48,13 @@
         padding-left: 2em
 
       .slideLink
-        color: get-color('orange',2)
+        color: get-color('orange',3)
 
         & > div
           display: none
+
+          +mq($activeBreak)
+            display: block
 
         +mq($activeBreak)
           color: $white
@@ -103,7 +108,7 @@
               letter-spacing: 0
               padding: .75rem 1.25rem .75rem .75rem
               background-size: 200% 100%
-              background-image: linear-gradient(to right, get-color("navy",3) 50%, get-color("orange",3) 50%)
+              background-image: linear-gradient(to right, get-color("navy",3) 50%, get-color("orange",2) 50%)
               transition: background-position 250ms ease-in-out
 
               &:hover
@@ -117,11 +122,11 @@
 
     a
       cursor: pointer
-      border-color: $orange
+      border-color: get-color("orange",3)
 
       svg
         path
-          fill: $orange
+          fill: get-color("orange",3)
 
       +mq($activeBreak)
         &:hover
