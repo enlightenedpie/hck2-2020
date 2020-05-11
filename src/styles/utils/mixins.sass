@@ -53,6 +53,7 @@
 @mixin case-study-card
   height: 100%
   padding: 1rem
+  text-align: center
   box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.10)
   transition: box-shadow 250ms ease-in-out
 
@@ -63,6 +64,11 @@
     color: get-color('orange',3)
     font-weight: normal
     font-size: 1rem
+
+  & > em
+    display: block
+    font-size: .75rem
+    padding-top: .5rem
 
   picture
     background-color: get-color('navy',3)
@@ -144,7 +150,6 @@
 @mixin articleText
   font-size: 125%
   padding-bottom: 1.5rem
-  font-family: 'Georgia'
 
 @mixin dropCap
   &:first-letter
@@ -152,3 +157,61 @@
     font-size: 4rem
     float: left
     margin: 0 .25rem 0 0
+
+@mixin hck4color
+  &:nth-of-type(4n+1)
+    h3
+      color: get-color("orange",3)
+    picture
+      svg
+        path
+          fill: get-color("orange",3)
+  
+  &:nth-of-type(4n+2)
+    h3
+      color: get-color("navy",3)
+    picture
+      svg
+        path
+          fill: get-color("navy",3)
+  
+  &:nth-of-type(4n+3)
+    h3
+      color: get-color("green",3)
+    picture
+      svg
+        path
+          fill: get-color("green",3)
+
+  &:nth-of-type(4n+4)
+    h3
+      color: get-color("ltgray",3)
+    picture
+      svg
+        path
+          fill: get-color("ltgray",3)
+
+@mixin hck3color
+  &:nth-of-type(3n+1)
+    h3
+      color: get-color("orange",3)
+    picture
+      svg
+        path
+          fill: get-color("orange",3)
+  
+  &:nth-of-type(3n+2)
+    h3
+      color: get-color("navy",3)
+    picture
+      svg
+        path
+          fill: get-color("navy",3)
+  
+  &:nth-of-type(3n+3)
+    h3
+      color: get-color("green",3)
+    picture
+      svg
+        path
+          fill: get-color("green",3)
