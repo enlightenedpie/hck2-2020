@@ -30,12 +30,12 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           </ScrollEffect>
         </div>
       </section>
-      <Services6040 />
       <section id="csFeature" className={styles.caseStudies_feature}>
         {caseStudies.nodes.map((noda, i) => (
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
         ))}
       </section>
+      <Services6040 />
       <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
