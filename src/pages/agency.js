@@ -1,8 +1,8 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-
+import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
+import Button from "../components/Button"
 import SVG from "../components/SVG"
 import {
   CarouselProvider,
@@ -22,16 +22,18 @@ const AgencyPage = ({
     teamMembers: { nodes: teamMembers },
   },
 }) => {
-  console.log(teamMembers)
   return (
-    <Layout bodyClass="page-work" {...props} seo={"{}"}>
+    <Layout bodyClass="landing agency" {...props} seo={"{}"}>
       <section className={styles.agency}>{""}</section>
       <section className={styles.intro}>
-        <h1>Our Agency</h1>
+        <h1>Welcome to HCK2!</h1>
         <p>
-          Whether you're ready to launch a new company, take your existing
-          enterprise to the next level or revitalize your brand to compete more
-          effectively in today's market, you've come to the right place.
+          When you rely on HCK2 for your business communications, you get more
+          than just an agency. You get the experience and insights of proven,
+          award-winning professionals who have put their talents to work for
+          organizations of every size and description. If you’re looking for a
+          team with a track record of long-standing relationships and
+          quantifiable results, we’re it.
         </p>
       </section>
       <section className={styles.content}>
@@ -42,13 +44,13 @@ const AgencyPage = ({
           <div className={styles.who_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.blue}>Who We Are</h2>
-              <hr />
+              <div-spacer />
               <p>
                 HCK2 is a marketing communications agency that offers it all:
-                Creative advertising, design and branding. SOcial media and
-                digital communication. Public relations. Website creation. All
-                rooted in proven brand strategy - and focused on delivering
-                measurable results.
+                creative advertising, design and branding, social media and
+                digital communication, public relations, & web and interactive
+                creation. All rooted in proven brand strategy - and focused on
+                delivering measurable results.
               </p>
               <p>
                 Invite us to serve as an extension of your team and you'll get
@@ -61,19 +63,16 @@ const AgencyPage = ({
           <div className={styles.values_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.orange}>Our Values</h2>
-              <hr />
+              <div-spacer />
               <p>
-                Our own blend of Kool-Aid. The best thing about Kool-Aid is that
-                it mixes well with anything.{" "}
-                <a href="/">Growth, Charity, Integrity and Balance</a> are our
-                flavors. Mix them together and our culture is formed. Sharing
-                sunburns at the Ranger's Ballpark. Giving back to our generous
-                community. Spending long weeks beside our work family. The
-                Kool-Aid is served, on ice.
+                Every day at HCK2 is kind-of like Kool-Aid--but instead of a
+                fruity mix, our flavors are Balance, Charity, Growth and
+                Integrity. Mix them together, and you have HCK2. Enjoying the
+                State Fair of Texas as a happy herd. Giving back to our
+                community. Acquiring knowledge and sharing those insights with
+                our team. Always keeping our promises. …Refreshingly Kool!
+                Enjoy!
               </p>
-              <a href="/" className={[styles.button, styles.orange].join(" ")}>
-                Learn More
-              </a>
             </div>
           </div>
           <div className={styles.values_icons}>
@@ -144,19 +143,16 @@ const AgencyPage = ({
           <div className={styles.leader_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.green}>Our Leadership Team</h2>
-              <hr />
+              <div-spacer />
               <p>
                 Meet our executive leadership team. International agencies and
                 boutiques. Fortune 500 and start-ups. Government and
                 non-profits. We represent experience - and some good stories too
                 - from all and draw upon this experience to guide and inspire.
               </p>
-              <a
-                href="/leadership"
-                className={[styles.button, styles.green].join(" ")}
-              >
-                Meet The Team
-              </a>
+              <Link to="/leadership">
+                <Button color="green">Meet The Team</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -165,8 +161,6 @@ const AgencyPage = ({
     </Layout>
   )
 }
-
-//export default AgencyPage
 
 const indexQuery = graphql`
   query {

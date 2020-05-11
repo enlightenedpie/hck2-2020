@@ -76,7 +76,7 @@ const CaseStudies = ({
       others.push(
         <ScrollEffect
           style={{ animationDelay: (i + 1) * 50 + "ms" }}
-          duration="1"
+          duration=".5"
           animateOnce
           animateIn="h6040fade"
         >
@@ -111,6 +111,9 @@ const CaseStudies = ({
           <select
             name="serviceLines"
             onChange={e => {
+              e.target.blur()
+            }}
+            onBlur={e => {
               others = []
               setActive(e.target.value)
             }}

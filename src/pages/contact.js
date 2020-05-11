@@ -128,7 +128,10 @@ const ContactPage = ({
         <div className={styles.location}>
           <h2>Location</h2>
           <a className={styles.map} href={staticMap.mapUrl}>
-            <img src={staticMap.childFile.childImageSharp.fixed.src} />
+            <img
+              alt="Google Map image of HCK2 location"
+              src={staticMap.childFile.childImageSharp.fixed.src}
+            />
           </a>
           <p>We are located in Vitruvian Park</p>
           <p>3875 Ponte Ave. Suite 420</p>

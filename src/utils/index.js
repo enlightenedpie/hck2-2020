@@ -8,3 +8,11 @@ export const kebabToCamel = item =>
 
 export const stripSite = link =>
   link ? link.replace("https://hck2.com/", "") : ""
+
+export const imageDefaults = {
+  id: "",
+  altText: "",
+  sourceUrl: "",
+  mimeType: "",
+  srcSet: "",
+}

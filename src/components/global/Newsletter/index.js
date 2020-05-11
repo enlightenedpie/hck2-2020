@@ -39,7 +39,12 @@ export default () => {
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
-          <input type="email" name="signupEmail" onChange={setState} />
+          <input
+            placeholder="Join our mailing list!"
+            type="email"
+            name="signupEmail"
+            onChange={setState}
+          />
           <input type="hidden" name="form-name" value="hck2Newsletter" />
           <Button color="orange" size="sm" type="submit">
             Submit
