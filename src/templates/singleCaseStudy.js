@@ -30,7 +30,7 @@ export default ({
   } = caseStudy
 
   return (
-    <Layout seo={seo} bodyClass="single single-case-study">
+    <Layout seo={seo} bodyClass="single case-study">
       <article>
         <CSHero
           isAtTop={true}

@@ -30,7 +30,6 @@ export default ({
 
   return (
     <Layout bodyClass="single page-bio" {...props} seo={seo}>
-      <div className={styles.temp_spacer}></div>
       <section className={styles.content}>
         <div className={[styles.column, styles.left].join(" ")}>
           <div className={[styles.image_container, pageColor].join(" ")}>
