@@ -7,7 +7,6 @@ import LeadershipCard from "../components/LeadershipCard"
 
 // const LeadershipPage = ( bios ) => {
 export default ({ pageContext: { bios } }) => {
-  console.log(bios)
   return (
     <Layout bodyClass="page-bio" seo={"{}"}>
       <section className={styles.intro}>

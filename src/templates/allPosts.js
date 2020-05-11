@@ -5,7 +5,7 @@ import ScrollEffect from "react-animate-on-scroll"
 import Layout from "./layout"
 import Media6040 from "../components/Media6040"
 import SVG from "../components/SVG"
-import { stripSite } from "../utils"
+import { stripSite, imageDefaults } from "../utils"
 
 import styles from "./landings.module.sass"
 
@@ -41,14 +41,6 @@ const HTR = new HtmlToReact.Parser()
     .then(res => res.json())
     .then(q => q)
 } */
-
-const defImg = {
-  id: "",
-  altText: "",
-  sourceUrl: "",
-  mimeType: "",
-  srcSet: "",
-}
 
 export default ({
   data: {
@@ -92,11 +84,11 @@ export default ({
       >
         {others.map((item, idx) => {
           let { altText: alt, sourceUrl: src, ...fi } =
-            item.featuredImage || defImg
+            item.featuredImage || imageDefaults
           return (
             <ScrollEffect
               style={{ animationDelay: (idx + 1) * 50 + "ms" }}
-              duration="1"
+              duration=".5"
               animateOnce
               animateIn="h6040fade"
             >

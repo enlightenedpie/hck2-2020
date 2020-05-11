@@ -22,7 +22,7 @@ const NFQuery = graphql`
 `
 
 const Error404 = ({ wpquery: { page }, location, ...rest }) => {
-  const { title, id, content, seo } = page
+  const { title, content, seo } = page
 
   return (
     <Layout seo={seo} location={location} bodyClass="404 not-found">

@@ -129,6 +129,7 @@
           fill: get-color("orange",3)
 
       +mq($activeBreak)
+
         &:hover
           background-color: $white
 
@@ -137,11 +138,13 @@
               fill: $navy
 
     +mq($activeBreak)
-      padding-right: 2em
       justify-content: flex-end
 
       a
         border-color: $white
+        
+        &:last-of-type
+          margin-right: 2em
 
         svg
           path

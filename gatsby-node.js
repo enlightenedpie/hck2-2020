@@ -214,10 +214,16 @@ exports.createPages = ({ actions, graphql }) => {
         return graphql(`
           query {
             wpquery {
-              teamMembers {
+              teamMembers(
+                first: 1000
+                where: { orderby: { field: SLUG, order: DESC } }
+              ) {
                 nodes {
                   content
                   title
+                  slug
+                  databaseId
+                  uri
                   featuredImage {
                     uri
                     title
@@ -230,8 +236,6 @@ exports.createPages = ({ actions, graphql }) => {
                     databaseId
                     altText
                   }
-                  slug
-                  databaseId
                 }
               }
             }
@@ -245,19 +249,16 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         const bioTemplate = path.resolve(`./src/templates/bio.js`),
-          leadershipTemplate = path.resolve(`./src/templates/leadership.js`)
+          leadershipTemplate = path.resolve(`./src/templates/allBios.js`)
 
-        // let bios = result.data.wpquery.teamMembers.nodes
         let { teamMembers: team } = result.data.wpquery
 
-        //   pages = pages.nodes[0]
         let bios = team.nodes
 
         // Create a Gatsby page for each individual Bio
         _.each(bios, bio => {
           createPage({
-            // path: `${stripSite(bio.slug)}`,
-            path: bio.slug,
+            path: `${stripSite(bio.uri)}`,
             component: bioTemplate,
             context: {
               id: bio.databaseId,
