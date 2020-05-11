@@ -45,7 +45,8 @@ export default ({
             <picture>
               <img src={src} alt={alt} {...fi} />
             </picture>
-            <h3>{noda.client}</h3>
+            <h3>{HTR.parse(noda.title)}</h3>
+            <em>{HTR.parse(noda.client)}</em>
           </case-study-card>
         </Link>
       )

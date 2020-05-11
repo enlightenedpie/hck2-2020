@@ -30,7 +30,6 @@ export default ({
 
   return (
     <Layout bodyClass="single page-bio" {...props} seo={seo}>
-      <div className={styles.temp_spacer}></div>
       <section className={styles.content}>
         <div className={[styles.column, styles.left].join(" ")}>
           <div className={[styles.image_container, pageColor].join(" ")}>
@@ -65,7 +64,7 @@ export default ({
             <h2 className={styles.gray}>
               {!!splitTitle[1] ? splitTitle[1] : ""}
             </h2>
-            <hr />
+            <div-spacer />
             <div className={styles.main_copy}>{HTR.parse(content)}</div>
             {!!rest.quote && (
               <div className={styles.quote}>
