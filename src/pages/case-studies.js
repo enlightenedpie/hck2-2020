@@ -87,6 +87,7 @@ const CaseStudies = ({
                 <img loading="lazy" src={src} alt={alt} />
               </picture>
               <h3>{HTR.parse(caseStudy.title)}</h3>
+              <em>{HTR.parse(caseStudy.client)}</em>
             </case-study-card>
           </Link>
         </ScrollEffect>
