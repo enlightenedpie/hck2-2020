@@ -34,11 +34,13 @@ export default props => {
         posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = posts || {}
+    { title, excerpt, uri, featuredImage: img } = posts[0] || {}
 
   return (
     <div {...props}>
-      <h4>Blog</h4>
+      <h4>
+        <Link to="/blog">Blog</Link>
+      </h4>
       <div-spacer />
       <Link to={stripSite(uri)}>
         {img ? (
