@@ -65,7 +65,7 @@ export default ({
             <h2 className={styles.gray}>
               {!!splitTitle[1] ? splitTitle[1] : ""}
             </h2>
-            <hr />
+            <div-spacer />
             <div className={styles.main_copy}>{HTR.parse(content)}</div>
             {!!rest.quote && (
               <div className={styles.quote}>
