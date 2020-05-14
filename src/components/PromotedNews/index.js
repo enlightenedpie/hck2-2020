@@ -2,7 +2,7 @@ import React from "react"
 import parse from "html-react-parser"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import ResponsiveImg from "../ResponsiveImg"
-import { stripSite } from "../../utils"
+import { stripSite, defPost } from "../../utils"
 
 export default props => {
   const data = useStaticQuery(graphql`
@@ -32,7 +32,7 @@ export default props => {
         posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = posts[0] || {}
+    { title, excerpt, uri, featuredImage: img } = posts[0] || defPost
 
   return (
     <div {...props}>
