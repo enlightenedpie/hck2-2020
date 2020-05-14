@@ -35,16 +35,15 @@ export default ({
   let others = []
 
   caseStudies.map((noda, i) => {
-    let { altText: alt, sourceUrl: src, ...fi } = noda.featuredImage
+    //let { altText: alt, sourceUrl: src, ...fi } = noda.featuredImage
+    console.log(noda.featuredImage)
     if (i < 3) {
       heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
     } else {
       others.push(
         <Link to={stripSite(noda.link)}>
           <case-study-card>
-            <picture>
-              <img src={src} alt={alt} {...fi} />
-            </picture>
+            <picture>{/* <img src={src} alt={alt} {...fi} /> */}</picture>
             <h3>{HTR.parse(noda.title)}</h3>
             <em>{HTR.parse(noda.client)}</em>
           </case-study-card>
@@ -106,12 +105,14 @@ export const query = graphql`
             client
             stats
             featuredImage {
-              altText
-              id
-              srcSet
-              title
               sourceUrl
-              mimeType
+              imageFile {
+                childImageSharp {
+                  fixed {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
             }
           }
         }

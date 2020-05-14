@@ -215,8 +215,8 @@ exports.createPages = ({ actions, graphql }) => {
           query {
             wpquery {
               teamMembers(
-                first: 1000
-                where: { orderby: { field: SLUG, order: DESC } }
+                first: 100
+                where: { orderby: { field: SLUG, order: ASC } }
               ) {
                 nodes {
                   content
@@ -289,4 +289,32 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+exports.createResolvers = ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions
+  createResolvers({
+    Wpquery_MediaItem: {
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.sourceUrl,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
 }

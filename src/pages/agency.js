@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
 import Button from "../components/Button"
@@ -19,12 +20,22 @@ import styles from "./agency.module.sass"
 const AgencyPage = ({
   props,
   wpquery: {
+    page: {
+      seo,
+      featuredImage: {
+        altText: alt,
+        imageFile: { childImageSharp },
+      },
+    },
     teamMembers: { nodes: teamMembers },
   },
 }) => {
+  console.log(childImageSharp)
   return (
-    <Layout bodyClass="landing agency" {...props} seo={"{}"}>
-      <section className={styles.agency}>{""}</section>
+    <Layout bodyClass="landing agency" {...props} seo={seo}>
+      <section className={styles.agency}>
+        <Img className={styles.imageContainer} {...childImageSharp} />
+      </section>
       <section className={styles.intro}>
         <h1>Welcome to HCK2!</h1>
         <p>
@@ -65,39 +76,39 @@ const AgencyPage = ({
               <h2 className={styles.orange}>Our Values</h2>
               <div-spacer />
               <p>
-                Every day at HCK2 is kind-of like Kool-Aid--but instead of a
-                fruity mix, our flavors are Balance, Charity, Growth and
-                Integrity. Mix them together, and you have HCK2. Enjoying the
-                State Fair of Texas as a happy herd. Giving back to our
-                community. Acquiring knowledge and sharing those insights with
-                our team. Always keeping our promises. …Refreshingly Kool!
-                Enjoy!
+                While meeting deadlines is a fundamental requirement in our line
+                of work, that's not what drives us at HCK2. We're united in
+                embracing a culture that promotes giving back and paying it
+                forward… continually expanding our knowledge and skills … going
+                above and beyond to exceed expectations… all while understanding
+                that our lives outside of work is what keeps us grounded, steady
+                and ready to come back every day to give it our all.
               </p>
             </div>
           </div>
           <div className={styles.values_icons}>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Growth</h4>
+                <SVG.charity />
+                <h4>Charitable Hearts</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Charity</h4>
+                <SVG.knowledge />
+                <h4>Knowledge Seekers</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Integrity</h4>
+                <SVG.ravingFans />
+                <h4>Raving Fans</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Balance</h4>
+                <SVG.balance />
+                <h4>Balanced Life</h4>
               </div>
             </div>
           </div>
@@ -114,7 +125,6 @@ const AgencyPage = ({
               <Slider className={styles.slider}>
                 {teamMembers.map((teamMember, i) => {
                   let splitTitle = teamMember.title.split("|")
-                  console.log(i)
                   return (
                     <Slide index={i} className={styles.slide}>
                       <Image
@@ -162,10 +172,36 @@ const AgencyPage = ({
   )
 }
 
-const indexQuery = graphql`
+const agencyQuery = graphql`
   query {
     wpquery {
-      teamMembers {
+      page(id: "674", idType: DATABASE_ID) {
+        id
+        title
+        seo
+        content
+        featuredImage {
+          sourceUrl
+          altText
+          imageFile {
+            childImageSharp {
+              fluid(webpQuality: 100) {
+                src
+                srcWebp
+                presentationHeight
+                presentationWidth
+                sizes
+                srcSet
+                srcSetWebp
+              }
+            }
+          }
+        }
+      }
+      teamMembers(
+        first: 100
+        where: { orderby: { field: TITLE, order: ASC } }
+      ) {
         nodes {
           slug
           title
@@ -183,7 +219,7 @@ const indexQuery = graphql`
 export default ({ team, ...rest }) => {
   return (
     <StaticQuery
-      query={indexQuery}
+      query={agencyQuery}
       render={query => <AgencyPage team={team} {...query} {...rest} />}
     />
   )
