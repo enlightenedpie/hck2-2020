@@ -16,3 +16,10 @@ export const imageDefaults = {
   mimeType: "",
   srcSet: "",
 }
+
+export const defPost = {
+  title: "",
+  excerpt: "",
+  uri: "",
+  featuredImage: null,
+}
