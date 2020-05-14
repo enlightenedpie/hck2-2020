@@ -1,10 +1,8 @@
 import React from "react"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import ResponsiveImg from "../ResponsiveImg"
 import { stripSite } from "../../utils"
-
-const HTR = new HtmlToReact.Parser()
 
 export default props => {
   const data = useStaticQuery(graphql`
@@ -52,7 +50,7 @@ export default props => {
           />
         )}
         <blog-title>{title}</blog-title>
-        {HTR.parse(excerpt)}
+        {parse(excerpt)}
       </Link>
     </div>
   )

@@ -1,7 +1,8 @@
 import React from "react"
 import ScrollEffect from "react-animate-on-scroll"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "./layout"
 import CSHero from "../components/CaseStudyHero"
@@ -11,8 +12,6 @@ import { kebabToCamel, stripSite } from "../utils"
 
 import styles from "./singleService.module.sass"
 import "../pages/lineartanim.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 export default ({
   data: {
@@ -35,17 +34,21 @@ export default ({
   let others = []
 
   caseStudies.map((noda, i) => {
-    //let { altText: alt, sourceUrl: src, ...fi } = noda.featuredImage
-    console.log(noda.featuredImage)
+    let { altText: alt, sourceUrl: src, imageFile, ...fi } = noda.featuredImage
     if (i < 3) {
       heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
     } else {
+      let { childImageSharp } = imageFile
       others.push(
         <Link to={stripSite(noda.link)}>
           <case-study-card>
-            <picture>{/* <img src={src} alt={alt} {...fi} /> */}</picture>
-            <h3>{HTR.parse(noda.title)}</h3>
-            <em>{HTR.parse(noda.client)}</em>
+            <Img
+              imgStyle={{ top: "50%", left: "50%" }}
+              className={styles.cscMarginSpacer}
+              {...childImageSharp}
+            />
+            <h3>{parse(noda.client)}</h3>
+            <em>{parse(noda.title)}</em>
           </case-study-card>
         </Link>
       )
@@ -57,7 +60,7 @@ export default ({
     <Layout seo={seo}>
       <section className={styles.ssIntro}>
         {featuredImg ? (
-          HTR.parse(featuredImg)
+          parse(featuredImg)
         ) : (
           <img
             alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
@@ -70,13 +73,13 @@ export default ({
               <Icon />
             </ScrollEffect>
           </i>
-          <h1>{HTR.parse(name)}</h1>
+          <h1>{parse(name)}</h1>
         </aside>
       </section>
       <section className={styles.ssContent}>
         <h2>{subtitle}</h2>
         <div-spacer-white />
-        <p>{HTR.parse(description)}</p>
+        <p>{parse(description)}</p>
         <ReqProp />
       </section>
       <section className={styles.ssCaseStudies}>
@@ -105,11 +108,21 @@ export const query = graphql`
             client
             stats
             featuredImage {
+              id
+              altText
               sourceUrl
+              mimeType
+              srcSet
               imageFile {
                 childImageSharp {
-                  fixed {
-                    ...GatsbyImageSharpFixed
+                  fluid(webpQuality: 100) {
+                    src
+                    srcWebp
+                    presentationHeight
+                    presentationWidth
+                    sizes
+                    srcSet
+                    srcSetWebp
                   }
                 }
               }
