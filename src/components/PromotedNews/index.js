@@ -34,7 +34,6 @@ export default props => {
     } = data,
     { title, excerpt, uri, featuredImage: img } = posts[0] || defPost
 
-  console.log(typeof excerpt)
   return (
     <div {...props}>
       <h4>
