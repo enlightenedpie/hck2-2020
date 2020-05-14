@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 import Layout from "../templates/layout"
 import { stripSite } from "../utils"
 
 import styles from "../templates/landings.module.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 const defImg = {
   altText: "",
@@ -84,10 +82,10 @@ const CaseStudies = ({
             <case-study-card>
               <picture>
                 <source type={type} alt={alt} srcSet={srcSet}></source>
-                <img loading="lazy" src={src} alt={alt} />
+                <img src={src} alt={alt} />
               </picture>
-              <h3>{HTR.parse(caseStudy.title)}</h3>
-              <em>{HTR.parse(caseStudy.client)}</em>
+              <h3>{parse(caseStudy.client)}</h3>
+              <em>{parse(caseStudy.title)}</em>
             </case-study-card>
           </Link>
         </ScrollEffect>
@@ -103,7 +101,7 @@ const CaseStudies = ({
         <div>
           <h1>{title}</h1>
           <div-spacer />
-          {HTR.parse(content)}
+          {parse(content)}
         </div>
       </section>
       <section className={styles.serviceFilter}>
@@ -126,7 +124,7 @@ const CaseStudies = ({
             {Object.keys(services)
               .sort()
               .map(slug => {
-                return <option value={slug}>{HTR.parse(services[slug])}</option>
+                return <option value={slug}>{parse(services[slug])}</option>
               })}
           </select>
         </div>

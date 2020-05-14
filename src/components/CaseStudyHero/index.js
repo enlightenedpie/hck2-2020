@@ -57,7 +57,7 @@ export default ({
     <article className={[styles.caseStudyHero, otherClass].join(" ")}>
       <picture className={styles.csHeroImg} id={newId}>
         <source type={type} alt={alt} srcSet={srcSet}></source>
-        <img loading="lazy" src={src} alt={alt} />
+        <img src={src} alt={alt} />
       </picture>
       <div className={styles.informatic}>
         <div>

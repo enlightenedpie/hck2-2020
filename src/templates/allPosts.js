@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 import Layout from "./layout"
 import Media6040 from "../components/Media6040"
@@ -8,8 +8,6 @@ import SVG from "../components/SVG"
 import { stripSite, imageDefaults } from "../utils"
 
 import styles from "./landings.module.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 /* const fetchMore = async (cursor, slug, qty = 12) => {
   let query = `query ($cursor: String!, $slug: ID!, $qty: Int!) {
@@ -66,13 +64,13 @@ export default ({
 
   return (
     <Layout seo={seo} bodyClass="landing blog-news-media">
-      <section className={styles.landingIntro}>
+      {/* <section className={styles.landingIntro}>
         <div>
           <h1>{name}</h1>
           <div-spacer />
-          <p>{HTR.parse(description)}</p>
+          <p>{parse(description)}</p>
         </div>
-      </section>
+      </section> */}
       <section className={styles.heroes}>
         <Media6040 data={heroes} />
       </section>
@@ -101,7 +99,7 @@ export default ({
                       <SVG.LogoNoText />
                     )}
                   </picture>
-                  <h3>{HTR.parse(item.title)}</h3>
+                  <h3>{parse(item.title)}</h3>
                 </case-study-card>
               </Link>
             </ScrollEffect>

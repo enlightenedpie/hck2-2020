@@ -61,7 +61,6 @@ export default ({
           HTR.parse(featuredImg)
         ) : (
           <img
-            loading="lazy"
             alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
             src="/assets/img/video-placeholder.jpg"
           />
