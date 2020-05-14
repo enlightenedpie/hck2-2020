@@ -96,7 +96,12 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-page-transitions`,
+    {
+      resolve: `gatsby-plugin-page-transitions`,
+      options: {
+        transitionTime: 250,
+      },
+    },
     {
       resolve: `gatsby-source-googlemaps-static`,
       options: {
