@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 import ScrollEffect from "react-animate-on-scroll"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 
 import Button from "../Button"
 import SVG from "../SVG"
@@ -10,8 +10,6 @@ import { kebabToCamel } from "../../utils"
 
 import h6040 from "../h6040.module.sass"
 import "../h6040anim.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 const query = graphql`
   query {
@@ -43,7 +41,7 @@ const Services6040 = ({ data }) => {
             <aside>
               <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
                 {item.featuredImg ? (
-                  <ResponsiveImg>{HTR.parse(item.featuredImg)}</ResponsiveImg>
+                  <ResponsiveImg>{parse(item.featuredImg)}</ResponsiveImg>
                 ) : (
                   <ResponsiveImg
                     altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
@@ -56,9 +54,9 @@ const Services6040 = ({ data }) => {
               <i className="icon">
                 <Icon />
               </i>
-              <h2>{HTR.parse(item.name)}</h2>
+              <h2>{parse(item.name)}</h2>
               <div-spacer />
-              <p>{HTR.parse(item.description)}</p>
+              <p>{parse(item.description)}</p>
               <Link to={item.uri}>
                 <Button size="sm">Read More</Button>
               </Link>

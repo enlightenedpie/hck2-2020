@@ -1,12 +1,10 @@
 import React from "react"
-import HtmlToReact from "html-to-react"
 import { graphql, useStaticQuery } from "gatsby"
+import parse from "html-react-parser"
 import { CarouselProvider, Slider, Slide, DotGroup } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
 
 import stylings from "./testimonials.module.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 export default props => {
   const query = useStaticQuery(graphql`
@@ -56,7 +54,7 @@ export default props => {
     let { title, content, organization, jobTitle } = test
     slides.push(
       <Slide index={i}>
-        {HTR.parse(content)}
+        {parse(content)}
         <p>
           {title} {separator} {jobTitle} {separator} {organization}
         </p>

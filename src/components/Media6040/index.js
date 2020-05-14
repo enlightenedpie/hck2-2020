@@ -1,15 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 import ScrollEffect from "react-animate-on-scroll"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import Button from "../Button"
 import ResponsiveImg from "../ResponsiveImg"
 import { stripSite } from "../../utils"
 
 import h6040 from "../h6040.module.sass"
 import "../h6040anim.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 export default ({ data }) => {
   return (
@@ -30,9 +28,9 @@ export default ({ data }) => {
               </ScrollEffect>
             </aside>
             <article>
-              <h2>{HTR.parse(item.title)}</h2>
+              <h2>{parse(item.title)}</h2>
               <div-spacer />
-              <p>{HTR.parse(item.excerpt)}</p>
+              <p>{parse(item.excerpt)}</p>
               <Link to={stripSite(item.uri)}>
                 <Button size="sm">Read More</Button>
               </Link>
