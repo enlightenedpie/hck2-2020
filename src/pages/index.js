@@ -17,7 +17,7 @@ import "./lineartanim.sass"
 const HTR = new HtmlToReact.Parser()
 
 const FrontPage = ({ wpquery, location, ...rest }) => {
-  let { content, seo, slug } = wpquery.pages.nodes[0],
+  let { content, seo, slug } = wpquery.page,
     { caseStudies } = wpquery
 
   return (
@@ -30,12 +30,12 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           </ScrollEffect>
         </div>
       </section>
-      <Services6040 />
       <section id="csFeature" className={styles.caseStudies_feature}>
         {caseStudies.nodes.map((noda, i) => (
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
         ))}
       </section>
+      <Services6040 />
       <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
@@ -54,6 +54,7 @@ const indexQuery = graphql`
           title
           client
           stats
+          status
           featuredImage {
             altText
             id
@@ -64,15 +65,12 @@ const indexQuery = graphql`
           }
         }
       }
-      pages(where: { name: "front-page" }) {
-        nodes {
-          uri
-          id
-          slug
-          seo
-          contentData
-          content
-        }
+      page(id: "10", idType: DATABASE_ID) {
+        uri
+        id
+        slug
+        seo
+        content
       }
     }
   }

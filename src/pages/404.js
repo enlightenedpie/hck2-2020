@@ -1,34 +1,31 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 
 import Layout from "../templates/layout"
 
 import "./404.sass"
 
-const HTR = new HtmlToReact.Parser()
-
 const NFQuery = graphql`
   query {
     wpquery {
-      pages(where: { name: "not-found" }) {
-        nodes {
-          id
-          title
-          seo
-          content
-        }
+      page(id: "58", idType: DATABASE_ID) {
+        id
+        title
+        seo
+        content
       }
     }
   }
 `
 
-const Error404 = ({ wpquery, location, ...rest }) => {
-  const { title, id, content, seo } = wpquery.pages.nodes[0]
+const Error404 = ({ wpquery: { page }, location, ...rest }) => {
+  const { title, content, seo } = page
 
   return (
-    <Layout seo={seo} location={location}>
-      {HTR.parse(content)}
+    <Layout seo={seo} location={location} bodyClass="404 not-found">
+      <h1>{title}</h1>
+      {parse(content)}
     </Layout>
   )
 }

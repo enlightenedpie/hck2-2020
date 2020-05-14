@@ -73,7 +73,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
-        printRejected: true, // Print removed selectors and processed file names
+        printRejected: false, // Print removed selectors and processed file names
         develop: true, // Enable while using `gatsby develop`
         // tailwind: true, // Enable tailwindcss support
         // whitelist: ['whitelist'], // Don't remove this selector
@@ -96,7 +96,12 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-page-transitions`,
+    {
+      resolve: `gatsby-plugin-page-transitions`,
+      options: {
+        transitionTime: 250,
+      },
+    },
     {
       resolve: `gatsby-source-googlemaps-static`,
       options: {
@@ -110,6 +115,17 @@ module.exports = {
         ],
       },
     },
+    /* {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-3953745-1",
+        head: true,
+        pageTransitionDelay: 250,
+        defer: true,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+      },
+    }, */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

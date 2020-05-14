@@ -4,27 +4,32 @@ $blue: #1A4784
 $gray: #91A2AC
 
 .agency
-  font-size: 2rem
-  padding: 15rem 0
-  text-align: center
-  background-image: url('https://picsum.photos/1920/1080')
-  background-position: center
-  background-size: cover
+  width: 100%
   position: relative
+  margin-top: 3rem
+  padding-top: 50%
+  overflow: hidden
 
-  &::before
-    content: ''
-    display: block
-    position: absolute
-    width: 100%
-    height: 100%
-    background-color: rgba(0,0,0,0.5)
+  +mq($activeBreak)
+    margin-top: 0
+    padding-top: 56.25%
+
+  .imageContainer, picture
+    position: absolute !important
     top: 0
     left: 0
+    width: 100%
+    height: 100%
 
 .intro
-    padding: 2rem 1rem
+    padding: 2rem
     text-align: center
+    position: relative
+    z-index: 403
+    box-shadow: 0 0 2rem 0 rgba(0,0,0,.5)
+
+    +mq($activeBreak)
+        padding: 4rem 20%
 
     h1
         color: $orange
@@ -116,7 +121,8 @@ $gray: #91A2AC
                         color: white
 
                     svg
-                        width: 50%
+                        height: 75%
+                        width: 90%
                         
                         path
                             stroke: white
@@ -170,6 +176,7 @@ $gray: #91A2AC
                             margin: auto
                             width: auto
                             margin-bottom: 1rem
+                            filter: grayscale(100%)
                         
                         h4
                             color: white

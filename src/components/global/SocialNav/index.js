@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { graphql, StaticQuery } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { library, dom } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
 import styles from "./socialnav.module.sass"
@@ -38,9 +39,9 @@ const SocialNav = ({ socialNav, xtraClass, ...rest }) => {
       {socialNav.map(noda => {
         let { label, url, id, cssClasses: className, ...rest } = noda
         return (
-          <a className={className} href={url} key={id} {...rest}>
+          <OutboundLink className={className} href={url} key={id} {...rest}>
             <i className={"fab " + label}></i>
-          </a>
+          </OutboundLink>
         )
       })}
     </nav>

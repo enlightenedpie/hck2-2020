@@ -1,15 +1,18 @@
 $orange: get-color('orange',3)
 
-html.header-sticky
-  margin-top: 3rem
+html.header-sticky, body.single:not(.case-study), body.blog-news-media
+  margin-top: 4rem
 
   header.siteHeader
     position: fixed
     top: 0
     background-color: $white
-    transition: transform 250ms ease-in-out
+    transition: all 250ms ease-in-out
     animation: 250ms ease-in-out 0ms normal both 1 headerSlide
     box-shadow: 0 0 1rem 0px rgba(0,0,0,0.95)
+
+    &:hover
+      background-color: $white
 
     .node--logoBox
       svg
@@ -18,12 +21,13 @@ html.header-sticky
 
     .node--siteMenu
 
-      a
-        color: $orange
+      nav
+        & > a
+          color: $orange
 
-        &:hover
-          &:after
-            background: $orange
+          &:hover
+            &:after
+              background: $orange
 
     .node--socialNav
 
@@ -33,3 +37,10 @@ html.header-sticky
         svg
           path
             fill: $orange
+
+        &:hover
+          background-color: $orange
+          svg
+            path
+              fill: $white
+            

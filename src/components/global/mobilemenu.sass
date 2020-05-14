@@ -1,3 +1,5 @@
+$orange: get-color("orange",3)
+
 div.node--siteMenu
   margin: 0
   padding: 0
@@ -35,19 +37,24 @@ div.node--siteMenu
     transform: translate3d(-300px,0,0)
     transition: all 250ms ease-in-out
 
-    a
+    & > a
       &:not(:last-of-type)
         margin: 0
         margin-bottom: 1em
+      
+      &:last-of-type
+        margin: 0
 
     +mq($activeBreak)
-      display: block
+      flex-flow: row nowrap
+      justify-content: flex-start
       position: relative
       width: 100%
       transform: unset
       background-color: transparent
+      overflow: unset
 
-      a
+      & > a
 
         &:not(:last-of-type)
           margin: 0

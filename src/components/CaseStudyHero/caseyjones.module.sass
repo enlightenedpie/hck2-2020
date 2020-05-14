@@ -1,9 +1,8 @@
 .caseStudyHero
   width: 100%
   position: relative
-  padding-top: 100%
   +mq($activeBreak)
-    padding-top: 100%
+    padding-top: 56.25%
   
   .csHeroImg
     overflow: hidden
@@ -21,14 +20,20 @@
       top: 50%
       left: 50%
       transform: translate3d(-50%,-50%,0)
+      filter: brightness(.5)
   
   .informatic
-    position: absolute
     z-index: 505
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
+
+    body[class*="single-case-study"] &
+      margin-top: 4rem
+
+    +mq($activeBreak)
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
 
     & > div
       position: relative
@@ -36,19 +41,26 @@
       height: 100%
 
       & > div
-        position: sticky
-        transform: translateZ(-1px)
-        top: 4rem
+        padding: 4rem 0
         display: flex
         flex-flow: column wrap
         align-items: center
-        padding: 4rem 0 2rem
+
+        +mq($activeBreak)
+          padding: 4rem 0 2rem
+          position: sticky
+          transform: translateZ(-1px)
+          top: 4rem
 
         h1, h2, h3, h4
-          font-size: 2rem
-          margin-bottom: .5rem
+          width: 100%
+          text-align: center
+          font-size: 1.5rem
+          margin-bottom: 1rem
+          padding: 0 1rem
           +mq($activeBreak)
             font-size: 3rem
+            padding: 0 20%
         
         h1, h3
           color: $white
@@ -57,7 +69,7 @@
           color: $ltgray
         
         .orange
-          color: $orange
+          color: get-color("orange",1)
         
         .green
           color: $green
@@ -72,25 +84,23 @@
     padding-top: 2rem
 
   .csStats
-    display: grid
-    gap: .5rem
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
     color: $white
     width: 100%
     max-width: 1000px
-    padding: 2rem 2rem 0
+    +mq($activeBreak)
+      display: flex
+      flex-flow: row wrap
+      padding: 2rem 2rem 0
 
     & > div
       text-align: center
       padding-bottom: 1rem
-
-      &:nth-of-type(odd):last-of-type
-        grid-column: span 2
-
-        +mq('tportrait')
-          grid-column: unset
+      flex: 1 1 25%
 
       p
         strong
           font-family: $fontStackH
-          font-size: 2rem
+          font-size: 1.5rem
+
+      p:last-of-type
+        font-size: .75rem

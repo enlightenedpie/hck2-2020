@@ -1,7 +1,8 @@
 import React from "react"
 import ScrollEffect from "react-animate-on-scroll"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "./layout"
 import CSHero from "../components/CaseStudyHero"
@@ -11,8 +12,6 @@ import { kebabToCamel, stripSite } from "../utils"
 
 import styles from "./singleService.module.sass"
 import "../pages/lineartanim.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 export default ({
   data: {
@@ -24,23 +23,46 @@ export default ({
         name,
         slug,
         featuredImg,
-        caseStudies,
+        caseStudies: { nodes: caseStudies },
       },
     },
   },
 }) => {
   let Icon = SVG[kebabToCamel(slug)]
 
+  let heroes = []
   let others = []
+
+  caseStudies.map((noda, i) => {
+    let { altText: alt, sourceUrl: src, imageFile, ...fi } = noda.featuredImage
+    if (i < 3) {
+      heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
+    } else {
+      let { childImageSharp } = imageFile
+      others.push(
+        <Link to={stripSite(noda.link)}>
+          <case-study-card>
+            <Img
+              imgStyle={{ top: "50%", left: "50%" }}
+              className={styles.cscMarginSpacer}
+              {...childImageSharp}
+            />
+            <h3>{parse(noda.client)}</h3>
+            <em>{parse(noda.title)}</em>
+          </case-study-card>
+        </Link>
+      )
+    }
+    return noda
+  })
 
   return (
     <Layout seo={seo}>
       <section className={styles.ssIntro}>
         {featuredImg ? (
-          HTR.parse(featuredImg)
+          parse(featuredImg)
         ) : (
           <img
-            loading="lazy"
             alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
             src="/assets/img/video-placeholder.jpg"
           />
@@ -51,33 +73,17 @@ export default ({
               <Icon />
             </ScrollEffect>
           </i>
-          <h1>{HTR.parse(name)}</h1>
+          <h1>{parse(name)}</h1>
         </aside>
       </section>
       <section className={styles.ssContent}>
         <h2>{subtitle}</h2>
         <div-spacer-white />
-        <p>{HTR.parse(description)}</p>
+        <p>{parse(description)}</p>
         <ReqProp />
       </section>
       <section className={styles.ssCaseStudies}>
-        {caseStudies.nodes.map((noda, i) => {
-          if (i < 3) {
-            return <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
-          } else {
-            console.log(noda.featuredImage)
-            others.push(
-              <Link to={stripSite(noda.link)}>
-                <case-study-card>
-                  <picture>
-                    <img {...noda.featuredImage} />
-                  </picture>
-                  <h3>{noda.client}</h3>
-                </case-study-card>
-              </Link>
-            )
-          }
-        })}
+        {heroes}
         <div className={styles.theOthers}>{others}</div>
       </section>
     </Layout>
@@ -91,22 +97,35 @@ export const query = graphql`
         subtitle
         featuredImg
         description
+        id
         slug
         name
         seo
-        caseStudies {
+        caseStudies(first: 1000) {
           nodes {
             link
             title
             client
             stats
             featuredImage {
-              altText
               id
-              srcSet
-              title
+              altText
               sourceUrl
               mimeType
+              srcSet
+              imageFile {
+                childImageSharp {
+                  fluid(webpQuality: 100) {
+                    src
+                    srcWebp
+                    presentationHeight
+                    presentationWidth
+                    sizes
+                    srcSet
+                    srcSetWebp
+                  }
+                }
+              }
             }
           }
         }

@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import SVG from "../SVG"
 import Newsletter from "./Newsletter"
@@ -44,7 +45,9 @@ const Footer = ({ siteMetadata }) => {
           <div>
             <h5>Contact Us</h5>
             <div>
-              <a href={"tel:" + phone.replace(/\.+/g, "")}>{phone}</a>
+              <OutboundLink href={"tel:" + phone.replace(/\.+/g, "")}>
+                {phone}
+              </OutboundLink>
               <address>{address}</address>
             </div>
           </div>

@@ -3,7 +3,7 @@
     +stageBlock
 
 div[class*="callOutATF"]
-  padding: 4rem 2rem
+  padding: 4rem 2rem 2rem
   text-align: center
   color: $white
   position: relative
@@ -24,14 +24,18 @@ div[class*="callOutATF"]
     
     &:last-of-type
       font-weight: 700
+      margin-bottom: 0
 
 .lineArt
-  padding: 2rem 4rem
+  padding: 2rem
   width: 100%
   display: flex
   align-items: flex-end
   +mq($activeBreak)
     padding: 2rem 20% 6rem
+
+  & > div
+    width: 100%
 
   svg
     width: 100%
@@ -46,7 +50,7 @@ div[class*="callOutATF"]
 
 .blogMedia
   display: grid
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
   background: $white
 
   & > div
@@ -58,20 +62,16 @@ div[class*="callOutATF"]
     +mq($activeBreak)
       padding: 4rem
 
-    & > *:not(:last-child)
-      margin-bottom: 1rem
-
-      +mq($activeBreak)
-        margin-bottom: 2rem
-
     h4
       font-size: 2rem
+      margin-bottom: 1rem
 
       +mq($activeBreak)
         font-size: 3rem
 
     div-spacer
       width: 50%
+      margin-bottom: 2rem
 
     a
       width: 100%

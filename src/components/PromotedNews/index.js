@@ -1,10 +1,8 @@
 import React from "react"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import ResponsiveImg from "../ResponsiveImg"
 import { stripSite } from "../../utils"
-
-const HTR = new HtmlToReact.Parser()
 
 export default props => {
   const data = useStaticQuery(graphql`
@@ -31,14 +29,16 @@ export default props => {
 
   let {
       wpquery: {
-        posts: { nodes },
+        posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = nodes[0]
+    { title, excerpt, uri, featuredImage: img } = posts[0] || {}
 
   return (
     <div {...props}>
-      <h4>Newsroom</h4>
+      <h4>
+        <Link to="/news">Newsroom</Link>
+      </h4>
       <div-spacer />
       <Link to={stripSite(uri)}>
         {img ? (
@@ -50,7 +50,7 @@ export default props => {
           />
         )}
         <blog-title>{title}</blog-title>
-        {HTR.parse(excerpt)}
+        {parse(excerpt)}
       </Link>
     </div>
   )

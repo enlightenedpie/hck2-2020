@@ -23,6 +23,8 @@
     svg
       width: 2.5rem
       height: 2.5rem
+      path
+        fill: get-color("orange",3)
 
       +mq($activeBreak)
         path
@@ -31,7 +33,7 @@
   .headerMenu
     font-family: $fontStackH
     font-weight: 800
-    color: get-color('orange',2)
+    color: get-color('orange',3)
     text-transform: uppercase
     text-align: center
     +mq($activeBreak)
@@ -46,7 +48,14 @@
         padding-left: 2em
 
       .slideLink
-        color: get-color('orange',2)
+        color: get-color('orange',3)
+
+        & > div
+          display: none
+
+          +mq($activeBreak)
+            display: block
+
         +mq($activeBreak)
           color: $white
           position: relative
@@ -54,6 +63,10 @@
           padding-bottom: 5px
 
           &:hover
+            & > div
+              opacity: 1
+              visibility: visible
+
             &:after
               width: 100%
               left: 0
@@ -69,6 +82,37 @@
             bottom: 0
             background: transparent
             transition: width 250ms ease-in-out
+        
+          & > div
+            position: absolute
+            top: 100%
+            padding-top: .5rem
+            min-width: 100%
+            opacity: 0
+            visibility: hidden
+            transition: opacity 250ms ease-in-out
+
+            & > span
+              box-shadow: 0 0 1rem 0 rgba(0,0,0,.75)
+              display: block
+
+            a
+              color: $white
+              font-family: 'Roboto'
+              text-transform: 
+              display: block
+              font-size: 70%
+              text-transform: capitalize
+              font-weight: 400
+              white-space: nowrap
+              letter-spacing: 0
+              padding: .75rem 1.25rem .75rem .75rem
+              background-size: 200% 100%
+              background-image: linear-gradient(to right, get-color("navy",3) 50%, get-color("orange",2) 50%)
+              transition: background-position 250ms ease-in-out
+
+              &:hover
+                background-position: -100% 0
 
     +mq($activeBreak)
       display: block
@@ -78,13 +122,14 @@
 
     a
       cursor: pointer
-      border-color: $orange
+      border-color: get-color("orange",3)
 
       svg
         path
-          fill: $orange
+          fill: get-color("orange",3)
 
       +mq($activeBreak)
+
         &:hover
           background-color: $white
 
@@ -93,11 +138,13 @@
               fill: $navy
 
     +mq($activeBreak)
-      padding-right: 2em
       justify-content: flex-end
 
       a
         border-color: $white
+        
+        &:last-of-type
+          margin-right: 2em
 
         svg
           path

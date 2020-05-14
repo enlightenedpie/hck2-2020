@@ -27,7 +27,39 @@ html
       font-size: 1.25rem
 
     div-spacer
+      margin: 1rem 0
       +div-spacer
     
     div-spacer-white
       +div-spacer-white
+
+    sub, sup
+      font-size: 60%
+
+    sup
+      top: -.8em
+
+body.single
+
+  table
+    display: block
+
+    tbody
+      display: flex
+
+    tr
+      display: block
+    
+    td
+      display: block
+
+.gatsby-image-wrapper
+  width: 100%
+  padding-top: 100%
+
+  & > picture
+    position: absolute !important
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%

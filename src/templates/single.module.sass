@@ -1,29 +1,92 @@
-.singleStage
-  +stageBlock
+.singleFeatured
   background-color: $blue
+  width: 100%
+  margin: 0
 
-  img
-    filter: brightness(50%)
+  +mq('mobile')
+    height: 40vw
+
+  +mq('tportrait')
+    margin: 0 10% 4rem 0
+    width: 40%
+    float: left
+    height: auto
+
+  video, source, img
+    display: block
+    +mq($activeBreak)
+      height: auto
+
+  video, img, article
+    width: 100%
+
+  & > div
+    display: flex
+    align-items: center
+    padding: 2rem
+    height: 100%
+
+    aside, img
+      width: 100%
+      border: .5rem solid $white
+      box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.5)
+
+    aside
+      background-color: get-color("orange",2)
+      padding: 4rem
+      height: 100%
+      +mq($activeBreak)
+        border: 1rem solid $white
+
+      svg
+        display: block
+        width: 100%
+        height: 100%
+
+        path
+          fill: $white
 
 .singleContent
   background-color: white
   padding: 2rem
+  min-height: 100vh
 
-  +mq($activeBreak)
-    padding: 2rem 20%
+  +mq('tportrait')
+    padding: 2rem 15%
+
+  h1
+    color: get-color("green",1)
+    margin-top: 2rem
+    text-align: center
+    font-size: 1.75rem
+
+    +mq('tportrait')
+      text-align: left
+    
+    +mq('laptop')
+      font-size: 2.5rem
 
   img
     width: 100%
     height: auto
+  
+  .bug
+    padding-top: 3rem
+    font-size: .75rem
+    color: get-color("ltgray",1)
 
-  p
+    time
+      font-weight: bold
+
+  .mainContent
+    margin: 3rem 0 0
     line-height: 1.25
 
-.singleCaseStudyHero
-
-  +mq($activeBreak)
-    padding-top: 33.33333%
-
-    img
-      width: 100%
-      height: auto !important
+    +mq($activeBreak)
+      margin: 3rem 12% 0
+    
+    p:first-child
+      +articleText
+    
+    p:not(:first-child)
+      padding-bottom: 1rem

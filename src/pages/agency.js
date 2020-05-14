@@ -1,7 +1,9 @@
 import React from "react"
-
+import { Link, StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
+import Button from "../components/Button"
 import SVG from "../components/SVG"
 import {
   CarouselProvider,
@@ -15,16 +17,34 @@ import "pure-react-carousel/dist/react-carousel.es.css"
 
 import styles from "./agency.module.sass"
 
-const WorkPage = props => {
+const AgencyPage = ({
+  props,
+  wpquery: {
+    page: {
+      seo,
+      featuredImage: {
+        altText: alt,
+        imageFile: { childImageSharp },
+      },
+    },
+    teamMembers: { nodes: teamMembers },
+  },
+}) => {
+  console.log(childImageSharp)
   return (
-    <Layout bodyClass="page-work" {...props} seo={"{}"}>
-      <section className={styles.agency}>{""}</section>
+    <Layout bodyClass="landing agency" {...props} seo={seo}>
+      <section className={styles.agency}>
+        <Img className={styles.imageContainer} {...childImageSharp} />
+      </section>
       <section className={styles.intro}>
-        <h1>Our Agency</h1>
+        <h1>Welcome to HCK2!</h1>
         <p>
-          Whether you're ready to launch a new company, take your existing
-          enterprise to the next level or revitalize your brand to compete more
-          effectively in today's market, you've come to the right place.
+          When you rely on HCK2 for your business communications, you get more
+          than just an agency. You get the experience and insights of proven,
+          award-winning professionals who have put their talents to work for
+          organizations of every size and description. If you’re looking for a
+          team with a track record of long-standing relationships and
+          quantifiable results, we’re it.
         </p>
       </section>
       <section className={styles.content}>
@@ -35,13 +55,13 @@ const WorkPage = props => {
           <div className={styles.who_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.blue}>Who We Are</h2>
-              <hr />
+              <div-spacer />
               <p>
                 HCK2 is a marketing communications agency that offers it all:
-                Creative advertising, design and branding. SOcial media and
-                digital communication. Public relations. Website creation. All
-                rooted in proven brand strategy - and focused on delivering
-                measurable results.
+                creative advertising, design and branding, social media and
+                digital communication, public relations, & web and interactive
+                creation. All rooted in proven brand strategy - and focused on
+                delivering measurable results.
               </p>
               <p>
                 Invite us to serve as an extension of your team and you'll get
@@ -54,44 +74,41 @@ const WorkPage = props => {
           <div className={styles.values_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.orange}>Our Values</h2>
-              <hr />
+              <div-spacer />
               <p>
-                Our own blend of Kool-Aid. The best thing about Kool-Aid is that
-                it mixes well with anything.{" "}
-                <a href="#">Growth, Charity, Integrity and Balance</a> are our
-                flavors. Mix them together and our culture is formed. Sharing
-                sunburns at the Ranger's Ballpark. Giving back to our generous
-                community. Spending long weeks beside our work family. The
-                Kool-Aid is served, on ice.
+                While meeting deadlines is a fundamental requirement in our line
+                of work, that's not what drives us at HCK2. We're united in
+                embracing a culture that promotes giving back and paying it
+                forward… continually expanding our knowledge and skills … going
+                above and beyond to exceed expectations… all while understanding
+                that our lives outside of work is what keeps us grounded, steady
+                and ready to come back every day to give it our all.
               </p>
-              <a href="#" className={[styles.button, styles.orange].join(" ")}>
-                Learn More
-              </a>
             </div>
           </div>
           <div className={styles.values_icons}>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Growth</h4>
+                <SVG.charity />
+                <h4>Charitable Hearts</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Charity</h4>
+                <SVG.knowledge />
+                <h4>Knowledge Seekers</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Integrity</h4>
+                <SVG.ravingFans />
+                <h4>Raving Fans</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.creative />
-                <h4>Balance</h4>
+                <SVG.balance />
+                <h4>Balanced Life</h4>
               </div>
             </div>
           </div>
@@ -102,37 +119,28 @@ const WorkPage = props => {
             <CarouselProvider
               naturalSlideWidth={80}
               naturalSlideHeight={80}
-              totalSlides={3}
+              totalSlides={teamMembers.length}
               className={styles.slider_provider}
             >
               <Slider className={styles.slider}>
-                <Slide index={0} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr</h4>
-                  <p>Testing 1</p>
-                </Slide>
-                <Slide index={1} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr</h4>
-                  <p>Testing 2</p>
-                </Slide>
-                <Slide index={2} className={styles.slide}>
-                  <Image
-                    src="https://picsum.photos/720/460"
-                    hasMasterSpinner="true"
-                    className={styles.slide_image}
-                  />
-                  <h4>David Carr ></h4>
-                  <p>Testing 3 ></p>
-                </Slide>
+                {teamMembers.map((teamMember, i) => {
+                  let splitTitle = teamMember.title.split("|")
+                  return (
+                    <Slide index={i} className={styles.slide}>
+                      <Image
+                        src={
+                          !!teamMember.featuredImage
+                            ? teamMember.featuredImage.sourceUrl
+                            : "https://admin.hck2.com/app/uploads/2020/04/Generic-Profile-Placeholder-v3.png"
+                        }
+                        hasMasterSpinner="true"
+                        className={styles.slide_image}
+                      />
+                      <h4>{splitTitle[0]}</h4>
+                      <p>{!!splitTitle[1] ? splitTitle[1] : ""}</p>
+                    </Slide>
+                  )
+                })}
               </Slider>
               <ButtonBack className={styles.back}>
                 <SVG.back />
@@ -145,16 +153,16 @@ const WorkPage = props => {
           <div className={styles.leader_copy}>
             <div className={styles.copy_container}>
               <h2 className={styles.green}>Our Leadership Team</h2>
-              <hr />
+              <div-spacer />
               <p>
                 Meet our executive leadership team. International agencies and
                 boutiques. Fortune 500 and start-ups. Government and
                 non-profits. We represent experience - and some good stories too
                 - from all and draw upon this experience to guide and inspire.
               </p>
-              <a href="#" className={[styles.button, styles.green].join(" ")}>
-                Meet The Team
-              </a>
+              <Link to="/leadership">
+                <Button color="green">Meet The Team</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -164,28 +172,55 @@ const WorkPage = props => {
   )
 }
 
-export default WorkPage
-
-/* const indexQuery = graphql`
+const agencyQuery = graphql`
   query {
     wpquery {
-      pages(where: { name: "front-page" }) {
+      page(id: "674", idType: DATABASE_ID) {
+        id
+        title
+        seo
+        content
+        featuredImage {
+          sourceUrl
+          altText
+          imageFile {
+            childImageSharp {
+              fluid(webpQuality: 100) {
+                src
+                srcWebp
+                presentationHeight
+                presentationWidth
+                sizes
+                srcSet
+                srcSetWebp
+              }
+            }
+          }
+        }
+      }
+      teamMembers(
+        first: 100
+        where: { orderby: { field: TITLE, order: ASC } }
+      ) {
         nodes {
-          uri
-          id
-          seo
-          contentData
+          slug
+          title
+          featuredImage {
+            sourceUrl
+            srcSet
+            uri
+          }
         }
       }
     }
   }
 `
 
-export default ({ location, ...rest }) => {
+export default ({ team, ...rest }) => {
   return (
     <StaticQuery
-      query={indexQuery}
-      render={query => <FrontPage location={location} {...query} {...rest} />}
+      query={agencyQuery}
+      render={query => <AgencyPage team={team} {...query} {...rest} />}
     />
   )
-} */
+}
