@@ -1,5 +1,5 @@
 import React from "react"
-import PageTransition from "gatsby-plugin-page-transitions"
+import PageTransition from "gatsby-v2-plugin-page-transitions"
 import SEO from "../components/seo"
 import Header from "../components/global/Header"
 import Footer from "../components/global/Footer"

@@ -6457,15 +6457,6 @@ gatsby-plugin-page-creator@^2.3.1:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-page-transitions@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-page-transitions/-/gatsby-plugin-page-transitions-1.0.8.tgz#8283d1d5c2aa5bed8d79b9e23abe1918d0f6ac8e"
-  integrity sha512-mYqQf3YcFO0r9sugl0P0+W1S59fCBbrqT3v7G1a0u5geLLY88FR/RVhnLli3xRVnqvTDEadbP7ofouYAaQAV9g==
-  dependencies:
-    history "^4.7.2"
-    prop-types "^15.6.2"
-    react-transition-group "^2.4.0"
-
 gatsby-plugin-postcss@^2.0.7:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-postcss/-/gatsby-plugin-postcss-2.2.3.tgz#df351d5e28f204a3b19ea2ee8a7ecea520428130"
@@ -6801,6 +6792,15 @@ gatsby-transformer-sharp@^2.5.2:
     probe-image-size "^4.1.1"
     semver "^5.7.1"
     sharp "^0.25.1"
+
+gatsby-v2-plugin-page-transitions@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-v2-plugin-page-transitions/-/gatsby-v2-plugin-page-transitions-1.0.0.tgz#db4c2ae5dcbf3d795814be1ed3584af1ccaacd59"
+  integrity sha512-265tlLPRGOxFY85r8x8zIiIGRdX+8mRcQoCljQrcXf84Kp1WWwCu3V677Q+wcCwZl6zHfvpc/MdsM8C1K/6a3g==
+  dependencies:
+    history "^4.7.2"
+    prop-types "^15.6.2"
+    react-transition-group "^2.4.0"
 
 gatsby@^2.20.29:
   version "2.21.15"

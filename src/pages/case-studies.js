@@ -57,41 +57,22 @@ const CaseStudies = ({
   },
 }) => {
   let { content, id, seo, title } = page,
-    others = [],
     services = {},
-    [active, setActive] = useState("")
+    [active, setActive] = useState(""),
+    others = caseStudies.filter((caseStudy, i) => {
+      if (active === "") return true
+      let servs = []
+
+      caseStudy.services.nodes.map(serv => servs.push(serv.slug))
+
+      return servs.includes(active)
+    })
 
   caseStudies.map((caseStudy, i) => {
-    let { altText: alt, srcSet, sourceUrl: src, mimeType: type } =
-      caseStudy.featuredImage || defImg
-
-    let servs = caseStudy.services.nodes.map(serv => {
+    caseStudy.services.nodes.map(serv => {
       services[serv.slug] = serv.name
       return serv.slug
     })
-
-    if (!active || servs.indexOf(active) < 0) {
-      others.push(
-        <ScrollEffect
-          style={{ animationDelay: (i + 1) * 50 + "ms" }}
-          duration=".5"
-          animateOnce
-          animateIn="h6040fade"
-        >
-          <Link to={stripSite(caseStudy.link)}>
-            <case-study-card>
-              <picture>
-                <source type={type} alt={alt} srcSet={srcSet}></source>
-                <img src={src} alt={alt} />
-              </picture>
-              <h3>{parse(caseStudy.client)}</h3>
-              <em>{parse(caseStudy.title)}</em>
-            </case-study-card>
-          </Link>
-        </ScrollEffect>
-      )
-    }
-
     return caseStudy
   })
 
@@ -113,7 +94,6 @@ const CaseStudies = ({
               e.target.blur()
             }}
             onBlur={e => {
-              others = []
               setActive(e.target.value)
             }}
           >
@@ -134,7 +114,31 @@ const CaseStudies = ({
           " "
         )}
       >
-        {others}
+        <div className={styles.clientAccordion}></div>
+        {others.map((caseStudy, i) => {
+          let { altText: alt, srcSet, sourceUrl: src, mimeType: type } =
+            caseStudy.featuredImage || defImg
+
+          return (
+            <ScrollEffect
+              style={{ animationDelay: (i + 1) * 25 + "ms" }}
+              duration=".5"
+              animateOnce
+              animateIn="h6040fade"
+            >
+              <Link to={stripSite(caseStudy.link)}>
+                <case-study-card>
+                  <picture>
+                    <source type={type} alt={alt} srcSet={srcSet}></source>
+                    <img src={src} alt={alt} />
+                  </picture>
+                  <h3>{parse(caseStudy.client)}</h3>
+                  <em>{parse(caseStudy.title)}</em>
+                </case-study-card>
+              </Link>
+            </ScrollEffect>
+          )
+        })}
       </section>
     </Layout>
   )
