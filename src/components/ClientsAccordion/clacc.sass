@@ -4,29 +4,59 @@
   display: flex
   height: 100%
   flex-flow: column nowrap
+  position: relative
 
   dt
     box-sizing: border-box
-    display: block
+    display: flex
     background: get-color("orange",3)
     color: $white
     padding: .5em 1em
     text-transform: uppercase
     font-weight: normal
     cursor: pointer
+    position: relative
+
+    &.active 
+      & + dd
+        transform: scale3d(1,1,1)
+        padding: 1em
+        height: auto
+
+      &:before
+        transform: rotate(-45deg)
+      
+      &:after
+        transform: rotate(45deg)
+    
+    &:before, &:after
+      position: absolute
+      display: block
+      content: ' '
+      top: 50%
+      width: 1em
+      height: 2px
+      background: $white
+      transition: all 250ms ease-in-out
+
+    &:before
+      right: 2em
+      transform: rotate(45deg)
+    
+    &:after
+      right: calc(1em + 4px)
+      transform: rotate(-45deg)
 
   dd
     box-sizing: border-box
     display: block
     overflow: hidden
-    height: 0px
     font-size: .6rem
-    padding: 1em
-    transition: height 250ms ease-in-out
-    background: rgba(get-color("orange",3), .1)
+    height: 0
+    transform: scale3d(1,0,1)
+    background: rgba(get-color("orange",3), .24)
+    transition: all 250ms ease-in-out
 
     p
-      font-size: .8rem
-
-    &.active
-      height: auto
+      font-size: .75rem
+      line-height: 1.25

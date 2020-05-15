@@ -55,10 +55,11 @@ export default props => {
               onClick={e => {
                 setActive(key)
               }}
+              className={active === key ? "active" : ""}
             >
               {parse(collection[key].name)}
             </dt>
-            <dd className={active === key ? "active" : ""}>
+            <dd>
               {collection[key].list.map(val => (
                 <p>{val}</p>
               ))}
