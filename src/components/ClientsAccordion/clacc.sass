@@ -1,0 +1,32 @@
+.clacc
+  font-size: .6rem
+  box-sizing: border-box
+  display: flex
+  height: 100%
+  flex-flow: column nowrap
+
+  dt
+    box-sizing: border-box
+    display: block
+    background: get-color("orange",3)
+    color: $white
+    padding: .5em 1em
+    text-transform: uppercase
+    font-weight: normal
+    cursor: pointer
+
+  dd
+    box-sizing: border-box
+    display: block
+    overflow: hidden
+    height: 0px
+    font-size: .6rem
+    padding: 1em
+    transition: height 250ms ease-in-out
+    background: rgba(get-color("orange",3), .1)
+
+    p
+      font-size: .8rem
+
+    &.active
+      height: auto

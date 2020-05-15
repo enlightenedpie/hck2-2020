@@ -2,8 +2,10 @@ import React, { useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
-import Layout from "../templates/layout"
 import { stripSite } from "../utils"
+
+import Layout from "../templates/layout"
+import ClientsAccordion from "../components/ClientsAccordion"
 
 import styles from "../templates/landings.module.sass"
 
@@ -114,7 +116,10 @@ const CaseStudies = ({
           " "
         )}
       >
-        <div className={styles.clientAccordion}></div>
+        <div className={styles.clientAccordion}>
+          <h2>Clients We Serve</h2>
+          <ClientsAccordion />
+        </div>
         {others.map((caseStudy, i) => {
           let { altText: alt, srcSet, sourceUrl: src, mimeType: type } =
             caseStudy.featuredImage || defImg
