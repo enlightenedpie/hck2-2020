@@ -64,13 +64,13 @@ export default ({
 
   return (
     <Layout seo={seo} bodyClass="landing blog-news-media">
-      {/* <section className={styles.landingIntro}>
+      <section className={styles.landingIntro}>
         <div>
           <h1>{name}</h1>
           <div-spacer />
           <p>{parse(description)}</p>
         </div>
-      </section> */}
+      </section>
       <section className={styles.heroes}>
         <Media6040 data={heroes} />
       </section>
