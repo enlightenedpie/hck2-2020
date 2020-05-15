@@ -97,7 +97,7 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-page-transitions`,
+      resolve: `gatsby-v2-plugin-page-transitions`,
       options: {
         transitionTime: 250,
       },
