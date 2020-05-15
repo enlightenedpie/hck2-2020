@@ -30,12 +30,11 @@ const AgencyPage = ({
     teamMembers: { nodes: teamMembers },
   },
 }) => {
-  console.log(childImageSharp)
   return (
     <Layout bodyClass="landing agency" {...props} seo={seo}>
-      <section className={styles.agency}>
+      {/* <section className={styles.agency}>
         <Img className={styles.imageContainer} {...childImageSharp} />
-      </section>
+      </section> */}
       <section className={styles.intro}>
         <h1>Welcome to HCK2!</h1>
         <p>
@@ -50,7 +49,9 @@ const AgencyPage = ({
       <section className={styles.content}>
         <div className={styles.content_row}>
           <div className={styles.who_image}>
-            <div className={styles.square}></div>
+            <div className={styles.square}>
+              <Img className={styles.imageContainer} {...childImageSharp} />
+            </div>
           </div>
           <div className={styles.who_copy}>
             <div className={styles.copy_container}>

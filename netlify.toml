@@ -12,3 +12,6 @@
   force = true
   headers = {X-From = "Netlify Front-End"}
   signed = "API_SIGNATURE_TOKEN"
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"

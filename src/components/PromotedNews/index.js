@@ -37,7 +37,7 @@ export default props => {
   return (
     <div {...props}>
       <h4>
-        <Link to="/news">Newsroom</Link>
+        <Link to="/news">News</Link>
       </h4>
       <div-spacer />
       <Link to={stripSite(uri)}>
