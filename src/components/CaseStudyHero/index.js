@@ -1,22 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
-import HtmlToReact from "html-to-react"
+import Img from "gatsby-image"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 
 import Button from "../Button"
-import { stripSite } from "../../utils"
+import { stripSite, imageDefaults } from "../../utils"
 
 import styles from "./caseyjones.module.sass"
-
-const HTR = new HtmlToReact.Parser()
-
-const defImg = {
-  id: "",
-  altText: "",
-  sourceUrl: "",
-  mimeType: "",
-  srcSet: "",
-}
 
 export default ({
   isAtTop = false,
@@ -32,7 +23,7 @@ export default ({
 }) => {
   let colores = ["blue", "orange", "green"],
     { id, altText: alt, sourceUrl: src, mimeType: type, srcSet } =
-      featuredImage || defImg,
+      featuredImage || imageDefaults,
     newId = "_csHero-" + id.replace("=", ""),
     items = []
 
@@ -62,15 +53,11 @@ export default ({
       <div className={styles.informatic}>
         <div>
           <div>
+            {isAtTop ? <h1>{parse(client)}</h1> : <h3>{parse(client)}</h3>}
             {isAtTop ? (
-              <h1>{HTR.parse(client)}</h1>
+              <h2 className={styles[colores[idx]]}>{parse(title)}</h2>
             ) : (
-              <h3>{HTR.parse(client)}</h3>
-            )}
-            {isAtTop ? (
-              <h2 className={styles[colores[idx]]}>{HTR.parse(title)}</h2>
-            ) : (
-              <h4 className={styles[colores[idx]]}>{HTR.parse(title)}</h4>
+              <h4 className={styles[colores[idx]]}>{parse(title)}</h4>
             )}
             <aside className={styles.csStats}>{items}</aside>
             {hasMore ? (

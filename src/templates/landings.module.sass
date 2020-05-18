@@ -94,10 +94,16 @@
   width: 100%
   padding: 1rem
   position: relative
-  grid-column: 1 / 3
-  grid-row: 1 / 3
   box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.10)
   transition: box-shadow 250ms ease-in-out
+  +mq($activeBreak)
+    order: -1
+  
+  +mq('mobile')
+    grid-column: 1 / 3
+
+  +mq('tportrait')
+    grid-row: 1 / 3
 
   &:hover
     box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
@@ -108,16 +114,18 @@
     margin-bottom: .5rem
 
 .contentCardContainer
+  position: relative
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
-  grid-auto-rows: 1fr
   gap: 2rem
+  +mq($activeBreak)
+    grid-auto-rows: 1fr
 
   picture
     svg
       display: block
       position: absolute
-      top: 0
+      top: 4rem
       background-color: $white
 
   & > div

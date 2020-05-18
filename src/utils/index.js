@@ -23,3 +23,5 @@ export const defPost = {
   uri: "",
   featuredImage: null,
 }
+
+export const breakPoints = [1600, 1366, 1024, 768, 576]
