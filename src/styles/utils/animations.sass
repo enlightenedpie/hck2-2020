@@ -46,6 +46,14 @@
     opacity: 1
     transform: translate3d(0,0,0)
 
+@keyframes valuesIn
+  from
+    opacity: 0
+    transform: translate3d(0,-2rem,0)
+  to
+    opacity: 1
+    transform: translate3d(0,0,0)
+
 .statsIn
   animation-timing-function: cubic-bezier(.25,1.35,.65,.98)
   animation-fill-mode: both
@@ -68,3 +76,23 @@
 
 .h6040fade
   animation: h6040fade 250ms ease-in-out both
+
+.valuesIn
+  animation-timing-function: cubic-bezier(.25,1.35,.65,.98)
+  animation-fill-mode: both
+  animation-name: valuesIn
+
+  &:nth-of-type(2n+1)
+    animation-delay: 0s
+
+  &:nth-of-type(2n+2)
+    animation-delay: .5s
+
+  &:nth-of-type(2n+3)
+    animation-delay: 1s
+  
+  &:nth-of-type(2n+4)
+    animation-delay: 1.5s
+  
+  &:nth-of-type(2n+5)
+    animation-delay: 2s

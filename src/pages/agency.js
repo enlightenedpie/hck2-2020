@@ -90,13 +90,13 @@ const AgencyPage = ({
           <div className={styles.values_icons}>
             <div className={styles.value_square}>
               <div>
-                <SVG.charity />
+                <SVG.charitableHearts />
                 <h4>Charitable Hearts</h4>
               </div>
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.knowledge />
+                <SVG.knowledgeSeekers />
                 <h4>Knowledge Seekers</h4>
               </div>
             </div>
@@ -108,7 +108,7 @@ const AgencyPage = ({
             </div>
             <div className={styles.value_square}>
               <div>
-                <SVG.balance />
+                <SVG.balancedLife />
                 <h4>Balanced Life</h4>
               </div>
             </div>

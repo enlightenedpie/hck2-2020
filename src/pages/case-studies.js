@@ -116,10 +116,6 @@ const CaseStudies = ({
           " "
         )}
       >
-        <div className={styles.clientAccordion}>
-          <h2>Clients We Serve</h2>
-          <ClientsAccordion />
-        </div>
         {others.map((caseStudy, i) => {
           let { altText: alt, srcSet, sourceUrl: src, mimeType: type } =
             caseStudy.featuredImage || defImg
@@ -144,6 +140,10 @@ const CaseStudies = ({
             </ScrollEffect>
           )
         })}
+        <div className={styles.clientAccordion}>
+          <h2>Clients We Serve</h2>
+          <ClientsAccordion />
+        </div>
       </section>
     </Layout>
   )
