@@ -59,7 +59,7 @@ module.exports = {
         useResolveUrlLoader: true,
       },
     },
-    {
+    /* {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
@@ -67,7 +67,7 @@ module.exports = {
           urls: ["/assets/fonts/fonts.css"],
         },
       },
-    },
+    }, */
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
