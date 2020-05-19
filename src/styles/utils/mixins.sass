@@ -8,10 +8,33 @@
 @mixin angleBlock
   clip-path: polygon(0 0,100% $angleDist,100% 100%,0 calc(100% - #{$angleDist}))
 
+@mixin landingIntro
+  padding: 4rem 0
+  text-align: center
+  background-color: $navy
+  color: $white
+  display: flex
+  justify-content: center
+  align-items: center
+
+  & > div
+    padding: 4rem 2rem 0
+    width: 100%
+
+    +mq($activeBreak)
+      padding: 4rem 20%
+
+    h1
+      color: $orange
+      margin-bottom: 1rem
+
+    div-spacer-white
+      margin: 2rem 0
+
 @mixin stageBlock
   width: 100%
   position: relative
-  margin-top: 3rem
+  margin-top: 4rem
   padding-top: 56.25%
   overflow: hidden
 

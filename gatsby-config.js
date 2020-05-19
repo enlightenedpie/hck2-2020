@@ -60,6 +60,15 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["Roboto, BarlowCondensed"],
+          urls: ["/assets/fonts/fonts.css"],
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-postcss`,
       options: {
         postCssPlugins: [

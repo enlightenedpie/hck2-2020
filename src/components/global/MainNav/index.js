@@ -68,6 +68,7 @@ const MainNav = ({ mainNav, xtraClass }) => {
           to: url,
           href: url,
           rel: rel,
+          activeClassName: "isActive",
           ...rest,
         }
 

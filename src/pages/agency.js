@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
 import Button from "../components/Button"
@@ -21,7 +22,10 @@ const AgencyPage = ({
   props,
   wpquery: {
     page: {
+      id,
+      title,
       seo,
+      content,
       featuredImage: {
         altText: alt,
         imageFile: { childImageSharp },
@@ -32,19 +36,12 @@ const AgencyPage = ({
 }) => {
   return (
     <Layout bodyClass="landing agency" {...props} seo={seo}>
-      {/* <section className={styles.agency}>
-        <Img className={styles.imageContainer} {...childImageSharp} />
-      </section> */}
-      <section className={styles.intro}>
-        <h1>Welcome to HCK2!</h1>
-        <p>
-          When you rely on HCK2 for your business communications, you get more
-          than just an agency. You get the experience and insights of proven,
-          award-winning professionals who have put their talents to work for
-          organizations of every size and description. If you’re looking for a
-          team with a track record of long-standing relationships and
-          quantifiable results, we’re it.
-        </p>
+      <section className={styles.agencyIntro}>
+        <div>
+          <h1>{parse(title)}</h1>
+          <div-spacer-white />
+          {parse(content)}
+        </div>
       </section>
       <section className={styles.content}>
         <div className={styles.content_row}>
