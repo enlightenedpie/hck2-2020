@@ -6,15 +6,6 @@ import Layout from "../templates/layout"
 import Testimonials from "../components/Testimonials"
 import Button from "../components/Button"
 import SVG from "../components/SVG"
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  Image,
-  ButtonNext,
-  ButtonBack,
-} from "pure-react-carousel"
-import "pure-react-carousel/dist/react-carousel.es.css"
 
 import styles from "./agency.module.sass"
 
@@ -30,10 +21,20 @@ const AgencyPage = ({
         altText: alt,
         imageFile: { childImageSharp },
       },
+      childPages: { nodes: childPages },
     },
-    teamMembers: { nodes: teamMembers },
   },
 }) => {
+  let cpLeadership = childPages[0],
+    {
+      content: cpContent,
+      title: cpTitle,
+      featuredImage: {
+        altText: cpAlt,
+        imageFile: { childImageSharp: cpChildImageSharp },
+      },
+    } = cpLeadership
+
   return (
     <Layout bodyClass="landing agency" {...props} seo={seo}>
       <section className={styles.agencyIntro}>
@@ -44,8 +45,13 @@ const AgencyPage = ({
         </div>
       </section>
       <section className={styles.content}>
-        <Img className={styles.imageContainer} {...childImageSharp} />
-        <article>
+        <Img
+          alt={alt}
+          style={{ order: 1 }}
+          className={styles.imageContainer}
+          {...childImageSharp}
+        />
+        <article style={{ order: 2 }}>
           <div>
             <h2 className={styles.blue}>Who We Are</h2>
             <div-spacer />
@@ -59,21 +65,6 @@ const AgencyPage = ({
             <p>
               Invite us to serve as an extension of your team and you'll get so
               much more than you ever imagined!
-            </p>
-          </div>
-        </article>
-        <article>
-          <div>
-            <h2 className={styles.orange}>Our Values</h2>
-            <div-spacer />
-            <p>
-              While meeting deadlines is a fundamental requirement in our line
-              of work, that's not what drives us at HCK2. We're united in
-              embracing a culture that promotes giving back and paying it
-              forward… continually expanding our knowledge and skills … going
-              above and beyond to exceed expectations… all while understanding
-              that our lives outside of work is what keeps us grounded, steady
-              and ready to come back every day to give it our all.
             </p>
           </div>
         </article>
@@ -103,19 +94,27 @@ const AgencyPage = ({
             </div>
           </div>
         </div>
-        <div className={styles.leader_slider}>
-          <div className={styles.square}></div>
-        </div>
-        <article>
+        <article style={{ order: 3 }}>
           <div>
-            <h2 className={styles.green}>Our Leadership Team</h2>
+            <h2 className={styles.orange}>Our Values</h2>
             <div-spacer />
             <p>
-              Meet our executive leadership team. International agencies and
-              boutiques. Fortune 500 and start-ups. Government and non-profits.
-              We represent experience - and some good stories too - from all and
-              draw upon this experience to guide and inspire.
+              While meeting deadlines is a fundamental requirement in our line
+              of work, that's not what drives us at HCK2. We're united in
+              embracing a culture that promotes giving back and paying it
+              forward… continually expanding our knowledge and skills … going
+              above and beyond to exceed expectations… all while understanding
+              that our lives outside of work is what keeps us grounded, steady
+              and ready to come back every day to give it our all.
             </p>
+          </div>
+        </article>
+        <Img style={{ order: 5 }} alt={cpAlt} {...cpChildImageSharp} />
+        <article style={{ order: 6 }}>
+          <div>
+            <h2 className={styles.green}>{parse(cpTitle)}</h2>
+            <div-spacer />
+            {parse(cpContent)}
             <Link to="/leadership">
               <Button color="green">Meet The Team</Button>
             </Link>
@@ -140,30 +139,23 @@ const agencyQuery = graphql`
           altText
           imageFile {
             childImageSharp {
-              fluid(webpQuality: 100) {
-                src
-                srcWebp
-                presentationHeight
-                presentationWidth
-                sizes
-                srcSet
-                srcSetWebp
-              }
+              ...hck2FluidImage
             }
           }
         }
-      }
-      teamMembers(
-        first: 100
-        where: { orderby: { field: TITLE, order: ASC } }
-      ) {
-        nodes {
-          slug
-          title
-          featuredImage {
-            sourceUrl
-            srcSet
-            uri
+        childPages(where: { name: "leadership" }) {
+          nodes {
+            content
+            title
+            featuredImage {
+              altText
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  ...hck2FluidImage
+                }
+              }
+            }
           }
         }
       }

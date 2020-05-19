@@ -7,7 +7,11 @@ import Footer from "../components/global/Footer"
 
 export const fluidFragment = graphql`
   fragment hck2FluidImage on ImageSharp {
-    fluid(maxWidth: 1920, srcSetBreakpoints: [1600, 1366, 1024, 768, 576]) {
+    fluid(
+      maxWidth: 1920
+      srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
+      webpQuality: 80
+    ) {
       src
       srcSet
       srcSetWebp

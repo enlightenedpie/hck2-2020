@@ -12,11 +12,7 @@ export default props => {
           nodes {
             slug
             name
-            caseStudies(first: 500, where: { status: PUBLISH }) {
-              nodes {
-                client
-              }
-            }
+            clientList
           }
         }
       }
@@ -40,12 +36,14 @@ export default props => {
       name: tags[i].name,
       list: [],
     }
-    tags[i].caseStudies.nodes.map(cs => {
-      collection[tags[i].slug].list.push(cs.client)
+    let cList = JSON.parse(tags[i].clientList)
+    cList.map(cs => {
+      collection[tags[i].slug].list.push(cs)
       return cs
     })
   }
 
+  console.log(collection)
   return (
     <dl className="clacc">
       {Object.keys(collection).map((key, ind) => {
