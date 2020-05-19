@@ -1,11 +1,9 @@
 import React, { useState } from "react"
 import { StaticQuery, graphql } from "gatsby"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Button from "../components/Button"
 import styles from "./contact.module.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 const encode = data => {
   return Object.keys(data)
@@ -31,7 +29,7 @@ const ContactPage = ({
         <div>
           <h1>{pages[0].title}</h1>
           <div-spacer-white />
-          {HTR.parse(pages[0].content)}
+          {parse(pages[0].content)}
         </div>
       </div>
       <section className={styles.contactContent}>

@@ -1,0 +1,118 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/fonts/Roboto/Roboto-300.eot");
+  src: url("/assets/fonts/Roboto/Roboto-300.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Roboto/Roboto-300.woff") format("woff"),
+    url("/assets/fonts/Roboto/Roboto-300.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/fonts/Roboto/Roboto-700.eot");
+  src: url("/assets/fonts/Roboto/Roboto-700.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Roboto/Roboto-700.woff") format("woff"),
+    url("/assets/fonts/Roboto/Roboto-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/fonts/Roboto/Roboto-300Italic.eot");
+  src: url("/assets/fonts/Roboto/Roboto-300Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Roboto/Roboto-300Italic.woff") format("woff"),
+    url("/assets/fonts/Roboto/Roboto-300Italic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/assets/fonts/Roboto/Roboto-700Italic.eot");
+  src: url("/assets/fonts/Roboto/Roboto-700Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Roboto/Roboto-700Italic.woff") format("woff"),
+    url("/assets/fonts/Roboto/Roboto-700Italic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-300.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-300.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-300.woff") format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-300.ttf")
+      format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-500.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-500.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-500.woff") format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-500.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-800.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-800.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-800.woff") format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-800.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-300Italic.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-300Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-300Italic.woff")
+      format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-300Italic.ttf")
+      format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-500Italic.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-500Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-500Italic.woff")
+      format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-500Italic.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-800Italic.eot");
+  src: url("/assets/fonts/BarlowCondensed/BarlowCondensed-800Italic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-800Italic.woff")
+      format("woff"),
+    url("/assets/fonts/BarlowCondensed/BarlowCondensed-800Italic.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
