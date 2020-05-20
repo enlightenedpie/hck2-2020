@@ -62,6 +62,16 @@ const Footer = ({ siteMetadata }) => {
             <h5>Stay Connected</h5>
             <Newsletter />
             <SocialNav xtraClass={styles.snFooter} />
+            <div className={styles.endorsements}>
+              <img
+                alt="Women's Business Enterprise National Council"
+                src="/assets/wben-org-header.png"
+              />
+              <img
+                alt="State of Texas Historically Underutilized Business"
+                src="/assets/hub.png"
+              />
+            </div>
           </div>
         </div>
         <copy-right>

@@ -14,7 +14,7 @@ import "../h6040anim.sass"
 const query = graphql`
   query {
     wpquery {
-      services {
+      services(where: { orderby: TERM_ID }) {
         nodes {
           name
           uri
@@ -31,6 +31,14 @@ const query = graphql`
 `
 
 const Services6040 = ({ data }) => {
+  let orderBy = [
+    "marketing-strategy",
+    "creative",
+    "digital-social",
+    "pr",
+    "web",
+  ]
+  data.sort(el => orderBy.indexOf(el.slug))
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {

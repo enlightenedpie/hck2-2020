@@ -88,27 +88,29 @@ const CaseStudies = ({
         </div>
       </section>
       <section className={styles.serviceFilter}>
-        <div>Filter Work By: </div>
-        <div className={styles.selectWrapper}>
-          <select
-            name="serviceLines"
-            onChange={e => {
-              e.target.blur()
-            }}
-            onBlur={e => {
-              setActive(e.target.value)
-            }}
-          >
-            <option selected disabled>
-              Choose One...
-            </option>
-            <option value="">All Case Studies</option>
-            {Object.keys(services)
-              .sort()
-              .map(slug => {
-                return <option value={slug}>{parse(services[slug])}</option>
-              })}
-          </select>
+        <div>
+          <div>Filter Work By: </div>
+          <div className={styles.selectWrapper}>
+            <select
+              name="serviceLines"
+              onChange={e => {
+                e.target.blur()
+              }}
+              onBlur={e => {
+                setActive(e.target.value)
+              }}
+            >
+              <option selected disabled>
+                Choose One...
+              </option>
+              <option value="">All Case Studies</option>
+              {Object.keys(services)
+                .sort()
+                .map(slug => {
+                  return <option value={slug}>{parse(services[slug])}</option>
+                })}
+            </select>
+          </div>
         </div>
       </section>
       <section
