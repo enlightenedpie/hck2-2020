@@ -4,7 +4,7 @@ module.exports = {
     author: "HCK2 Marketing + Communications",
     description: "HCK2 Marketing + Communications",
     siteUrl: "https://hck2.com",
-    address: "Vitruvian Park\n3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
+    address: "3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
     separator: "|",
   },
@@ -115,11 +115,14 @@ module.exports = {
       resolve: `gatsby-source-googlemaps-static`,
       options: {
         key: `AIzaSyAAdvgg4M-WqLiOJ1tL2rWutnXw88WuTSQ`,
-        center: `32.9355065,-96.8510314`,
+        center: `3875 Ponte Ave., Addison, Tx 75001`,
         zoom: `18`,
+        size: `700`,
         markers: [
           {
-            location: `32.9355065,-96.8510314`,
+            location: `3875 Ponte Ave, Addison, Tx 75001`,
+            color: `0xE87722`,
+            scale: `2`,
           },
         ],
       },

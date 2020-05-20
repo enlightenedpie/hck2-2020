@@ -1,10 +1,18 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
-import HtmlToReact from "html-to-react"
-import "./mainnav.module.sass"
+import parse from "html-react-parser"
+import styles from "./mainnav.module.sass"
+import { library, dom } from "@fortawesome/fontawesome-svg-core"
+import { fas } from "@fortawesome/free-solid-svg-icons"
 
 const mainQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        address
+        phone
+      }
+    }
     wpquery {
       menus(where: { slug: "mainnav" }) {
         nodes {
@@ -34,9 +42,18 @@ const mainQuery = graphql`
   }
 `
 
-const HTR = new HtmlToReact.Parser()
-
-const MainNav = ({ mainNav, xtraClass }) => {
+const MainNav = ({
+  inFooter = false,
+  site: {
+    siteMetadata: { address, phone },
+  },
+  mainNav,
+  xtraClass,
+}) => {
+  useEffect(() => {
+    library.add(fas)
+    dom.i2svg()
+  })
   return (
     <nav
       role="navigation"
@@ -64,7 +81,7 @@ const MainNav = ({ mainNav, xtraClass }) => {
               cssClasses
             )
             .join(" "),
-          title: HTR.parse(title),
+          title: parse(title),
           to: url,
           href: url,
           rel: rel,
@@ -108,6 +125,25 @@ const MainNav = ({ mainNav, xtraClass }) => {
           </TheLink>
         )
       })}
+      {!inFooter && (
+        <address className={[styles.mobileInfo, "desktop-hidden"].join(" ")}>
+          <p>
+            <a href={"tel:" + phone}>
+              <i class="fas fa-phone"></i>
+              <span>{phone}</span>
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=3875%20Ponte%20Ave.%2C%20Addison%2C%20Tx%2075001"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{address}</span>
+            </a>
+          </p>
+        </address>
+      )}
     </nav>
   )
 }
@@ -120,6 +156,7 @@ export default props => {
         <MainNav
           {...props}
           mainNav={query.wpquery.menus.nodes[0].menuItems.nodes}
+          site={query.site}
         />
       )}
     />
