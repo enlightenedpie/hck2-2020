@@ -43,7 +43,6 @@ export default props => {
     })
   }
 
-  console.log(collection)
   return (
     <dl className="clacc">
       {Object.keys(collection).map((key, ind) => {

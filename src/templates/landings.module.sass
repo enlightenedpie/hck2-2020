@@ -32,39 +32,42 @@
 
 .serviceFilter
   background-color: get-color('blue',3)
-  padding: 1rem
-  color: $white
-
-  +mq($activeBreak)
-    padding: .5rem 25%
-    display: flex
-    flex-flow: row nowrap
-    align-items: center
-
-  div:first-child
-    padding-bottom: 1rem
-    white-space: nowrap
-    +mq($activeBreak)
-      padding-right: 1rem
-      padding-bottom: 0
+  padding-left: 50%
   
-  .selectWrapper
-    border: 1px solid get-color('blue',1)
-    position: relative
-    width: 100%
-    border-radius: .25rem
-    overflow: hidden
+  & > div
+    padding: 1rem
+    color: $white
 
-    &::after
-      content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
-      background-color: get-color('blue',3)
+    +mq($activeBreak)
+      padding: .5rem 25% .5rem 1rem
       display: flex
-      position: absolute
-      top: 0
-      right: 0
-      bottom: 0
-      width: 1.5rem
-      pointer-events: none
+      flex-flow: row nowrap
+      align-items: center
+
+    div:first-child
+      padding-bottom: 1rem
+      white-space: nowrap
+      +mq($activeBreak)
+        padding-right: 1rem
+        padding-bottom: 0
+    
+    .selectWrapper
+      border: 1px solid get-color('blue',1)
+      position: relative
+      width: 100%
+      border-radius: .25rem
+      overflow: hidden
+
+      &::after
+        content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
+        background-color: get-color('blue',3)
+        display: flex
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        width: 1.5rem
+        pointer-events: none
 
   select
     appearance: none
