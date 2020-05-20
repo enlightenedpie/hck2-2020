@@ -53,6 +53,12 @@ body.single
     td
       display: block
 
+
 .desktop-hidden
   +mq($activeBreak)
     display: none !important
+
+nav.inFooter
+  & > .desktop-hidden
+    +mq($activeBreak)
+      display: block !important

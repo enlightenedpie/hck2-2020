@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
 import parse from "html-react-parser"
 import styles from "./mainnav.module.sass"
@@ -54,11 +54,15 @@ const MainNav = ({
     library.add(fas)
     dom.i2svg()
   })
+
+  let [active, setActive] = useState("")
+
   return (
     <nav
       role="navigation"
       aria-label="Main Navigation"
       onClick={e => e.stopPropagation()}
+      className={inFooter ? "inFooter" : ""}
     >
       {mainNav.map((noda, idx) => {
         let {
@@ -77,7 +81,12 @@ const MainNav = ({
           key: key,
           className: []
             .concat(
-              [xtraClass, "node--menuItem " + menuItemId + "__itemID_" + key],
+              [
+                chilrens.length > 0 ? "hasSubnav" : null,
+                active === title ? "active" : null,
+                xtraClass,
+                "node--menuItem " + menuItemId + "__itemID_" + key,
+              ],
               cssClasses
             )
             .join(" "),
@@ -94,10 +103,19 @@ const MainNav = ({
         let TheLink = url === "#" ? "a" : Link
 
         return (
-          <TheLink {...theAtts}>
+          <TheLink
+            {...theAtts}
+            onClick={e => {
+              if (window.innerWidth > 576 || chilrens.length == 0) return true
+
+              if (active == title) return true
+
+              e.preventDefault() || setActive(title)
+            }}
+          >
             {label}
             {chilrens.length > 0 && (
-              <div>
+              <div className={inFooter ? "desktop-hidden" : "subnav"}>
                 <span>
                   {chilrens.map((chld, index) => {
                     let key2 = ((index + 1) * 25 * Math.random()).toString(16)
