@@ -36,7 +36,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
       <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
-        <PromotedNews className={styles.media} />
+        <PromotedNews className={styles.news} />
       </section>
     </Layout>
   )
@@ -53,12 +53,14 @@ const indexQuery = graphql`
           stats
           status
           featuredImage {
-            altText
             id
-            srcSet
-            title
+            altText
             sourceUrl
-            mimeType
+            imageFile {
+              childImageSharp {
+                ...hck2FluidImage
+              }
+            }
           }
         }
       }

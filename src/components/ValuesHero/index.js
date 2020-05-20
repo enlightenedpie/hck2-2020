@@ -3,7 +3,7 @@ import Img from "gatsby-image"
 import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 import SVG from "../SVG"
-import { kebabToCamel } from "../../utils"
+import { kebabToCamel, imageDefaults } from "../../utils"
 
 import styles from "./valuesHero.module.sass"
 
@@ -20,18 +20,8 @@ export default ({
   return (
     <article className={[styles.valuesHero].join(" ")}>
       <Img
-        style={{ position: "", overflow: "" }}
-        imgStyle={{
-          position: "",
-          top: "",
-          left: "",
-          transition: "",
-          opacity: "",
-          objectPosition: "",
-          objectFit: "",
-          height: "",
-          width: "",
-        }}
+        loading="auto"
+        {...imageDefaults}
         className={["hero", styles.valuesHeroImg].join(" ")}
         alt={alt}
         {...childImageSharp}

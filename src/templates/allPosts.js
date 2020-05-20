@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 import Layout from "./layout"
@@ -81,8 +82,10 @@ export default ({
         ].join(" ")}
       >
         {others.map((item, idx) => {
-          let { altText: alt, sourceUrl: src, ...fi } =
-            item.featuredImage || imageDefaults
+          let {
+            altText: alt,
+            imageFile: { childImageSharp },
+          } = item.featuredImage
           return (
             <ScrollEffect
               style={{ animationDelay: (idx + 1) * 50 + "ms" }}
@@ -92,13 +95,19 @@ export default ({
             >
               <Link to={stripSite(item.uri)}>
                 <case-study-card>
-                  <picture>
-                    {src ? (
-                      <img src={src} alt={alt} {...fi} />
-                    ) : (
+                  {alt ? (
+                    <Img
+                      loading="auto"
+                      className={[styles.csImg].join(" ")}
+                      alt={alt}
+                      {...childImageSharp}
+                      {...imageDefaults}
+                    />
+                  ) : (
+                    <picture>
                       <SVG.LogoNoText />
-                    )}
-                  </picture>
+                    </picture>
+                  )}
                   <h3>{parse(item.title)}</h3>
                 </case-study-card>
               </Link>
@@ -132,12 +141,13 @@ export const query = graphql`
             slug
             seo
             featuredImage {
-              title
-              srcSet
-              sourceUrl
-              mimeType
-              link
               altText
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  ...hck2FluidImage
+                }
+              }
             }
           }
         }

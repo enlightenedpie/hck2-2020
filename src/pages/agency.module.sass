@@ -14,6 +14,7 @@ $gray: #91A2AC
 
 	+mq($activeBreak)
 		grid-template-columns: repeat(2, minmax(400px, 1fr))
+		grid-auto-rows: 1fr
 
 	& > article
 		display: flex
@@ -102,6 +103,5 @@ h2
 	&.green
 		color: $green
 
-.square
-	width: 100%
-	padding-top: 100%
+.agencyImg
+	+img1x1

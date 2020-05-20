@@ -39,11 +39,22 @@ exports.createPages = ({ actions, graphql }) => {
               }
               featuredImage {
                 altText
-                databaseId
-                mimeType
                 sourceUrl
-                srcSet
-                title
+                imageFile {
+                  childImageSharp {
+                    fluid(
+                      maxWidth: 1920
+                      srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
+                      webpQuality: 80
+                    ) {
+                      src
+                      srcSet
+                      srcSetWebp
+                      srcWebp
+                      sizes
+                    }
+                  }
+                }
               }
             }
           }
@@ -105,16 +116,23 @@ exports.createPages = ({ actions, graphql }) => {
                 status
                 date
                 featuredImage {
-                  uri
-                  title
-                  srcSet
-                  sourceUrl
-                  sizes
-                  mediaType
-                  mimeType
-                  id
-                  databaseId
                   altText
+                  sourceUrl
+                  imageFile {
+                    childImageSharp {
+                      fluid(
+                        maxWidth: 1920
+                        srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
+                        webpQuality: 80
+                      ) {
+                        src
+                        srcSet
+                        srcSetWebp
+                        srcWebp
+                        sizes
+                      }
+                    }
+                  }
                 }
               }
               services {
@@ -124,7 +142,27 @@ exports.createPages = ({ actions, graphql }) => {
                   description
                   databaseId
                   seo
-                  featuredImg
+                  taxonomyFeaturedImage {
+                    featuredImage {
+                      altText
+                      sourceUrl
+                      imageFile {
+                        childImageSharp {
+                          fluid(
+                            maxWidth: 1920
+                            srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
+                            webpQuality: 80
+                          ) {
+                            src
+                            srcSet
+                            srcSetWebp
+                            srcWebp
+                            sizes
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -225,16 +263,23 @@ exports.createPages = ({ actions, graphql }) => {
                   databaseId
                   uri
                   featuredImage {
-                    uri
-                    title
-                    srcSet
-                    sourceUrl
-                    sizes
-                    mediaType
-                    id
-                    mimeType
-                    databaseId
                     altText
+                    sourceUrl
+                    imageFile {
+                      childImageSharp {
+                        fluid(
+                          maxWidth: 1920
+                          srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
+                          webpQuality: 80
+                        ) {
+                          src
+                          srcSet
+                          srcSetWebp
+                          srcWebp
+                          sizes
+                        }
+                      }
+                    }
                   }
                 }
               }

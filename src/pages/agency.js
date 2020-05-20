@@ -46,9 +46,10 @@ const AgencyPage = ({
       </section>
       <section className={styles.content}>
         <Img
+          loading="auto"
           alt={alt}
           style={{ order: 1 }}
-          className={styles.imageContainer}
+          className={["square", styles.agencyImg].join(" ")}
           {...childImageSharp}
         />
         <article style={{ order: 2 }}>
@@ -107,9 +108,18 @@ const AgencyPage = ({
               that our lives outside of work is what keeps us grounded, steady
               and ready to come back every day to give it our all.
             </p>
+            <Link to="/values">
+              <Button color="orange">Learn More</Button>
+            </Link>
           </div>
         </article>
-        <Img style={{ order: 5 }} alt={cpAlt} {...cpChildImageSharp} />
+        <Img
+          loading="auto"
+          style={{ order: 5 }}
+          alt={cpAlt}
+          className={["square", styles.agencyImg].join(" ")}
+          {...cpChildImageSharp}
+        />
         <article style={{ order: 6 }}>
           <div>
             <h2 className={styles.green}>{parse(cpTitle)}</h2>

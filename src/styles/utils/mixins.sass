@@ -69,14 +69,59 @@
   left: 0
   right: 0
 
-  img
+  picture
+    height: 100%
+
+    img
+      display: block
+      position: absolute
+      height: 100%
+      top: 50%
+      left: 50%
+      transform: translate3d(-50%,-50%,0)
+      filter: brightness(.4)
+
+@mixin imgBorder
+  border: .5rem solid $white
+
+@mixin inlineImg
+  position: relative
+  overflow: hidden
+
+  &[class*="square"]
+    img, svg
+      width: 100%
+      height: 100%
+
+  &:not([class*="square"])
+    img
+      top: 50%
+      left: 50%
+      transform: translate3d(-50%,-50%,0)
+      height: 100%
+
+  picture
+    overflow: hidden
     display: block
     position: absolute
-    height: 100%
-    top: 50%
-    left: 50%
-    transform: translate3d(-50%,-50%,0)
-    filter: brightness(.5)
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+
+    img
+      display: block
+      height: auto
+      position: absolute
+
+@mixin img16x9
+  padding-top: 56.25%
+  box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+  +inlineImg
+
+@mixin img1x1
+  padding-top: 100%
+  +inlineImg
 
 @mixin cardImg
   display: block
@@ -119,12 +164,6 @@
 
   picture
     background-color: get-color('navy',3)
-    margin-bottom: 1rem
-    display: block
-    position: relative
-    padding-top: 100%
-    width: 100%
-    overflow: hidden
 
     img
       position: absolute
@@ -133,6 +172,20 @@
       transform: translate3d(-50%,-50%,0)
       height: 100%
       width: auto
+  
+  & > picture
+    position: relative
+    display: block
+    padding-top: 100%
+    width: 100%
+    margin-bottom: 1rem
+
+    svg
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
 
 // Buttons
 
@@ -209,56 +262,49 @@
   &:nth-of-type(4n+1)
     h3
       color: get-color("orange",3)
-    picture
-      svg
-        path
-          fill: get-color("orange",3)
+    svg
+      path
+        fill: get-color("orange",3)
   
   &:nth-of-type(4n+2)
     h3
       color: get-color("navy",3)
-    picture
-      svg
-        path
-          fill: get-color("navy",3)
+    svg
+      path
+        fill: get-color("navy",3)
   
   &:nth-of-type(4n+3)
     h3
       color: get-color("green",3)
-    picture
-      svg
-        path
-          fill: get-color("green",3)
+    svg
+      path
+        fill: get-color("green",3)
 
   &:nth-of-type(4n+4)
     h3
       color: get-color("ltgray",3)
-    picture
-      svg
-        path
-          fill: get-color("ltgray",3)
+    svg
+      path
+        fill: get-color("ltgray",3)
 
 @mixin hck3color
   &:nth-of-type(3n+1)
     h3
       color: get-color("orange",3)
-    picture
-      svg
-        path
-          fill: get-color("orange",3)
+    svg
+      path
+        fill: get-color("orange",3)
   
   &:nth-of-type(3n+2)
     h3
       color: get-color("navy",3)
-    picture
-      svg
-        path
-          fill: get-color("navy",3)
+    svg
+      path
+        fill: get-color("navy",3)
   
   &:nth-of-type(3n+3)
     h3
       color: get-color("green",3)
-    picture
-      svg
-        path
-          fill: get-color("green",3)
+    svg
+      path
+        fill: get-color("green",3)
