@@ -47,16 +47,64 @@
         padding-left: 2em
 
       .slideLink
+        display: block
+        width: 100%
+        position: relative
         color: get-color('orange',3)
 
-        & > div
-          display: none
+        &[class*="hasSubnav"]
+          &[class*="active"]
+            &:before
+              transform: rotate(-65deg)
+            
+            &:after
+              transform: rotate(65deg)
 
-          +mq($activeBreak)
+            & > div
+              height: auto
+              opacity: 1
+
+          &:before
+            right: 1em
+            transform: rotate(65deg)
+          
+          &:after
+            right: calc(1em - 4px)
+            transform: rotate(-65deg)
+
+          &:before, &:after
+            position: absolute
             display: block
+            content: ' '
+            top: .5em
+            width: .5em
+            height: 3px
+            background: get-color('orange',3)
+            transition: all 250ms ease-in-out
+
+            +mq($activeBreak)
+              display: none
+
+        & > div
+          color: get-color('ltgray',3)
+          font-size: 70%
+          position: relative
+          height: 0
+          opacity: 0
+          transform-origin: top
+          transition: all 250ms ease-in-out
+
+          & > span
+            display: block
+            padding-top: 1em
+
+          a
+            display: block
+            padding: .25rem
 
         +mq($activeBreak)
           color: $white
+          width: auto
           position: relative
           display: inline-block
           padding-bottom: 5px
@@ -82,7 +130,10 @@
             transition: width 250ms ease-in-out
         
           & > div
+            display: block
             position: absolute
+            overflow: unset
+            font-size: inherit
             top: 100%
             padding-top: .5rem
             min-width: 100%
@@ -91,6 +142,7 @@
             transition: opacity 250ms ease-in-out
 
             & > span
+              padding-top: 0
               box-shadow: 0 0 1rem 0 rgba(0,0,0,.75)
               display: block
 
