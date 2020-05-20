@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Button from "../components/Button"
@@ -34,6 +35,7 @@ const ContactPage = ({
       </div>
       <section className={styles.contactContent}>
         <div className={styles.borderSep}>
+          <h2>Contact Us</h2>
           {subd ? (
             <span>
               Thank you for reaching out. Someone will get back with you
@@ -80,7 +82,10 @@ const ContactPage = ({
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="type">
+                  <select name="type" required>
+                    <option selected disabled>
+                      Choose A Subject...
+                    </option>
                     <option value="general">General Information</option>
                     <option value="rfp">Request for Proposal</option>
                     <option value="career">Career Opportunities</option>
@@ -125,10 +130,11 @@ const ContactPage = ({
         </div>
         <div className={styles.location}>
           <h2>Location</h2>
-          <a className={styles.map} href={staticMap.mapUrl}>
-            <img
+          <a href={staticMap.mapUrl} target="_blank">
+            <Img
+              className={[styles.map, "square"].join(" ")}
               alt="Google Map image of HCK2 location"
-              src={staticMap.childFile.childImageSharp.fixed.src}
+              {...staticMap.childFile.childImageSharp}
             />
           </a>
           <p>We are located in Vitruvian Park</p>
@@ -137,9 +143,9 @@ const ContactPage = ({
           <p>
             <a href="tel:972.716.0500">972.716.0500</a>
           </p>
-          <a href="#">
-            <Button size="sm" color="orange">
-              DOWNLOAD DIRECTIONS
+          <a target="_blank" href="/assets/docs/HCK2-Driving-Directions.pdf">
+            <Button size="sm" color="green">
+              Download Directions
             </Button>
           </a>
         </div>
@@ -165,10 +171,8 @@ const mapQuery = graphql`
     staticMap {
       childFile {
         childImageSharp {
-          fixed(width: 300) {
+          fluid(maxWidth: 700, srcSetBreakpoints: [576], quality: 80) {
             base64
-            width
-            height
             src
             srcSet
           }

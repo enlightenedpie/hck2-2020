@@ -35,8 +35,7 @@ const Footer = ({ siteMetadata }) => {
           >
             <h5>Navigate</h5>
             <div>
-              <MainNav />
-              <Link to={"/contact"}>contact us</Link>
+              <MainNav inFooter={true} />
             </div>
           </nav>
           <div className={styles.hrContainer}>
