@@ -1,20 +1,14 @@
 import React, { useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
-import { stripSite } from "../utils"
+import { stripSite, imageDefaults } from "../utils"
 
 import Layout from "../templates/layout"
 import ClientsAccordion from "../components/ClientsAccordion"
 
 import styles from "../templates/landings.module.sass"
-
-const defImg = {
-  altText: "",
-  sourceUrl: "",
-  mimeType: "",
-  srcSet: "",
-}
 
 const csQuery = graphql`
   query {
@@ -31,12 +25,14 @@ const csQuery = graphql`
             }
           }
           featuredImage {
-            altText
             id
-            srcSet
-            title
+            altText
             sourceUrl
-            mimeType
+            imageFile {
+              childImageSharp {
+                ...hck2FluidImage
+              }
+            }
           }
         }
       }
@@ -119,8 +115,10 @@ const CaseStudies = ({
         )}
       >
         {others.map((caseStudy, i) => {
-          let { altText: alt, srcSet, sourceUrl: src, mimeType: type } =
-            caseStudy.featuredImage || defImg
+          let {
+            altText: alt,
+            imageFile: { childImageSharp },
+          } = caseStudy.featuredImage
 
           return (
             <ScrollEffect
@@ -131,10 +129,13 @@ const CaseStudies = ({
             >
               <Link to={stripSite(caseStudy.link)}>
                 <case-study-card>
-                  <picture>
-                    <source type={type} alt={alt} srcSet={srcSet}></source>
-                    <img src={src} alt={alt} />
-                  </picture>
+                  <Img
+                    loading="auto"
+                    alt={alt}
+                    className={[styles.csImg].join(" ")}
+                    {...imageDefaults}
+                    {...childImageSharp}
+                  />
                   <h3>{parse(caseStudy.client)}</h3>
                   <em>{parse(caseStudy.title)}</em>
                 </case-study-card>

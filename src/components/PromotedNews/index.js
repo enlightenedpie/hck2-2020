@@ -1,8 +1,10 @@
 import React from "react"
+import Img from "gatsby-image"
 import parse from "html-react-parser"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import ResponsiveImg from "../ResponsiveImg"
-import { stripSite, defPost } from "../../utils"
+import { stripSite, imageDefaults } from "../../utils"
+
+import styles from "../promoted.module.sass"
 
 export default props => {
   const data = useStaticQuery(graphql`
@@ -14,12 +16,14 @@ export default props => {
             excerpt
             uri
             featuredImage {
+              id
               altText
               sourceUrl
-              srcSet
-              sizes
-              mimeType
-              title
+              imageFile {
+                childImageSharp {
+                  ...hck2FluidImage
+                }
+              }
             }
           }
         }
@@ -32,7 +36,14 @@ export default props => {
         posts: { nodes: posts },
       },
     } = data,
-    { title, excerpt, uri, featuredImage: img } = posts[0] || defPost
+    {
+      uri,
+      title,
+      excerpt,
+      featuredImage: {
+        imageFile: { childImageSharp },
+      },
+    } = posts[0]
 
   return (
     <div {...props}>
@@ -41,14 +52,11 @@ export default props => {
       </h4>
       <div-spacer />
       <Link to={stripSite(uri)}>
-        {img ? (
-          <ResponsiveImg {...img} />
-        ) : (
-          <ResponsiveImg
-            altText="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
-            sourceUrl="/assets/img/video-placeholder.jpg"
-          />
-        )}
+        <Img
+          className={[styles.mediaImage, "hero"].join(" ")}
+          {...childImageSharp}
+          {...imageDefaults}
+        />
         <blog-title>{title}</blog-title>
         {parse(excerpt)}
       </Link>

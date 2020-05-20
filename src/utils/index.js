@@ -10,11 +10,18 @@ export const stripSite = link =>
   link ? link.replace("https://hck2.com/", "") : ""
 
 export const imageDefaults = {
-  id: "",
-  altText: "",
-  sourceUrl: "",
-  mimeType: "",
-  srcSet: "",
+  style: { position: "", overflow: "" },
+  imgStyle: {
+    position: "",
+    top: "",
+    left: "",
+    transition: "",
+    opacity: "",
+    objectPosition: "",
+    objectFit: "",
+    height: "",
+    width: "",
+  },
 }
 
 export const defPost = {

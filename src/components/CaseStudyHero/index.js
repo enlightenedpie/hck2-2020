@@ -21,9 +21,12 @@ export default ({
   idx,
   ...rest
 }) => {
-  let colores = ["blue", "orange", "green"],
-    { id, altText: alt, sourceUrl: src, mimeType: type, srcSet } =
-      featuredImage || imageDefaults,
+  let {
+      id,
+      altText: alt,
+      imageFile: { childImageSharp },
+    } = featuredImage,
+    colores = ["blue", "orange", "green"],
     newId = "_csHero-" + id.replace("=", ""),
     items = []
 
@@ -33,7 +36,6 @@ export default ({
     items.push(
       <div key={"stat" + i + id}>
         <ScrollEffect duration={1} animateOnce animateIn="statsIn">
-          {/* <p>{stat.icon}</p> */}
           <p>
             <strong>{stat.data}</strong>
           </p>
@@ -45,11 +47,17 @@ export default ({
   })
 
   return (
-    <article className={[styles.caseStudyHero, otherClass].join(" ")}>
-      <picture className={styles.csHeroImg} id={newId}>
-        <source type={type} alt={alt} srcSet={srcSet}></source>
-        <img src={src} alt={alt} />
-      </picture>
+    <article
+      id={newId}
+      className={[styles.caseStudyHero, otherClass].join(" ")}
+    >
+      <Img
+        loading="auto"
+        className="hero"
+        alt={alt}
+        {...childImageSharp}
+        {...imageDefaults}
+      />
       <div className={styles.informatic}>
         <div>
           <div>
