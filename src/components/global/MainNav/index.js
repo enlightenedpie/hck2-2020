@@ -95,15 +95,6 @@ const MainNav = ({
           href: url,
           rel: rel,
           activeClassName: "isActive",
-          onClick: e => {
-            if (window.innerWidth > 576 || chilrens.length == 0) return true
-
-            if (active == title) return true
-
-            setActive(title)
-
-            e.preventDefault()
-          },
           ...rest,
         }
 
@@ -112,7 +103,16 @@ const MainNav = ({
         let TheLink = url === "#" ? "a" : Link
 
         return (
-          <TheLink {...theAtts}>
+          <TheLink
+            {...theAtts}
+            onClick={e => {
+              if (window.innerWidth > 576 || chilrens.length == 0) return true
+
+              if (active == title) return true
+
+              e.preventDefault() || setActive(title)
+            }}
+          >
             {label}
             {chilrens.length > 0 && (
               <div className={inFooter ? "desktop-hidden" : "subnav"}>
