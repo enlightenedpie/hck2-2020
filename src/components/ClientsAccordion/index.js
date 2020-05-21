@@ -57,7 +57,7 @@ export default props => {
               {parse(collection[key].name)}
             </dt>
             <dd>
-              {collection[key].list.map(val => (
+              {collection[key].list.sort().map(val => (
                 <p>{val}</p>
               ))}
             </dd>

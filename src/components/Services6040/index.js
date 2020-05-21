@@ -22,6 +22,10 @@ const query = graphql`
           databaseId
           seo
           slug
+          extraCopy {
+            frontPageCopy
+            landingPageCopy
+          }
           taxonomyFeaturedImage {
             featuredImage {
               altText
@@ -39,7 +43,7 @@ const query = graphql`
   }
 `
 
-const Services6040 = ({ data }) => {
+const Services6040 = ({ isFront = false, isLanding = false, data }) => {
   let orderBy = [
     "marketing-strategy",
     "creative",
@@ -61,6 +65,12 @@ const Services6040 = ({ data }) => {
             },
           } = item
 
+        let theCopy = isFront
+          ? item.extraCopy.frontPageCopy || item.description
+          : isLanding
+          ? item.extraCopy.landingPageCopy || item.description
+          : item.description
+
         return (
           <div key={item.id}>
             <aside>
@@ -80,7 +90,7 @@ const Services6040 = ({ data }) => {
               </i>
               <h2>{parse(item.name)}</h2>
               <div-spacer />
-              <p>{parse(item.description)}</p>
+              <p>{parse(theCopy)}</p>
               <Link to={item.uri}>
                 <Button size="sm">Read More</Button>
               </Link>
