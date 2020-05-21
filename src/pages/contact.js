@@ -66,14 +66,14 @@ const ContactPage = ({
                 <label htmlFor="first_name">
                   First Name<sup>*</sup>
                 </label>
-                <input type="text" name="first_name" />
+                <input required type="text" name="first_name" />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="last_name">
                   Last Name<sup>*</sup>
                 </label>
-                <input type="text" name="last_name" />
+                <input required type="text" name="last_name" />
               </div>
 
               <div className={styles.form_group}>
@@ -96,24 +96,24 @@ const ContactPage = ({
                 <label htmlFor="organization">
                   Organization<sup>*</sup>
                 </label>
-                <input type="text" name="organization" />
+                <input required type="text" name="organization" />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="email">
                   Email<sup>*</sup>
                 </label>
-                <input type="email" name="email" />
+                <input required type="email" name="email" />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="phone">Phone</label>
-                <input type="phone" name="phone" />
+                <input required type="phone" name="phone" />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="comments">Question / Comments</label>
-                <textarea name="comments"></textarea>
+                <textarea required name="comments"></textarea>
               </div>
 
               <legend className={styles.small}>*Required</legend>
