@@ -44,14 +44,8 @@ const query = graphql`
 `
 
 const Services6040 = ({ isFront = false, isLanding = false, data }) => {
-  let orderBy = [
-    "marketing-strategy",
-    "creative",
-    "digital-social",
-    "pr",
-    "web",
-  ]
-  data.sort(el => orderBy.indexOf(el.slug))
+  let i = 0
+  data.sort(el => (el.slug === "marketing-strategy" ? 0 : ++i))
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {
