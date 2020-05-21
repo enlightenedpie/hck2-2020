@@ -19,7 +19,7 @@ export default ({ pageContext: page }) => {
           <ReqProp />
         </div>
       </section>
-      <Services6040 />
+      <Services6040 isLanding={true} />
     </Layout>
   )
 }

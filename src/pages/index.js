@@ -32,7 +32,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
         ))}
       </section>
-      <Services6040 />
+      <Services6040 isFront={true} />
       <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
