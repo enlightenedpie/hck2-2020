@@ -54,13 +54,14 @@ export default ({ pageContext: { bios } }) => {
     <Layout seo={"{}"} bodyClass="landing bios">
       <section className={styles.landingIntro}>
         <div>
-          <h1>The HCK2 Leadership Team</h1>
+          <h1>Meet The Team</h1>
           <div-spacer />
           <p>
-            Meet our executive leadership team. International agencies and
-            boutiques. Fortune 500 and start-ups. Government and non-profits. We
-            represent experience - and some good stories too - from all and draw
-            upon this experience to guide and inspire.
+            Wide-ranging experience. Proven expertise. An insatiable appetite
+            for new insights and breakthrough solutions. All that, plus an
+            easygoing manner that fuels collaboration among the team and
+            enduring relationships with our clients. Come get acquainted with
+            our leadership team.
           </p>
         </div>
       </section>
