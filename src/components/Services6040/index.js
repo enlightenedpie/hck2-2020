@@ -13,7 +13,31 @@ import "../h6040anim.sass"
 const query = graphql`
   query {
     wpquery {
-      services(where: { orderby: TERM_ID }) {
+      service(id: "marketing-strategy", idType: SLUG) {
+        name
+        uri
+        description
+        id
+        databaseId
+        seo
+        slug
+        extraCopy {
+          frontPageCopy
+          landingPageCopy
+        }
+        taxonomyFeaturedImage {
+          featuredImage {
+            altText
+            sourceUrl
+            imageFile {
+              childImageSharp {
+                ...hck2FluidImage
+              }
+            }
+          }
+        }
+      }
+      services(where: { exclude: "10", orderby: SLUG }) {
         nodes {
           name
           uri
@@ -43,9 +67,13 @@ const query = graphql`
   }
 `
 
-const Services6040 = ({ isFront = false, isLanding = false, data }) => {
-  let i = 0
-  data.sort(el => (el.slug === "marketing-strategy" ? 0 : ++i))
+const Services6040 = ({
+  isFront = false,
+  isLanding = false,
+  data,
+  marStrat,
+}) => {
+  if (data[0].slug !== "marketing-strategy") data.unshift(marStrat)
   return (
     <section className={[h6040.container, "h6040container"].join(" ")}>
       {data.map((item, i) => {
@@ -101,7 +129,11 @@ export default props => {
     <StaticQuery
       query={query}
       render={query => (
-        <Services6040 {...props} data={query.wpquery.services.nodes} />
+        <Services6040
+          {...props}
+          marStrat={query.wpquery.service}
+          data={query.wpquery.services.nodes}
+        />
       )}
     />
   )
