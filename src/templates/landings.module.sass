@@ -32,7 +32,8 @@
 
 .serviceFilter
   background-color: get-color('blue',3)
-  padding-left: 50%
+  +mq($activeBreak)
+    padding-left: 50%
   
   & > div
     padding: 1rem
