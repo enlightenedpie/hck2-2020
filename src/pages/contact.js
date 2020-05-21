@@ -105,7 +105,6 @@ const ContactPage = ({
                     <option value="rfp">Request for Proposal</option>
                     <option value="career">Career Opportunities</option>
                   </select>
-                  <sup>*</sup>
                 </div>
               </div>
 
