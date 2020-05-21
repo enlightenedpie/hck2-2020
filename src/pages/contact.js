@@ -54,7 +54,6 @@ const ContactPage = ({
                   body: encode({ "form-name": "hck2contact", ...state }),
                 })
                   .then(() => {
-                    console.log("submitted")
                     updSubd(true)
                   })
                   .catch(err => alert(err))

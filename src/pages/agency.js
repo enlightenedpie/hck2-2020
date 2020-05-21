@@ -100,10 +100,8 @@ const AgencyPage = ({
             <h2 className={styles.orange}>Our Values</h2>
             <div-spacer />
             <p>
-              While meeting deadlines is a fundamental requirement in our line
-              of work, that's not what drives us at HCK2. We're united in
-              embracing a culture that promotes giving back and paying it
-              forward… continually expanding our knowledge and skills … going
+              At HCK2, we embrace a culture that promotes giving back and paying
+              it forward… continually expanding our knowledge and skills … going
               above and beyond to exceed expectations… all while understanding
               that our lives outside of work is what keeps us grounded, steady
               and ready to come back every day to give it our all.

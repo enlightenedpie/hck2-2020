@@ -30,7 +30,6 @@ export default () => {
               body: encode({ "form-name": "hck2Newsletter", ...state }),
             })
               .then(() => {
-                console.log("submitted")
                 updSubd(true)
               })
               .catch(err => alert(err))
