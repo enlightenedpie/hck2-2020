@@ -37,7 +37,13 @@ const ContactPage = ({
         <div className={styles.borderSep}>
           <h2>Contact Us</h2>
           {subd ? (
-            <span>
+            <span
+              style={{
+                marginRight: "1rem",
+                display: "block",
+                lineHeight: 1.25,
+              }}
+            >
               Thank you for reaching out. Someone will get back with you
               shortly!
             </span>
@@ -66,14 +72,24 @@ const ContactPage = ({
                 <label htmlFor="first_name">
                   First Name<sup>*</sup>
                 </label>
-                <input required type="text" name="first_name" />
+                <input
+                  required
+                  type="text"
+                  name="first_name"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="last_name">
                   Last Name<sup>*</sup>
                 </label>
-                <input required type="text" name="last_name" />
+                <input
+                  required
+                  type="text"
+                  name="last_name"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
@@ -81,7 +97,7 @@ const ContactPage = ({
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="type" required>
+                  <select name="type" required onChange={setState}>
                     <option selected disabled>
                       Choose A Subject...
                     </option>
@@ -89,6 +105,7 @@ const ContactPage = ({
                     <option value="rfp">Request for Proposal</option>
                     <option value="career">Career Opportunities</option>
                   </select>
+                  <sup>*</sup>
                 </div>
               </div>
 
@@ -96,24 +113,37 @@ const ContactPage = ({
                 <label htmlFor="organization">
                   Organization<sup>*</sup>
                 </label>
-                <input required type="text" name="organization" />
+                <input
+                  required
+                  type="text"
+                  name="organization"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="email">
                   Email<sup>*</sup>
                 </label>
-                <input required type="email" name="email" />
+                <input required type="email" name="email" onChange={setState} />
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="phone">Phone</label>
-                <input required type="phone" name="phone" />
+                <label htmlFor="phone">
+                  Phone<sup>*</sup>
+                </label>
+                <input required type="phone" name="phone" onChange={setState} />
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="comments">Question / Comments</label>
-                <textarea required name="comments"></textarea>
+                <label htmlFor="comments">
+                  Question / Comments<sup>*</sup>
+                </label>
+                <textarea
+                  required
+                  name="comments"
+                  onChange={setState}
+                ></textarea>
               </div>
 
               <legend className={styles.small}>*Required</legend>
