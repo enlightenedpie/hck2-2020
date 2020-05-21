@@ -122,7 +122,13 @@ const AgencyPage = ({
           <div>
             <h2 className={styles.green}>{parse(cpTitle)}</h2>
             <div-spacer />
-            {parse(cpContent)}
+            <p>
+              Meet our executive leadership team. Their combined experience
+              includes tenures at international agencies and small boutiques, to
+              creating solutions for clients ranging from Fortune 500s,
+              start-ups, government agencies, non-profits and more. Plus, they
+              all have some good stories, too!
+            </p>
             <Link to="/leadership">
               <Button color="green">Meet The Team</Button>
             </Link>
