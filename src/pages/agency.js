@@ -59,12 +59,12 @@ const AgencyPage = ({
             <p>
               HCK2 is a marketing communications agency that offers it all:
               creative advertising, design and branding, social media and
-              digital communication, public relations, & web and interactive
+              digital communication, public relations, and web + interactive
               creation. All rooted in proven brand strategy - and focused on
               delivering measurable results.
             </p>
             <p>
-              Invite us to serve as an extension of your team and you'll get so
+              Invite us to serve as an extension of your team, and you'll get so
               much more than you ever imagined!
             </p>
           </div>

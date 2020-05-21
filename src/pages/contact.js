@@ -93,16 +93,16 @@ const ContactPage = ({
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="type">
+                <label htmlFor="inquiryType">
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="type" required onChange={setState}>
+                  <select name="inquiryType" required onChange={setState}>
                     <option selected disabled>
                       Choose A Subject...
                     </option>
-                    <option value="general">General Information</option>
-                    <option value="rfp">Request for Proposal</option>
+                    <option value="General">General Information</option>
+                    <option value="RFP">Request for Proposal</option>
                     <option value="career">Career Opportunities</option>
                   </select>
                 </div>
