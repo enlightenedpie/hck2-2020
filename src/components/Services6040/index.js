@@ -98,7 +98,6 @@ const Services6040 = ({
             <aside>
               <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
                 <Img
-                  loading="auto"
                   className={[h6040.h6040img, "hero"].join(" ")}
                   alt={alt}
                   {...imageDefaults}

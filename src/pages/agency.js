@@ -46,7 +46,6 @@ const AgencyPage = ({
       </section>
       <section className={styles.content}>
         <Img
-          loading="auto"
           alt={alt}
           style={{ order: 1 }}
           className={["square", styles.agencyImg].join(" ")}
@@ -112,7 +111,6 @@ const AgencyPage = ({
           </div>
         </article>
         <Img
-          loading="auto"
           style={{ order: 5 }}
           alt={cpAlt}
           className={["square", styles.agencyImg].join(" ")}

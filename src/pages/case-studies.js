@@ -130,7 +130,6 @@ const CaseStudies = ({
               <Link to={stripSite(caseStudy.link)}>
                 <case-study-card>
                   <Img
-                    loading="auto"
                     alt={alt}
                     className={[styles.csImg].join(" ")}
                     {...imageDefaults}

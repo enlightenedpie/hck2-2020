@@ -31,7 +31,6 @@ export default ({ pageContext: { bios } }) => {
           <case-study-card>
             {alt ? (
               <Img
-                loading="auto"
                 className={[bioStyles.bioImg, "square"].join(" ")}
                 alt={alt}
                 {...childImageSharp}

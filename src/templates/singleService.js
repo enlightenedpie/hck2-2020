@@ -49,7 +49,6 @@ export default ({
         <Link to={stripSite(noda.link)}>
           <case-study-card>
             <Img
-              loading="auto"
               alt={alt}
               className={[styles.csImg, "square"].join(" ")}
               {...imageDefaults}
@@ -68,13 +67,7 @@ export default ({
   return (
     <Layout seo={seo}>
       <section className={styles.ssIntro}>
-        <Img
-          loading="auto"
-          alt={servAlt}
-          {...imageDefaults}
-          className="hero"
-          {...servImg}
-        />
+        <Img alt={servAlt} {...imageDefaults} className="hero" {...servImg} />
         <aside>
           <i className="icon single">
             <ScrollEffect animateOnce animateIn="drawLineArtSingle">

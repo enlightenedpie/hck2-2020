@@ -24,7 +24,6 @@ export default ({ data }) => {
             <aside>
               <ScrollEffect duration="1" animateOnce animateIn="h6040slide">
                 <Img
-                  loading="auto"
                   className={[h6040.h6040img].join(" ")}
                   alt={alt}
                   {...imageDefaults}
