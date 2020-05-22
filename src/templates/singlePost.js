@@ -50,13 +50,13 @@ export default ({ pageContext: post }) => {
         </figure>
         <section className={styles.singleContent}>
           <h1>{HTR.parse(title)}</h1>
-          <div className={styles.bug}>
+          {/* <div className={styles.bug}>
             <time pubDate={true} dateTime={date}>
               {dateString}
             </time>
             <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
             <em class="author">{HTR.parse(name)}</em>
-          </div>
+          </div> */}
           <div className={styles.mainContent}>{HTR.parse(content)}</div>
         </section>
       </article>

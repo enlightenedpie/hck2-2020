@@ -3,245 +3,105 @@ $orange: #e87622
 $blue: #1A4784
 $gray: #91A2AC
 
-.agency
-  width: 100%
-  position: relative
-  margin-top: 3rem
-  padding-top: 50%
-  overflow: hidden
-
-  +mq($activeBreak)
-    margin-top: 0
-    padding-top: 56.25%
-
-  .imageContainer, picture
-    position: absolute !important
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-
-.intro
-    padding: 2rem
-    text-align: center
-    position: relative
-    z-index: 403
-    box-shadow: 0 0 2rem 0 rgba(0,0,0,.5)
-
-    +mq($activeBreak)
-        padding: 4rem 20%
-
-    h1
-        color: $orange
-        text-transform: uppercase
-        margin-bottom: 1rem
-    
-    p
-        color: white
-        max-width: 900px
-        margin: auto
-        line-height: 1.5rem
-
+.agencyIntro
+	position: relative
+	box-shadow: 0 0 2rem 0 rgba(0,0,0,.5)
+	+landingIntro
 
 .content
-    width: 100%
-    background-color: white
+	background-color: $white
+	display: grid
 
-    .content_row
-        width: 100%
-        display: flex
-        flex-direction: column
+	+mq($activeBreak)
+		grid-template-columns: repeat(2, minmax(400px, 1fr))
+		grid-auto-rows: 1fr
 
-        +mq('tportrait')
-            flex-direction: row
+	& > article
+		display: flex
+		align-items: center
+		justify-content: center
+		text-align: center
+		padding: 12%
 
-        &.reversed
-            flex-direction: column-reverse
+		p
+			line-height: 1.5
+	
+		button
+			display: inline-block
+			margin-top: 1rem
 
-            +mq('tportrait')
-                flex-direction: row
+.valuesIcons
+	order: 3
+	display: grid
+	text-align: center
 
-        & > div
-            width: 100%
-            min-height: 300px
+	+mq('mobile')
+		grid-template-columns: repeat(2, minmax(250px, 1fr))
 
-            +mq('tportrait')
-                width: 50%
+	+mq($activeBreak)
+		order: 4
 
-        .who_copy, .values_copy, .leader_copy
-            padding: 1rem
-            text-align: center
-            display: flex
-            justify-content: center
-            align-items: center
+	.valueSquare
+		position: relative
+		padding-top: 100%
 
+		div
+			position: absolute
+			top: 3.5rem
+			left: 3.5rem
+			right: 3.5rem
+			bottom: 3.5rem
+			display: flex
+			flex-flow: column nowrap
+			justify-content: center
+			align-items: center
+			padding: 1rem
+			border: .75rem solid $white
 
-            hr
-                max-width: 200px
+			h4
+				color: white
 
-            p
-                max-width: 500px
-                margin: 0px auto 1rem
-                line-height: 1.5rem
+			svg
+				height: 75%
+				width: 90%
+					
+				path
+					stroke: white
 
-        .who_image
-            background-image: url('https://picsum.photos/1080/720')
-            background-position: center
-            background-size: cover
-            position: relative
+		&:first-child
+			background-color: #EB710F
 
-            .square 
-                background-color: rgba($blue, 0.5)
+			div
+				background-color: get-color("green",2)
 
-        .values_icons
-            display: flex
-            flex-wrap: wrap
+		&:nth-child(2)
+			background-color: #DB6709
 
-            .value_square
-                width: 50%
-                padding-top: 50%
-                position: relative
+			div
+				background-color: get-color("orange",2)
 
-                div
-                    position: absolute
-                    width: 70%
-                    height: 70%
-                    margin-left: -35%
-                    margin-top: -35%
-                    top: 50%
-                    left: 50%
-                    border: 15px solid white
-                    text-align: center
-                    display: flex
-                    align-items: center
-                    flex-direction: column
-                    justify-content: center
+		&:nth-child(3)
+			background-color: #D05E02
 
-                    h4
-                        color: white
+			div
+				background-color: get-color("ltgray",2)
 
-                    svg
-                        height: 75%
-                        width: 90%
-                        
-                        path
-                            stroke: white
+		&:nth-child(4)
+			background-color: #C15701
 
+			div
+				background-color: get-color("blue",2)
 
-                &:first-child
-                    background-color: #EB710F
+h2
 
-                    div
-                        background-color: $green
+	&.blue
+		color: $blue
+	
+	&.orange
+		color: $orange
 
-                &:nth-child(2)
-                    background-color: #DB6709
+	&.green
+		color: $green
 
-                    div
-                        background-color: $orange
-
-                &:nth-child(3)
-                    background-color: #D05E02
-
-                    div
-                        background-color: $gray
-
-                &:last-child
-                    background-color: #C15701
-
-                    div
-                        background-color: $blue
-
-        .leader_slider
-            background-color: $green
-            position: relative
-
-            .slider_provider
-                width: 70%
-                position: absolute
-                top: 50%
-                left: 50%
-                margin-left: -36%
-                margin-top: -26%
-
-                .slider
-
-                    .slide
-                        text-align: center
-
-                        img
-                            display: block
-                            border: 15px solid white
-                            height: 60%
-                            margin: auto
-                            width: auto
-                            margin-bottom: 1rem
-                            filter: grayscale(100%)
-                        
-                        h4
-                            color: white
-                            margin-bottom: 0.5rem
-
-                        p
-                            color: white
-                            font-size: 1rem
-                        
-                .back, .next
-                    background-color: transparent
-                    border: none
-                    position: absolute
-                    top: 65%
-
-                    &:disabled
-                        opacity: 0.1
-                        cursor: default
-
-                    svg
-                        width: 30px
-
-                .next
-                    right: 0
-
-
-    h2
-        text-transform: uppercase
-
-        &.blue
-            color: $blue
-        
-        &.orange
-            color: $orange
-
-        &.green
-            color: $green
-
-        
-.button
-    display: inline-block
-    font-family: "Barlow Condensed"
-    text-transform: uppercase
-    font-weight: bold
-    font-size: 1.4rem
-    padding: 0.4rem 0.7rem
-    border: 4px solid
-    transition: all 0.2s
-
-    &:hover
-        color: white !important
-
-    &.orange
-        color: $orange
-        border-color: $orange
-        &:hover
-            background-color: $orange
-
-    &.green
-        color: $green
-        border-color: $green
-        &:hover
-            background-color: $green
-
-
-.square
-    width: 100%
-    padding-top: 100%
+.agencyImg
+	+img1x1

@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { StaticQuery, graphql } from "gatsby"
-import HtmlToReact from "html-to-react"
+import Img from "gatsby-image"
+import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Button from "../components/Button"
 import styles from "./contact.module.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 const encode = data => {
   return Object.keys(data)
@@ -31,13 +30,20 @@ const ContactPage = ({
         <div>
           <h1>{pages[0].title}</h1>
           <div-spacer-white />
-          {HTR.parse(pages[0].content)}
+          {parse(pages[0].content)}
         </div>
       </div>
       <section className={styles.contactContent}>
         <div className={styles.borderSep}>
+          <h2>Contact Us</h2>
           {subd ? (
-            <span>
+            <span
+              style={{
+                marginRight: "1rem",
+                display: "block",
+                lineHeight: 1.25,
+              }}
+            >
               Thank you for reaching out. Someone will get back with you
               shortly!
             </span>
@@ -54,7 +60,6 @@ const ContactPage = ({
                   body: encode({ "form-name": "hck2contact", ...state }),
                 })
                   .then(() => {
-                    console.log("submitted")
                     updSubd(true)
                   })
                   .catch(err => alert(err))
@@ -67,24 +72,37 @@ const ContactPage = ({
                 <label htmlFor="first_name">
                   First Name<sup>*</sup>
                 </label>
-                <input type="text" name="first_name" />
+                <input
+                  required
+                  type="text"
+                  name="first_name"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="last_name">
                   Last Name<sup>*</sup>
                 </label>
-                <input type="text" name="last_name" />
+                <input
+                  required
+                  type="text"
+                  name="last_name"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="type">
+                <label htmlFor="inquiryType">
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="type">
-                    <option value="general">General Information</option>
-                    <option value="rfp">Request for Proposal</option>
+                  <select name="inquiryType" required onChange={setState}>
+                    <option selected disabled>
+                      Choose A Subject...
+                    </option>
+                    <option value="General">General Information</option>
+                    <option value="RFP">Request for Proposal</option>
                     <option value="career">Career Opportunities</option>
                   </select>
                 </div>
@@ -94,24 +112,37 @@ const ContactPage = ({
                 <label htmlFor="organization">
                   Organization<sup>*</sup>
                 </label>
-                <input type="text" name="organization" />
+                <input
+                  required
+                  type="text"
+                  name="organization"
+                  onChange={setState}
+                />
               </div>
 
               <div className={styles.form_group}>
                 <label htmlFor="email">
                   Email<sup>*</sup>
                 </label>
-                <input type="email" name="email" />
+                <input required type="email" name="email" onChange={setState} />
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="phone">Phone</label>
-                <input type="phone" name="phone" />
+                <label htmlFor="phone">
+                  Phone<sup>*</sup>
+                </label>
+                <input required type="phone" name="phone" onChange={setState} />
               </div>
 
               <div className={styles.form_group}>
-                <label htmlFor="comments">Question / Comments</label>
-                <textarea name="comments"></textarea>
+                <label htmlFor="comments">
+                  Question / Comments<sup>*</sup>
+                </label>
+                <textarea
+                  required
+                  name="comments"
+                  onChange={setState}
+                ></textarea>
               </div>
 
               <legend className={styles.small}>*Required</legend>
@@ -127,10 +158,11 @@ const ContactPage = ({
         </div>
         <div className={styles.location}>
           <h2>Location</h2>
-          <a className={styles.map} href={staticMap.mapUrl}>
-            <img
+          <a href={staticMap.mapUrl} target="_blank">
+            <Img
+              className={[styles.map, "square"].join(" ")}
               alt="Google Map image of HCK2 location"
-              src={staticMap.childFile.childImageSharp.fixed.src}
+              {...staticMap.childFile.childImageSharp}
             />
           </a>
           <p>We are located in Vitruvian Park</p>
@@ -139,9 +171,9 @@ const ContactPage = ({
           <p>
             <a href="tel:972.716.0500">972.716.0500</a>
           </p>
-          <a href="#">
-            <Button size="sm" color="orange">
-              DOWNLOAD DIRECTIONS
+          <a target="_blank" href="/assets/docs/HCK2-Driving-Directions.pdf">
+            <Button size="sm" color="green">
+              Download Directions
             </Button>
           </a>
         </div>
@@ -167,10 +199,8 @@ const mapQuery = graphql`
     staticMap {
       childFile {
         childImageSharp {
-          fixed(width: 300) {
+          fluid(maxWidth: 700, srcSetBreakpoints: [576], quality: 80) {
             base64
-            width
-            height
             src
             srcSet
           }

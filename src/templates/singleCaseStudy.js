@@ -78,16 +78,14 @@ export const query = graphql`
           }
         }
         featuredImage {
-          uri
-          title
-          srcSet
-          sourceUrl
-          sizes
-          mediaType
-          mimeType
           id
-          databaseId
           altText
+          sourceUrl
+          imageFile {
+            childImageSharp {
+              ...hck2FluidImage
+            }
+          }
         }
       }
     }

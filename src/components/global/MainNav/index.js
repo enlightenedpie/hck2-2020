@@ -1,10 +1,18 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link, graphql, StaticQuery } from "gatsby"
-import HtmlToReact from "html-to-react"
-import "./mainnav.module.sass"
+import parse from "html-react-parser"
+import styles from "./mainnav.module.sass"
+import { library, dom } from "@fortawesome/fontawesome-svg-core"
+import { fas } from "@fortawesome/free-solid-svg-icons"
 
 const mainQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        address
+        phone
+      }
+    }
     wpquery {
       menus(where: { slug: "mainnav" }) {
         nodes {
@@ -34,14 +42,27 @@ const mainQuery = graphql`
   }
 `
 
-const HTR = new HtmlToReact.Parser()
+const MainNav = ({
+  inFooter = false,
+  site: {
+    siteMetadata: { address, phone },
+  },
+  mainNav,
+  xtraClass,
+}) => {
+  useEffect(() => {
+    library.add(fas)
+    dom.i2svg()
+  })
 
-const MainNav = ({ mainNav, xtraClass }) => {
+  let [active, setActive] = useState("")
+
   return (
     <nav
       role="navigation"
       aria-label="Main Navigation"
       onClick={e => e.stopPropagation()}
+      className={inFooter ? "inFooter" : ""}
     >
       {mainNav.map((noda, idx) => {
         let {
@@ -60,14 +81,20 @@ const MainNav = ({ mainNav, xtraClass }) => {
           key: key,
           className: []
             .concat(
-              [xtraClass, "node--menuItem " + menuItemId + "__itemID_" + key],
+              [
+                chilrens.length > 0 ? "hasSubnav" : null,
+                active === title ? "active" : null,
+                xtraClass,
+                "node--menuItem " + menuItemId + "__itemID_" + key,
+              ],
               cssClasses
             )
             .join(" "),
-          title: HTR.parse(title),
+          title: parse(title),
           to: url,
           href: url,
           rel: rel,
+          activeClassName: "isActive",
           ...rest,
         }
 
@@ -76,10 +103,19 @@ const MainNav = ({ mainNav, xtraClass }) => {
         let TheLink = url === "#" ? "a" : Link
 
         return (
-          <TheLink {...theAtts}>
+          <TheLink
+            {...theAtts}
+            onClick={e => {
+              if (window.innerWidth > 576 || chilrens.length == 0) return true
+
+              if (active == title) return true
+
+              e.preventDefault() || setActive(title)
+            }}
+          >
             {label}
             {chilrens.length > 0 && (
-              <div>
+              <div className={inFooter ? "desktop-hidden" : "subnav"}>
                 <span>
                   {chilrens.map((chld, index) => {
                     let key2 = ((index + 1) * 25 * Math.random()).toString(16)
@@ -107,6 +143,25 @@ const MainNav = ({ mainNav, xtraClass }) => {
           </TheLink>
         )
       })}
+      {!inFooter && (
+        <address className={[styles.mobileInfo, "desktop-hidden"].join(" ")}>
+          <p>
+            <a href={"tel:" + phone}>
+              <i class="fas fa-phone"></i>
+              <span>{phone}</span>
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=3875%20Ponte%20Ave.%2C%20Addison%2C%20Tx%2075001"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{address}</span>
+            </a>
+          </p>
+        </address>
+      )}
     </nav>
   )
 }
@@ -119,6 +174,7 @@ export default props => {
         <MainNav
           {...props}
           mainNav={query.wpquery.menus.nodes[0].menuItems.nodes}
+          site={query.site}
         />
       )}
     />

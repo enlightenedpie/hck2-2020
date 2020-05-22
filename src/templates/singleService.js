@@ -8,7 +8,7 @@ import Layout from "./layout"
 import CSHero from "../components/CaseStudyHero"
 import SVG from "../components/SVG"
 import ReqProp from "../components/ReqProp"
-import { kebabToCamel, stripSite } from "../utils"
+import { kebabToCamel, stripSite, imageDefaults } from "../utils"
 
 import styles from "./singleService.module.sass"
 import "../pages/lineartanim.sass"
@@ -22,7 +22,12 @@ export default ({
         seo,
         name,
         slug,
-        featuredImg,
+        taxonomyFeaturedImage: {
+          featuredImage: {
+            altText: servAlt,
+            imageFile: { childImageSharp: servImg },
+          },
+        },
         caseStudies: { nodes: caseStudies },
       },
     },
@@ -34,7 +39,8 @@ export default ({
   let others = []
 
   caseStudies.map((noda, i) => {
-    let { altText: alt, sourceUrl: src, imageFile, ...fi } = noda.featuredImage
+    let { altText: alt, imageFile } = noda.featuredImage
+
     if (i < 3) {
       heroes.push(<CSHero hasMore={true} idx={i + 1} key={noda.id} {...noda} />)
     } else {
@@ -43,8 +49,9 @@ export default ({
         <Link to={stripSite(noda.link)}>
           <case-study-card>
             <Img
-              imgStyle={{ top: "50%", left: "50%" }}
-              className={styles.cscMarginSpacer}
+              alt={alt}
+              className={[styles.csImg, "square"].join(" ")}
+              {...imageDefaults}
               {...childImageSharp}
             />
             <h3>{parse(noda.client)}</h3>
@@ -53,20 +60,14 @@ export default ({
         </Link>
       )
     }
+
     return noda
   })
 
   return (
     <Layout seo={seo}>
       <section className={styles.ssIntro}>
-        {featuredImg ? (
-          parse(featuredImg)
-        ) : (
-          <img
-            alt="HCK2 marketing experts discussing next steps on an awesome brand strategy!"
-            src="/assets/img/video-placeholder.jpg"
-          />
-        )}
+        <Img alt={servAlt} {...imageDefaults} className="hero" {...servImg} />
         <aside>
           <i className="icon single">
             <ScrollEffect animateOnce animateIn="drawLineArtSingle">
@@ -95,12 +96,23 @@ export const query = graphql`
     wpquery {
       service(id: $id, idType: DATABASE_ID) {
         subtitle
-        featuredImg
         description
         id
         slug
         name
         seo
+        taxonomyFeaturedImage {
+          featuredImage {
+            id
+            altText
+            sourceUrl
+            imageFile {
+              childImageSharp {
+                ...hck2FluidImage
+              }
+            }
+          }
+        }
         caseStudies(first: 1000) {
           nodes {
             link
@@ -111,19 +123,9 @@ export const query = graphql`
               id
               altText
               sourceUrl
-              mimeType
-              srcSet
               imageFile {
                 childImageSharp {
-                  fluid(webpQuality: 100) {
-                    src
-                    srcWebp
-                    presentationHeight
-                    presentationWidth
-                    sizes
-                    srcSet
-                    srcSetWebp
-                  }
+                  ...hck2FluidImage
                 }
               }
             }

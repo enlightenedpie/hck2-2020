@@ -10,11 +10,16 @@ export const stripSite = link =>
   link ? link.replace("https://hck2.com/", "") : ""
 
 export const imageDefaults = {
-  id: "",
-  altText: "",
-  sourceUrl: "",
-  mimeType: "",
-  srcSet: "",
+  style: { position: "", overflow: "" },
+  imgStyle: {
+    position: "",
+    top: "",
+    left: "",
+    objectPosition: "",
+    objectFit: "",
+    height: "",
+    width: "",
+  },
 }
 
 export const defPost = {
@@ -23,3 +28,5 @@ export const defPost = {
   uri: "",
   featuredImage: null,
 }
+
+export const breakPoints = [1600, 1366, 1024, 768, 576]

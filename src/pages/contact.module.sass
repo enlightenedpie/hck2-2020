@@ -25,13 +25,17 @@
   color: get-color('navy',3)
   background-color: white
   padding: 2rem
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
 
   +mq('tportrait')
-    padding: 2rem 20%
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+    padding: 2rem 12%
     grid-auto-rows: 1fr
     gap: 1rem
+
+  h2
+    color: get-color('orange',2)
+    margin-bottom: 1rem
 
 .form_group
   width: 100%
@@ -41,6 +45,9 @@
     width: 100%
     font-size: .5rem
     margin-bottom: 0.25rem
+
+  textarea
+    min-height: 12rem
 
   input, textarea
     width: 100%
@@ -63,13 +70,14 @@
 
     &::after
       content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
-      background-color: get-color('orange',3)
-      display: block
+      background-color: get-color('orange',2)
+      display: flex
       position: absolute
       top: 0
       right: 0
+      bottom: 0
       height: 100%
-      width: 25px
+      width: 1.25rem
       pointer-events: none
 
   select
@@ -79,21 +87,24 @@
     border-radius: 0px !important
     background-color: white
     font-size: 0.75rem
-    padding: 0.3rem
+    padding: 0.5rem
+    line-height: 1.25
 
 .small
   font-size: .5rem
 
 .location
+  order: -1
   display: flex
   flex-flow: column wrap
   justify-content: flex-start
   align-items: flex-end
   width: 100%
-  padding-top: 2rem
+  border-bottom: 1px solid #b9b9b9
 
   +mq('tportrait')
-    padding-top: unset
+    order: 1
+    border-bottom: unset
 
   & > *
     width: 100%
@@ -104,16 +115,17 @@
     color: get-color('green',3)
     margin-bottom: 1rem
 
-  .map
+  & > a
     display: block
-    background-color: white
-    padding: 0.5rem
-    box-shadow: 0px 0px .5rem 0px rgba(0,0,0,0.25)
-    margin-bottom: 1rem
+    padding-bottom: 1.5rem
 
-    img
-      width: 100%
-      height: auto
+    +mq('tportrait')
+      padding: 1.5rem 1.5rem 1.5rem 0
+
+  .map
+    box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+    +img1x1
+    +imgBorder
 
   p
     font-size: 0.8rem
@@ -124,10 +136,9 @@
     margin-top: 1rem
 
 .borderSep
-  border-bottom: 1px solid #b9b9b9
-  padding-bottom: 2rem
+  order: 0
+  padding-top: 2rem
 
   +mq('tportrait')
-    padding-bottom: unset
-    border-bottom: unset
+    padding-top: unset
     border-right: 1px solid #b9b9b9

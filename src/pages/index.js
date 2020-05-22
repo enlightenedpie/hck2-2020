@@ -1,8 +1,7 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
-
 import Layout from "../templates/layout"
 import SVG from "../components/SVG"
 import CSHero from "../components/CaseStudyHero"
@@ -14,8 +13,6 @@ import PromotedNews from "../components/PromotedNews"
 import styles from "./front.module.sass"
 import "./lineartanim.sass"
 
-const HTR = new HtmlToReact.Parser()
-
 const FrontPage = ({ wpquery, location, ...rest }) => {
   let { content, seo, slug } = wpquery.page,
     { caseStudies } = wpquery
@@ -23,7 +20,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
   return (
     <Layout seo={seo} bodyClass={slug} {...rest} location={location}>
       <section className={styles.stage_ATF}>
-        {HTR.parse(content)}
+        {parse(content)}
         <div className={styles.lineArt}>
           <ScrollEffect animateOnce animateIn="drawLineArt">
             <SVG.allFive />
@@ -35,11 +32,11 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
         ))}
       </section>
-      <Services6040 />
+      <Services6040 isFront={true} />
       <Testimonials />
       <section className={styles.blogMedia}>
         <PromotedBlog className={styles.blog} />
-        <PromotedNews className={styles.media} />
+        <PromotedNews className={styles.news} />
       </section>
     </Layout>
   )
@@ -56,12 +53,14 @@ const indexQuery = graphql`
           stats
           status
           featuredImage {
-            altText
             id
-            srcSet
-            title
+            altText
             sourceUrl
-            mimeType
+            imageFile {
+              childImageSharp {
+                ...hck2FluidImage
+              }
+            }
           }
         }
       }

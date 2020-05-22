@@ -366,7 +366,7 @@ export default {
       </g>
     </svg>
   ),
-  balance: () => (
+  balancedLife: () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -382,7 +382,7 @@ export default {
       />
     </svg>
   ),
-  charity: () => (
+  charitableHearts: () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.279 121.068">
       <defs>
         <style>{`.a47ef1eb-d641-46a8-9fa2-553308ccabc4{fill:none;stroke:#231f20;stroke-miterlimit:10;stroke-width:3px;}`}</style>
@@ -393,7 +393,7 @@ export default {
       />
     </svg>
   ),
-  knowledge: () => (
+  knowledgeSeekers: () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159.733 93.208">
       <defs>
         <style>{`.bf5cad1f-3c3d-4ffc-9719-dfc13f81cc31{fill:none;stroke:#231f20;stroke-miterlimit:10;stroke-width:3px;}`}</style>

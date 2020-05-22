@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
-import HtmlToReact from "html-to-react"
+import Img from "gatsby-image"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 import Layout from "./layout"
 import SVG from "../components/SVG"
@@ -9,14 +10,14 @@ import { stripSite, imageDefaults } from "../utils"
 import styles from "./landings.module.sass"
 import bioStyles from "./allBios.module.sass"
 
-const HTR = new HtmlToReact.Parser()
-
 export default ({ pageContext: { bios } }) => {
   let cards = []
 
   bios.map((bio, idx) => {
-    let { altText: alt, sourceUrl: src, ...fi } =
-      bio.featuredImage || imageDefaults
+    let {
+      altText: alt,
+      imageFile: { childImageSharp },
+    } = bio.featuredImage
 
     let splitTitle = bio.title.split(" | ")
     cards.push(
@@ -28,11 +29,20 @@ export default ({ pageContext: { bios } }) => {
       >
         <Link to={stripSite(bio.uri)}>
           <case-study-card>
-            <picture>
-              {src ? <img src={src} alt={alt} {...fi} /> : <SVG.LogoNoText />}
-            </picture>
-            <h3>{HTR.parse(splitTitle[0])}</h3>
-            <em>{HTR.parse(splitTitle[1])}</em>
+            {alt ? (
+              <Img
+                className={[bioStyles.bioImg, "square"].join(" ")}
+                alt={alt}
+                {...childImageSharp}
+                {...imageDefaults}
+              />
+            ) : (
+              <picture>
+                <SVG.LogoNoText />
+              </picture>
+            )}
+            <h3>{parse(splitTitle[0])}</h3>
+            <em>{parse(splitTitle[1])}</em>
           </case-study-card>
         </Link>
       </ScrollEffect>
@@ -43,13 +53,14 @@ export default ({ pageContext: { bios } }) => {
     <Layout seo={"{}"} bodyClass="landing bios">
       <section className={styles.landingIntro}>
         <div>
-          <h1>The HCK2 Leadership Team</h1>
+          <h1>Meet The Team</h1>
           <div-spacer />
           <p>
-            Meet our executive leadership team. International agencies and
-            boutiques. Fortune 500 and start-ups. Government and non-profits. We
-            represent experience - and some good stories too - from all and draw
-            upon this experience to guide and inspire.
+            Wide-ranging experience. Proven expertise. An insatiable appetite
+            for new insights and breakthrough solutions. All that, plus an
+            easygoing manner that fuels collaboration among the team and
+            enduring relationships with our clients. Come get acquainted with
+            our leadership team.
           </p>
         </div>
       </section>

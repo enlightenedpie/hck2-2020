@@ -1,5 +1,5 @@
 .landingIntro
-  padding: 3rem 0
+  padding: 4rem 0
   text-align: center
   background-color: $navy
   color: $white
@@ -32,39 +32,43 @@
 
 .serviceFilter
   background-color: get-color('blue',3)
-  padding: 1rem
-  color: $white
-
   +mq($activeBreak)
-    padding: .5rem 25%
-    display: flex
-    flex-flow: row nowrap
-    align-items: center
-
-  div:first-child
-    padding-bottom: 1rem
-    white-space: nowrap
-    +mq($activeBreak)
-      padding-right: 1rem
-      padding-bottom: 0
+    padding-left: 50%
   
-  .selectWrapper
-    border: 1px solid get-color('blue',1)
-    position: relative
-    width: 100%
-    border-radius: .25rem
-    overflow: hidden
+  & > div
+    padding: 1rem
+    color: $white
 
-    &::after
-      content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
-      background-color: get-color('blue',3)
-      display: block
-      position: absolute
-      top: 0
-      right: 0
-      height: 100%
-      width: 1.5rem
-      pointer-events: none
+    +mq($activeBreak)
+      padding: .5rem 25% .5rem 1rem
+      display: flex
+      flex-flow: row nowrap
+      align-items: center
+
+    div:first-child
+      padding-bottom: 1rem
+      white-space: nowrap
+      +mq($activeBreak)
+        padding-right: 1rem
+        padding-bottom: 0
+    
+    .selectWrapper
+      border: 1px solid get-color('blue',1)
+      position: relative
+      width: 100%
+      border-radius: .25rem
+      overflow: hidden
+
+      &::after
+        content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="white" /><path d="M0 0h24v24H0V0z" fill="none"/></svg>')
+        background-color: get-color('blue',3)
+        display: flex
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        width: 1.5rem
+        pointer-events: none
 
   select
     appearance: none
@@ -74,6 +78,7 @@
     background-color: white
     font-size: 0.75rem
     padding: 0.5rem
+    line-height: 1.25
 
 .landingsContent
   background-color: white
@@ -89,18 +94,40 @@
   +mq($activeBreak)
     padding: 2rem 12%
 
+.clientAccordion
+  width: 100%
+  padding: 1rem
+  position: relative
+  box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.10)
+  transition: box-shadow 250ms ease-in-out
+  +mq($activeBreak)
+    order: -1
+  
+  +mq('mobile')
+    grid-column: 1 / 3
+
+  +mq('tportrait')
+    grid-row: 1 / 3
+
+  &:hover
+    box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+
+  h2
+    font-size: 1.25rem
+    color: get-color("blue", 2)
+    margin-bottom: .5rem
+
 .contentCardContainer
+  position: relative
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
-  grid-auto-rows: 1fr
   gap: 2rem
+  +mq($activeBreak)
+    grid-auto-rows: 1fr
 
-  picture
-    svg
-      display: block
-      position: absolute
-      top: 0
-      background-color: $white
+  svg
+    display: block
+    background-color: $white
 
   & > div
     a
@@ -108,3 +135,7 @@
         +case-study-card
     
     +hck3color
+
+.csImg
+  margin-bottom: 1rem
+  +img1x1
