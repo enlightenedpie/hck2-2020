@@ -57,6 +57,7 @@ module.exports = {
       options: {
         data: `@import "${__dirname}/src/styles/entry"`,
         useResolveUrlLoader: true,
+        useMozJpeg: true,
       },
     },
     /* {
