@@ -51,13 +51,7 @@ export default ({
       id={newId}
       className={[styles.caseStudyHero, otherClass].join(" ")}
     >
-      <Img
-        loading="auto"
-        className="hero"
-        alt={alt}
-        {...childImageSharp}
-        {...imageDefaults}
-      />
+      <Img className="hero" alt={alt} {...childImageSharp} {...imageDefaults} />
       <div className={styles.informatic}>
         <div>
           <div>

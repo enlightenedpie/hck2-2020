@@ -45,13 +45,16 @@ exports.createPages = ({ actions, graphql }) => {
                     fluid(
                       maxWidth: 1920
                       srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
-                      webpQuality: 80
+                      quality: 50
                     ) {
+                      sizes
                       src
                       srcSet
                       srcSetWebp
                       srcWebp
-                      sizes
+                      base64
+                      originalName
+                      originalImg
                     }
                   }
                 }
@@ -123,13 +126,16 @@ exports.createPages = ({ actions, graphql }) => {
                       fluid(
                         maxWidth: 1920
                         srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
-                        webpQuality: 80
+                        quality: 50
                       ) {
+                        sizes
                         src
                         srcSet
                         srcSetWebp
                         srcWebp
-                        sizes
+                        base64
+                        originalName
+                        originalImg
                       }
                     }
                   }
@@ -151,13 +157,16 @@ exports.createPages = ({ actions, graphql }) => {
                           fluid(
                             maxWidth: 1920
                             srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
-                            webpQuality: 80
+                            quality: 50
                           ) {
+                            sizes
                             src
                             srcSet
                             srcSetWebp
                             srcWebp
-                            sizes
+                            base64
+                            originalName
+                            originalImg
                           }
                         }
                       }
@@ -270,13 +279,16 @@ exports.createPages = ({ actions, graphql }) => {
                         fluid(
                           maxWidth: 1920
                           srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
-                          webpQuality: 80
+                          quality: 50
                         ) {
+                          sizes
                           src
                           srcSet
                           srcSetWebp
                           srcWebp
-                          sizes
+                          base64
+                          originalName
+                          originalImg
                         }
                       }
                     }

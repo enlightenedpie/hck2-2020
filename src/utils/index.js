@@ -15,8 +15,6 @@ export const imageDefaults = {
     position: "",
     top: "",
     left: "",
-    transition: "",
-    opacity: "",
     objectPosition: "",
     objectFit: "",
     height: "",

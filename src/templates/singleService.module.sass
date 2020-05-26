@@ -10,7 +10,7 @@
     margin-top: 0
     padding-top: 33.33333%
   
-  video, source, img
+  video, source, picture > img
     display: block
     width: auto
     height: 100%
@@ -18,7 +18,7 @@
       width: 100%
       height: auto
 
-  img, aside
+  picture > img, aside
     position: absolute
     top: 50%
     left: 50%
@@ -26,9 +26,12 @@
   aside
     transform: translate3d(-50%,-50%,0)
 
+  picture
+    img
+      transform: translate3d(-50%,-50%,0)
+
   img
     filter: brightness(.35) grayscale(.5)
-    transform: translate3d(-50%,-50%,0)
 
   aside
     padding: 2rem

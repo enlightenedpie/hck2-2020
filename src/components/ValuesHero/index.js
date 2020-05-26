@@ -20,7 +20,6 @@ export default ({
   return (
     <article className={[styles.valuesHero].join(" ")}>
       <Img
-        loading="auto"
         {...imageDefaults}
         className={["hero", styles.valuesHeroImg].join(" ")}
         alt={alt}

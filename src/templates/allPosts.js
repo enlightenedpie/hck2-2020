@@ -32,16 +32,15 @@ const fetchMore = async (cursor, slug, qty = 12) => {
             sourceUrl
             imageFile {
               childImageSharp {
-                fluid(
-                  maxWidth: 1920
-                  srcSetBreakpoints: [1600, 1366, 1024, 768, 576]
-                  webpQuality: 80
-                ) {
+                fluid(maxWidth: 1920, srcSetBreakpoints: [1600, 1366, 1024, 768, 576], quality: 50) {
+                  sizes
                   src
                   srcSet
                   srcSetWebp
                   srcWebp
-                  sizes
+                  base64
+                  originalName
+                  originalImg
                 }
               }
             }
@@ -137,7 +136,6 @@ export default ({
                 <case-study-card>
                   {alt ? (
                     <Img
-                      loading="auto"
                       className={[styles.csImg].join(" ")}
                       alt={alt}
                       {...childImageSharp}
