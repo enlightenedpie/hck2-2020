@@ -12,27 +12,17 @@ const encode = data => {
     .join("&")
 }
 
-const scriptAtts = {
-  "data-jsd-embedded": true,
-  "data-key": "abbe907c-4f9e-4012-8858-fb63419e0fa0",
-  "data-base-url": "https://jsd-widget.atlassian.com",
-  src: "https://jsd-widget.atlassian.com/assets/embed.js",
-}
-
 const ContactPage = ({
-  props,
   staticMap,
   wpquery: {
     pages: { nodes: pages },
   },
+  ...props
 }) => {
   let [subd, updSubd] = useState(false),
-    [state, setState] = useState({}),
-    [injected, setInjected] = useState(false)
+    [state, setState] = useState({})
 
   setState = e => Object.assign(state, { [e.target.name]: e.target.value })
-
-  useEffect(() => setInjected(true), [])
 
   return (
     <Layout {...props} seo={pages[0].seo}>
@@ -188,7 +178,6 @@ const ContactPage = ({
           </a>
         </div>
       </section>
-      {!injected ? null : <script {...scriptAtts}></script>}
     </Layout>
   )
 }

@@ -17,6 +17,7 @@ function SEO({
   keywords,
   author,
   canonical,
+  ...rest
 }) {
   const {
     site: { siteMetadata },
@@ -39,6 +40,8 @@ function SEO({
   const metaDescription = description || siteMetadata.description
 
   bodyClass = [bodyClass, "hck2--node"].join(" ")
+
+  console.log(rest.pathname)
 
   return (
     <Helmet
