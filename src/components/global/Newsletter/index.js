@@ -18,7 +18,7 @@ export default () => {
   return (
     <div>
       {subd ? (
-        <span>Thx bro!</span>
+        <span>Thanks for signing up!</span>
       ) : (
         <form
           name="hck2Newsletter"
