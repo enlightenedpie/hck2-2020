@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import parse from "html-react-parser"
@@ -13,14 +13,14 @@ const encode = data => {
 }
 
 const ContactPage = ({
-  props,
   staticMap,
   wpquery: {
     pages: { nodes: pages },
   },
+  ...props
 }) => {
-  let [subd, updSubd] = useState(false)
-  let [state, setState] = useState({})
+  let [subd, updSubd] = useState(false),
+    [state, setState] = useState({})
 
   setState = e => Object.assign(state, { [e.target.name]: e.target.value })
 
