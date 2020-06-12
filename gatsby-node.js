@@ -8,7 +8,8 @@ const {
 const getOnlyPublished = nodes =>
   _.filter(nodes, ({ node }) => node.status === "publish")
 
-const stripSite = link => (link ? link.replace("https://hck2.com/", "") : "")
+const stripSite = link =>
+  link ? link.replace("https://www.hck2.com/", "") : ""
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions

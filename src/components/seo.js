@@ -17,6 +17,7 @@ function SEO({
   keywords,
   author,
   canonical,
+  ...rest
 }) {
   const {
     site: { siteMetadata },

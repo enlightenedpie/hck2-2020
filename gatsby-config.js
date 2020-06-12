@@ -3,7 +3,7 @@ module.exports = {
     title: "HCK2 Marketing + Communications",
     author: "HCK2 Marketing + Communications",
     description: "HCK2 Marketing + Communications",
-    siteUrl: "https://hck2.com",
+    siteUrl: "https://www.hck2.com",
     address: "3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
     separator: "|",

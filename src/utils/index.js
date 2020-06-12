@@ -7,7 +7,7 @@ export const kebabToCamel = item =>
     .join("")
 
 export const stripSite = link =>
-  link ? link.replace("https://hck2.com/", "") : ""
+  link ? link.replace("https://www.hck2.com/", "") : ""
 
 export const imageDefaults = {
   style: { position: "", overflow: "" },

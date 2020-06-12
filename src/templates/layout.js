@@ -26,9 +26,13 @@ export const fluidFragment = graphql`
 
 export default ({ seo, bodyClass, children, ...props }) => {
   seo = JSON.parse(seo)
+
+  let location = {}
+  if (props.location) location = { ...props.location }
+
   return (
     <PageTransition>
-      <SEO {...seo} bodyClass={bodyClass} />
+      <SEO {...location} {...seo} bodyClass={bodyClass} />
       <Header {...props} />
       <main role="main" id="node--content-wrapper" className="site-main">
         {children}
