@@ -41,8 +41,6 @@ function SEO({
 
   bodyClass = [bodyClass, "hck2--node"].join(" ")
 
-  console.log(rest.pathname)
-
   return (
     <Helmet
       htmlAttributes={{
