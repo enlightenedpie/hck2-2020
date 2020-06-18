@@ -9,7 +9,11 @@ import styles from "./contact.module.sass"
 const encode = data => {
   const formData = new FormData()
   for (var k in data) {
-    formData.append(k, data[k])
+    if (k === "resume") {
+      formData.append(k, data[k], data[k].name)
+    } else {
+      formData.append(k, data[k])
+    }
   }
   return formData
 }
@@ -60,11 +64,13 @@ const ContactPage = ({
               onSubmit={e => {
                 let data = encode({ "form-name": "hck2contact", ...state })
 
+                console.log(...data)
+
                 fetch("/", {
                   method: "POST",
-                  /* headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                  }, */
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
                   body: data,
                 })
                   .then(() => {
