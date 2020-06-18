@@ -58,11 +58,10 @@ const ContactPage = ({
               name="hck2contact"
               className={styles.newsletterForm}
               onSubmit={e => {
-                console.log(state)
                 fetch("/", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "application/x-www-form-urlencoded",
                   },
                   body: encode({ "form-name": "hck2contact", ...state }),
                 })
