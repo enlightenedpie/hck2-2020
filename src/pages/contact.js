@@ -23,12 +23,12 @@ const ContactPage = ({
     [state, setState] = useState({}),
     [uploader, setUploader] = useState(false)
 
-  setState = e => Object.assign(state, { [e.target.name]: e.target.value })
+  setState = e =>
+    Object.assign(state, {
+      [e.target.name]: e.target.files ? e.target.files[0] : e.target.value,
+    })
 
-  let handleAttachment = e => {
-    setState(Object.assign(state, { [e.target.name]: e.target.files[0] }))
-  }
-
+  console.log(state)
   return (
     <Layout {...props} seo={pages[0].seo}>
       <div className={styles.contactIntro}>
@@ -166,7 +166,7 @@ const ContactPage = ({
                     required
                     type="file"
                     name="resume"
-                    onChange={handleAttachment}
+                    onChange={setState}
                   />
                 </div>
               )}
