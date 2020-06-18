@@ -8,9 +8,9 @@ import styles from "./contact.module.sass"
 
 const encode = data => {
   const formData = new FormData()
-  Object.keys(data).forEach(k => {
+  for (var k in data) {
     formData.append(k, data[k])
-  })
+  }
   return formData
 }
 
@@ -58,12 +58,14 @@ const ContactPage = ({
               name="hck2contact"
               className={styles.newsletterForm}
               onSubmit={e => {
+                let data = encode({ "form-name": "hck2contact", ...state })
+
                 fetch("/", {
                   method: "POST",
-                  headers: {
+                  /* headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
-                  },
-                  body: encode({ "form-name": "hck2contact", ...state }),
+                  }, */
+                  body: data,
                 })
                   .then(() => {
                     updSubd(true)
