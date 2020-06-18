@@ -20,9 +20,14 @@ const ContactPage = ({
   ...props
 }) => {
   let [subd, updSubd] = useState(false),
-    [state, setState] = useState({})
+    [state, setState] = useState({}),
+    [uploader, setUploader] = useState(false)
 
   setState = e => Object.assign(state, { [e.target.name]: e.target.value })
+
+  let handleAttachment = e => {
+    setState(Object.assign(state, { [e.target.name]: e.target.files[0] }))
+  }
 
   return (
     <Layout {...props} seo={pages[0].seo}>
@@ -97,7 +102,14 @@ const ContactPage = ({
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="inquiryType" required onChange={setState}>
+                  <select
+                    name="inquiryType"
+                    required
+                    onChange={e => {
+                      setUploader(e.target.value == "career")
+                      setState(e)
+                    }}
+                  >
                     <option selected disabled>
                       Choose A Subject...
                     </option>
@@ -144,6 +156,20 @@ const ContactPage = ({
                   onChange={setState}
                 ></textarea>
               </div>
+
+              {uploader && (
+                <div className={styles.form_group}>
+                  <label htmlFor="resume">
+                    Upload Resume<sup>*</sup>
+                  </label>
+                  <input
+                    required
+                    type="file"
+                    name="resume"
+                    onChange={handleAttachment}
+                  />
+                </div>
+              )}
 
               <legend className={styles.small}>*Required</legend>
 
