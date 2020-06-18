@@ -7,9 +7,11 @@ import Button from "../components/Button"
 import styles from "./contact.module.sass"
 
 const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
+  const formData = new FormData()
+  Object.keys(data).forEach(k => {
+    formData.append(k, data[k])
+  })
+  return formData
 }
 
 const ContactPage = ({
@@ -28,7 +30,6 @@ const ContactPage = ({
       [e.target.name]: e.target.files ? e.target.files[0] : e.target.value,
     })
 
-  console.log(state)
   return (
     <Layout {...props} seo={pages[0].seo}>
       <div className={styles.contactIntro}>
@@ -57,10 +58,11 @@ const ContactPage = ({
               name="hck2contact"
               className={styles.newsletterForm}
               onSubmit={e => {
+                console.log(state)
                 fetch("/", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type": "multipart/form-data",
                   },
                   body: encode({ "form-name": "hck2contact", ...state }),
                 })
