@@ -67,7 +67,7 @@ const ContactPage = ({
                 fetch("/", {
                   method: "POST",
                   headers: {
-                    "Content-Type": "multipart/form-data", //"application/x-www-form-urlencoded"
+                    //"Content-Type": "multipart/form-data", //"application/x-www-form-urlencoded"
                   },
                   body: data,
                 })
