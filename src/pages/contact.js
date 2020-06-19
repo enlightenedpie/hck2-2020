@@ -64,12 +64,10 @@ const ContactPage = ({
               onSubmit={e => {
                 let data = encode({ "form-name": "hck2contact", ...state })
 
-                console.log(...data)
-
                 fetch("/", {
                   method: "POST",
                   headers: {
-                    //"Content-Type": "multipart/form-data",//"application/x-www-form-urlencoded"
+                    "Content-Type": "multipart/form-data", //"application/x-www-form-urlencoded"
                   },
                   body: data,
                 })
@@ -115,7 +113,7 @@ const ContactPage = ({
                     name="inquiryType"
                     required
                     onChange={e => {
-                      setUploader(e.target.value == "career")
+                      setUploader(e.target.value === "career")
                       setState(e)
                     }}
                   >
@@ -165,21 +163,13 @@ const ContactPage = ({
                   onChange={setState}
                 ></textarea>
               </div>
-
-              {uploader && (
-                <div className={styles.form_group}>
-                  <label htmlFor="resume">
-                    Upload Resume<sup>*</sup>
-                  </label>
-                  <input
-                    required
-                    type="file"
-                    name="resume"
-                    onChange={setState}
-                  />
-                </div>
-              )}
-
+              <div
+                style={uploader ? { display: "block" } : { display: "none" }}
+                className={styles.form_group}
+              >
+                <label htmlFor="file">Upload File</label>
+                <input type="file" name="file" onChange={setState} />
+              </div>
               <legend className={styles.small}>*Required</legend>
 
               <input type="hidden" name="form-name" value="hck2contact" />
