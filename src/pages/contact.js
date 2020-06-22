@@ -4,12 +4,19 @@ import Img from "gatsby-image"
 import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Button from "../components/Button"
+import Ellipsis from "../components/Loaders/ellipsis"
 import styles from "./contact.module.sass"
 
 const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
+  const formData = new FormData()
+  for (var k in data) {
+    if (k === "resume") {
+      formData.append(k, data[k], data[k].name)
+    } else {
+      formData.append(k, data[k])
+    }
+  }
+  return formData
 }
 
 const ContactPage = ({
@@ -20,9 +27,14 @@ const ContactPage = ({
   ...props
 }) => {
   let [subd, updSubd] = useState(false),
-    [state, setState] = useState({})
+    [sentMsg, setSentMsg] = useState(false),
+    [state, setState] = useState({}),
+    [uploader, setUploader] = useState(false)
 
-  setState = e => Object.assign(state, { [e.target.name]: e.target.value })
+  setState = e =>
+    Object.assign(state, {
+      [e.target.name]: e.target.files ? e.target.files[0] : e.target.value,
+    })
 
   return (
     <Layout {...props} seo={pages[0].seo}>
@@ -40,29 +52,39 @@ const ContactPage = ({
             <span
               style={{
                 marginRight: "1rem",
-                display: "block",
+                display: "flex",
+                height: "25%",
+                width: "75%",
+                alignItems: "center",
+                justifyContent: "center",
                 lineHeight: 1.25,
               }}
             >
-              Thank you for reaching out. Someone will get back with you
-              shortly!
+              {sentMsg ? sentMsg : <Ellipsis />}
             </span>
           ) : (
             <form
               name="hck2contact"
               className={styles.newsletterForm}
               onSubmit={e => {
+                updSubd(true)
+                let data = encode({ "form-name": "hck2contact", ...state })
+
                 fetch("/", {
                   method: "POST",
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                  },
-                  body: encode({ "form-name": "hck2contact", ...state }),
+                  body: data,
                 })
                   .then(() => {
-                    updSubd(true)
+                    setSentMsg(
+                      "Thank you for reaching out. Someone will get back with you shortly!"
+                    )
                   })
-                  .catch(err => alert(err))
+                  .catch(err => {
+                    setSentMsg(
+                      "There was an error sending your message. Please try again later."
+                    )
+                    console.log(err)
+                  })
                 e.preventDefault()
               }}
               data-netlify="true"
@@ -97,7 +119,14 @@ const ContactPage = ({
                   Inquiry Type<sup>*</sup>
                 </label>
                 <div className={styles.select_wrapper}>
-                  <select name="inquiryType" required onChange={setState}>
+                  <select
+                    name="inquiryType"
+                    required
+                    onChange={e => {
+                      setUploader(e.target.value === "career")
+                      setState(e)
+                    }}
+                  >
                     <option selected disabled>
                       Choose A Subject...
                     </option>
@@ -144,7 +173,13 @@ const ContactPage = ({
                   onChange={setState}
                 ></textarea>
               </div>
-
+              <div
+                style={uploader ? { display: "block" } : { display: "none" }}
+                className={styles.form_group}
+              >
+                <label htmlFor="file">Upload File</label>
+                <input type="file" name="file" onChange={setState} />
+              </div>
               <legend className={styles.small}>*Required</legend>
 
               <input type="hidden" name="form-name" value="hck2contact" />

@@ -1,0 +1,54 @@
+.ellipsis
+  display: inline-block
+  position: relative
+  width: 3em
+  height: 1em
+
+  div
+    position: absolute
+    top: 0
+    width: 1em
+    height: 1em
+    border-radius: 50%
+    background: #000
+    animation-timing-function: cubic-bezier(0, 1, 1, 0)
+
+    &:nth-child(1)
+      left: 0
+      background: $orange
+      animation: lds-ellipsis1 0.6s infinite both
+    &:nth-child(2)
+      left: 0
+      background: $green
+      animation: lds-ellipsis2 0.6s infinite both
+    &:nth-child(3)
+      left: 1.25em
+      z-index: 2
+      background: $blue
+      animation: lds-ellipsis2 0.6s infinite both
+    &:nth-child(4)
+      left: 2.5em
+      background: $ltgray
+      z-index: 1
+      animation: lds-ellipsis3 0.6s infinite both
+
+@keyframes lds-ellipsis1 
+  0% 
+    transform: scale(0)
+  
+  100% 
+    transform: scale(1)
+
+@keyframes lds-ellipsis3 
+  0% 
+    transform: scale(1)
+  
+  100% 
+    transform: scale(0)
+
+@keyframes lds-ellipsis2 
+  0% 
+    transform: translate(0, 0)
+  
+  100% 
+    transform: translate(1.25em, 0)
