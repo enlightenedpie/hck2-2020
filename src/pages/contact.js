@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 import parse from "html-react-parser"
 import Layout from "../templates/layout"
 import Button from "../components/Button"
+import Ellipsis from "../components/Loaders/ellipsis"
 import styles from "./contact.module.sass"
 
 const encode = data => {
@@ -26,6 +27,7 @@ const ContactPage = ({
   ...props
 }) => {
   let [subd, updSubd] = useState(false),
+    [sentMsg, setSentMsg] = useState(""),
     [state, setState] = useState({}),
     [uploader, setUploader] = useState(false)
 
@@ -50,12 +52,13 @@ const ContactPage = ({
             <span
               style={{
                 marginRight: "1rem",
-                display: "block",
+                display: "flex",
+                height: "25%",
+                alignItems: "center",
                 lineHeight: 1.25,
               }}
             >
-              Thank you for reaching out. Someone will get back with you
-              shortly!
+              {sentMsg || <Ellipsis />}
             </span>
           ) : (
             <form
@@ -66,15 +69,20 @@ const ContactPage = ({
 
                 fetch("/", {
                   method: "POST",
-                  headers: {
-                    //"Content-Type": "multipart/form-data", //"application/x-www-form-urlencoded"
-                  },
                   body: data,
                 })
                   .then(() => {
+                    setSentMsg(
+                      "Thank you for reaching out. Someone will get back with you shortly!"
+                    )
                     updSubd(true)
                   })
-                  .catch(err => alert(err))
+                  .catch(err => {
+                    setSentMsg(
+                      "There was an error sending your message. Please try again later."
+                    )
+                    console.log(err)
+                  })
                 e.preventDefault()
               }}
               data-netlify="true"
