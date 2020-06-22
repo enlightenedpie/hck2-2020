@@ -27,7 +27,7 @@ const ContactPage = ({
   ...props
 }) => {
   let [subd, updSubd] = useState(false),
-    [sentMsg, setSentMsg] = useState(""),
+    [sentMsg, setSentMsg] = useState(false),
     [state, setState] = useState({}),
     [uploader, setUploader] = useState(false)
 
@@ -54,17 +54,20 @@ const ContactPage = ({
                 marginRight: "1rem",
                 display: "flex",
                 height: "25%",
+                width: "75%",
                 alignItems: "center",
+                justifyContent: "center",
                 lineHeight: 1.25,
               }}
             >
-              {sentMsg || <Ellipsis />}
+              {sentMsg ? sentMsg : <Ellipsis />}
             </span>
           ) : (
             <form
               name="hck2contact"
               className={styles.newsletterForm}
               onSubmit={e => {
+                updSubd(true)
                 let data = encode({ "form-name": "hck2contact", ...state })
 
                 fetch("/", {
@@ -75,7 +78,6 @@ const ContactPage = ({
                     setSentMsg(
                       "Thank you for reaching out. Someone will get back with you shortly!"
                     )
-                    updSubd(true)
                   })
                   .catch(err => {
                     setSentMsg(
