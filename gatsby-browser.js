@@ -2,5 +2,6 @@ const { detect } = require("detect-browser")
 const browser = detect()
 
 exports.onClientEntry = () => {
-  alert(browser.name)
+  if (window.location.pathname === "/unsupported.html") return false
+  if (browser.name !== "ie") window.location.replace("/unsupported.html")
 }
