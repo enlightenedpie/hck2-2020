@@ -139,6 +139,13 @@ module.exports = {
         siteSpeedSampleRate: 10,
       },
     }, */
+    {
+      resolve: `gatsby-plugin-hotjar`,
+      options: {
+        id: `1890904`,
+        sv: `6`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
