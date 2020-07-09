@@ -80,7 +80,8 @@ export default ({
 }) => {
   let [state, setState] = useState({}),
     [heroes, setHeroes] = useState([]),
-    [others, setOthers] = useState([])
+    [others, setOthers] = useState([]),
+    [remaining, setRemaining] = useState([])
 
   if (Object.keys(state).length === 0) {
     let oth,
@@ -90,9 +91,13 @@ export default ({
       ind < 3 ? her.push(post) && false : true
     )
 
+    let firstOth = oth.slice(0, 8)
+
     if (heroes.length === 0) setHeroes(her)
 
-    if (others.length === 0) setOthers(oth)
+    if (others.length === 0) setOthers(firstOth)
+
+    if (remaining.length === 0) setRemaining(oth)
 
     setState(
       Object.assign(state, {
@@ -153,21 +158,19 @@ export default ({
           )
         })}
       </section>
-      {/* {!state.hasNextPage ? null : 
-        <div style={{padding: "2rem",background: "white"}}>
-          <Button onClick={async e => {
-            let newQ = await fetchMore(state.endCursor,slug)
-
-            return console.log(newQ)
-
-            let { data: { category: { posts: { pageInfo, nodes: posts} } } } = newQ
-
-            setState(Object.assign(state,{...pageInfo}))
-            setOthers([...others,...posts])
-
-          } }>Load More Posts</Button>
+      {remaining.length < 8 ? null : (
+        <div
+          style={{ padding: "2rem", background: "white", textAlign: "center" }}
+        >
+          <Button
+            onClick={async e => {
+              setOthers(remaining)
+            }}
+          >
+            Load More Posts
+          </Button>
         </div>
-      } */}
+      )}
     </Layout>
   )
 }
@@ -180,7 +183,7 @@ export const query = graphql`
         description
         name
         slug
-        posts(first: 15, where: { status: PUBLISH }) {
+        posts(first: 2000, where: { status: PUBLISH }) {
           pageInfo {
             hasNextPage
             endCursor
