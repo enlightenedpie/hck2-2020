@@ -31,7 +31,7 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
         <script src="https://snapwidget.com/js/snapwidget.js"></script>
         <iframe
           src="https://snapwidget.com/embed/849675"
-          className="snapwidget-widget"
+          className="snapwidget-widget instagrid"
           allowTransparency="true"
           frameBorder="0"
           scrolling="no"
