@@ -34,6 +34,8 @@ export default ({ pageContext: post }) => {
 
   let dateString = new Date(date).toLocaleDateString()
 
+  console.log(seo)
+
   return (
     <Layout bodyClass="single single-post" seo={seo}>
       <article>
