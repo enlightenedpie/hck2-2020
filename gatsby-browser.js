@@ -8,8 +8,6 @@ exports.onClientEntry = () => {
 
   let tid_e = localStorage.getItem("tid_e")
 
-  console.log(tid_e)
-
   localStorage.setItem("tid_e", tid_e || uuid())
 }
 
