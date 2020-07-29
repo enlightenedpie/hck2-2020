@@ -1,0 +1,25 @@
+.sharer
+  position: sticky
+  top: 6rem
+  transform: translate3d(-3.5rem, 0, 0)
+  display: inline-block
+  z-index: 1999
+  box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.25)
+
+  +mq($activeBreak)
+    top: calc(6rem + 312px)
+    transform: translate3d(-50vw,0,0)
+
+  a
+    text-align: center
+    display: block
+    padding: 1rem
+    color: white
+    opacity: .9
+    transition: opacity 250ms ease-in-out
+
+    &:hover
+      opacity: 1
+
+    svg
+      color: white
