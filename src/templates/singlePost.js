@@ -1,14 +1,13 @@
 import React from "react"
-import HtmlToReact from "html-to-react"
+import parse from "html-react-parser"
 import ScrollEffect from "react-animate-on-scroll"
 
 import Layout from "./layout"
 import SVG from "../components/SVG"
+import Sharer from "../components/SocialSharer"
 
 import styles from "./single.module.sass"
 import "../components/h6040anim.sass"
-
-const HTR = new HtmlToReact.Parser()
 
 const defImg = {
   altText: "",
@@ -49,15 +48,16 @@ export default ({ pageContext: post }) => {
           </ScrollEffect>
         </figure>
         <section className={styles.singleContent}>
-          <h1>{HTR.parse(title)}</h1>
+          <Sharer />
+          <h1>{parse(title)}</h1>
           {/* <div className={styles.bug}>
             <time pubDate={true} dateTime={date}>
               {dateString}
             </time>
             <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-            <em class="author">{HTR.parse(name)}</em>
+            <em class="author">{parse(name)}</em>
           </div> */}
-          <div className={styles.mainContent}>{HTR.parse(content)}</div>
+          <div className={styles.mainContent}>{parse(content)}</div>
         </section>
       </article>
     </Layout>

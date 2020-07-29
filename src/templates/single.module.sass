@@ -48,7 +48,7 @@
 
 .singleContent
   background-color: white
-  padding: 2rem
+  padding: 2rem .5rem 2rem 3.5rem
   min-height: 100vh
 
   +mq('tportrait')
@@ -56,9 +56,9 @@
 
   h1
     color: get-color("green",1)
-    margin-top: 2rem
-    text-align: center
-    font-size: 1.75rem
+    //margin-top: 2rem
+    //text-align: center
+    //font-size: 1.75rem
 
     +mq('tportrait')
       text-align: left
@@ -79,14 +79,12 @@
       font-weight: bold
 
   .mainContent
+    position: relative
     margin: 3rem 0 0
     line-height: 1.25
 
     +mq($activeBreak)
       margin: 3rem 12% 0
-    
-    p:first-child
-      +articleText
     
     p:not(:first-child)
       padding-bottom: 1rem

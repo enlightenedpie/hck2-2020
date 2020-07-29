@@ -7,6 +7,26 @@ module.exports = {
     address: "3875 Ponte Ave.\nSuite 420\nAddison, TX 75001",
     phone: "972.716.0500",
     separator: "|",
+    shares: [
+      {
+        label: "Facebook",
+        color: "#3b5998",
+        icon: "facebook-f",
+        link: "https://www.facebook.com/sharer/sharer.php?u=",
+      },
+      {
+        label: "LinkedIn",
+        color: "#2867b2",
+        icon: "linkedin-in",
+        link: "https://www.linkedin.com/sharing/share-offsite/?url=",
+      },
+      {
+        label: "Twitter",
+        color: "#1da1f2",
+        icon: "twitter",
+        link: "https://twitter.com/intent/tweet?url=",
+      },
+    ],
   },
   plugins: [
     {
