@@ -20,9 +20,9 @@ export default ({
   let splitTitle = title.split("|")
 
   let pageColor
-  if (rest.databaseId % 3 == 0) {
+  if (rest.databaseId % 3 === 0) {
     pageColor = styles.green
-  } else if (rest.databaseId % 3 == 1) {
+  } else if (rest.databaseId % 3 === 1) {
     pageColor = styles.blue
   } else {
     pageColor = styles.orange
