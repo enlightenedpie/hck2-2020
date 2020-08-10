@@ -24,6 +24,7 @@ export default ({ pageContext: post }) => {
     content,
     seo,
     title,
+    link,
     catSlug,
     date,
     author: { name },
@@ -32,6 +33,8 @@ export default ({ pageContext: post }) => {
   let { mimeType, altText, sourceUrl, ...rest } = featuredImage || defImg
 
   let dateString = new Date(date).toLocaleDateString()
+
+  console.log(seo)
 
   return (
     <Layout bodyClass="single single-post" seo={seo}>
@@ -48,7 +51,7 @@ export default ({ pageContext: post }) => {
           </ScrollEffect>
         </figure>
         <section className={styles.singleContent}>
-          <Sharer />
+          <Sharer url={link} />
           <h1>{parse(title)}</h1>
           {/* <div className={styles.bug}>
             <time pubDate={true} dateTime={date}>

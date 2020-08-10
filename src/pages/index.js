@@ -27,6 +27,17 @@ const FrontPage = ({ wpquery, location, ...rest }) => {
           </ScrollEffect>
         </div>
       </section>
+      <section>
+        <script src="https://snapwidget.com/js/snapwidget.js"></script>
+        <iframe
+          src="https://snapwidget.com/embed/849675"
+          className="snapwidget-widget"
+          allowTransparency="true"
+          frameBorder="0"
+          scrolling="no"
+          style={{ border: "none", overflow: "hidden", width: "100%" }}
+        ></iframe>
+      </section>
       <section id="csFeature" className={styles.caseStudies_feature}>
         {caseStudies.nodes.map((noda, i) => (
           <CSHero hasMore={true} idx={i} key={noda.id} {...noda} />
