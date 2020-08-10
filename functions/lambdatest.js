@@ -3,10 +3,9 @@ const fs = require("fs")
 
 var years = fs.readFile(
   path.resolve(__dirname) + "/store/years.json",
+  "utf8",
   (err, data) => {
-    console.log(err, data)
-    if (err) throw err
-    return data
+    console.log(path.resolve(__dirname))
   }
 )
 
