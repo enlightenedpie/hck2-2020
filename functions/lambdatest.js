@@ -1,11 +1,14 @@
 const path = require("path")
 const fs = require("fs")
 
-var years = path.resolve("./store/years.json")
+var years = fs.readFile(path.resolve("./store/years.json"), (err, data) => {
+  if (err) throw err
+  return data
+})
 
-exports.handler = function(event, context, callback) {
+exports.handler = (event, context, callback) => {
   callback(null, {
     statusCode: 200,
-    body: fs.readFile(years, "utf8"),
+    body: years,
   })
 }
