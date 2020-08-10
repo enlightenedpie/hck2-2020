@@ -4,8 +4,8 @@ const fs = require("fs")
 var years = fs.readFile(
   path.resolve(__dirname) + "/store/years.json",
   (err, data) => {
+    console.log(err, data)
     if (err) throw err
-    console.log(data)
     return data
   }
 )
@@ -13,6 +13,6 @@ var years = fs.readFile(
 exports.handler = (event, context, callback) => {
   callback(null, {
     statusCode: 200,
-    body: years,
+    body: JSON.stringify({ years }),
   })
 }
